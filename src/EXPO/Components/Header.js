@@ -2,22 +2,20 @@ import React from 'react'
 import { View, Text , StyleSheet  , Dimensions , TouchableOpacity, Image } from 'react-native'
 import {Entypo}   from  '@expo/vector-icons';
 import PopupMenu from './PopupMenu';
-import colors from '../../colors';
+import colors from '../../Constants/colors';
+import icons from '../../Constants/icons';
 
 const { width} = Dimensions.get('window');
 
 export default function Header() {
   return (
-
-
-
     <View style = {styles.container}> 
 
     <View style = {{ height : 30  , backgroundColor : 'green' , width : '100%'}}/> 
 
     <View style = {styles.header}>
            <Image
-        source={require('../../../assets/logo.png')} 
+        source={icons.logo} 
         style={styles.logo}
       />
 

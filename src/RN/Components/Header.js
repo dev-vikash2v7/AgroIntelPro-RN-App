@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text , StyleSheet  , Dimensions , TouchableOpacity, Image } from 'react-native'
 import Entypo   from 'react-native-vector-icons/Entypo';
 import PopupMenu from './PopupMenu';
-import colors from '../../colors';
+import colors from '../../Constants/colors';
 
 const { width} = Dimensions.get('window');
 

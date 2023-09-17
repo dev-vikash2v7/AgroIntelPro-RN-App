@@ -2,7 +2,8 @@ import  React,{useEffect, useState }  from 'react'
 import { View  , StyleSheet   , TouchableOpacity, Image , Text , FlatList} from 'react-native'
 import WeatherReport from '../../Components/WeatherReport'
 import {  useNavigation} from '@react-navigation/native'
-import colors from '../../../colors'
+import colors from '../../../Constants/colors'
+import icons from '../../../Constants/icons'
 
 const Home = () => {
   const navigation = useNavigation()
@@ -12,40 +13,40 @@ const Home = () => {
     {
       id : 1 ,
       name : 'Disease Predicator',
-      loc : require('./icons/camera.png'),
+      loc : icons.camera,
       link : 'DiseasePredScreen'
     },
     {
       id : 2 ,
 
       name : 'Crop Recommendation',
-      loc : require('./icons/plant.png'),
+      loc : icons.plant,
       link : 'CropRecScreen'
 
     },
     {
       id : 3 ,
       name : 'Fertilizer Recommendation',
-      loc : require('./icons/fertilizer.png'),
+      loc : icons.fertilizer,
       link : 'FertilizerRecScreen'
     },
     {
       id : 4 ,
       name : 'Fertilizer Recommendation',
-      loc : require('./icons/fertilizer.png'),
+      loc : icons.intelligent,
 
       link : 'FertilizerRecScreen'
     },
     {
       id : 5 ,
       name : 'Fertilizer Recommendation',
-      loc : require('./icons/fertilizer.png'),
+      loc : icons.bag,
       link : 'FertilizerRecScreen'
     },
     {
       id : 6 ,
       name : 'Fertilizer Recommendation',
-      loc : require('./icons/fertilizer.png'),
+      loc : icons.community,
       link : 'FertilizerRecScreen'
     },
   ]

@@ -3,7 +3,8 @@ import { View  , StyleSheet   ,Text , TouchableOpacity, Image  } from 'react-nat
 import { Ionicons } from '@expo/vector-icons';
 import Home from './Tabs/Home';
 import Profile from './Tabs/Profile';
-import colors from '../../colors';
+import colors from '../../Constants/colors';
+import icons from '../../Constants/icons';
 
 export default function  HomeScreen() {
   const [selectedTab , setSelectedTab] =  useState('Home')
@@ -19,15 +20,15 @@ export default function  HomeScreen() {
         <View style={styles.bottomView }>
 
             <TouchableOpacity  style={styles.bottomTab}      onPress={() => {    setSelectedTab('Home');  }} >
-              <Image source={ require('./Tabs/icons/home.png')} style={styles.icon }  />
+              <Image source={ icons.home} style={styles.icon }  resizeMode='cover'/>
               </TouchableOpacity>
 
             <TouchableOpacity  style={styles.bottomTab}  onPress={() => {    setSelectedTab('Community');  }}>
-              <Image source={ require('./Tabs/icons/community.png')} style={styles.icon }  />
+              <Image source={ icons.community} style={styles.icon } resizeMode='cover' />
             </TouchableOpacity>
 
             <TouchableOpacity  style={styles.bottomTab}  onPress={() => {    setSelectedTab('Profile');  }}>
-              <Image source={ require('./Tabs/icons/user.png')} style={styles.icon }  resizeMode='cover'/>
+              <Image source={ icons.user} style={styles.icon }  resizeMode='cover'/>
             </TouchableOpacity>
 
         </View> 
@@ -57,10 +58,8 @@ const styles = StyleSheet.create({
     marginTop : 20
   },
   icon : {
-    color : '#fff',
-    width : 20 , 
-    height : 20 
-
+    width : 40 , 
+    height : 40 
   }
 });
 

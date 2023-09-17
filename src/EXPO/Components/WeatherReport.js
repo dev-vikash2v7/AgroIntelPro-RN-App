@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import * as Location from 'expo-location';
 import axios from 'axios';
-import colors from '../../colors';
+import colors from '../../Constants/colors';
 // import { getLocation } from '../Permissions';
 
 
