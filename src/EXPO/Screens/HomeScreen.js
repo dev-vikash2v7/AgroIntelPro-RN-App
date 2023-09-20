@@ -5,7 +5,10 @@ import Home from './Tabs/Home';
 import Profile from './Tabs/Profile';
 import colors from '../../Constants/colors';
 import icons from '../../Constants/icons';
+<<<<<<< HEAD
 import News from './Tabs/News';
+=======
+>>>>>>> origin/main
 
 export default function  HomeScreen() {
   
@@ -25,8 +28,13 @@ export default function  HomeScreen() {
               <Image source={ icons.home} style={styles.icon }  resizeMode='cover'/>
               </TouchableOpacity>
 
+<<<<<<< HEAD
             <TouchableOpacity  style={styles.bottomTab}  onPress={() => {    setSelectedTab('News');  }}>
               <Image source={ icons.news} style={styles.icon } resizeMode='cover' />
+=======
+            <TouchableOpacity  style={styles.bottomTab}  onPress={() => {    setSelectedTab('Community');  }}>
+              <Image source={ icons.community} style={styles.icon } resizeMode='cover' />
+>>>>>>> origin/main
             </TouchableOpacity>
 
             <TouchableOpacity  style={styles.bottomTab}  onPress={() => {    setSelectedTab('Profile');  }}>

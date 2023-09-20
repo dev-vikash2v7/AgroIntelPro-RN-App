@@ -3,6 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './Screens/HomeScreen';
 import Header from './Components/Header';
+<<<<<<< HEAD
+=======
+import DiseasePrediction from './Screens/Disease Prediction Screens/DiseasePrediction';
+import CropRecommendation from './Screens/CropRecommendation';
+import FertilizerRecommendation from './Screens/FertilizerRecommendation';
+import { Button } from 'react-native';
+>>>>>>> origin/main
 
 import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
 import CropRecScreen from './Screens/Crop Model Screens/CropRecommendation';
@@ -15,7 +22,8 @@ import SignUpScreen from './Screens/Auth Screens/SignUpScreen';
 const Stack = createNativeStackNavigator()
 
 export default function AppNavigator() {
- 
+
+
   return (
     <NavigationContainer >
       
@@ -28,17 +36,23 @@ export default function AppNavigator() {
 
       <Stack.Screen 
       name='DiseasePredScreen' 
-      component={DiseasePredScreen} 
-      options={{header: () => <Header />, }} />
+      component={DiseasePrediction} 
+      options={{ 
+
+        header: () => <Header />,
+
+      
+    
+         }} />
 
       <Stack.Screen 
       name='CropRecScreen' 
-      component={CropRecScreen} 
+      component={CropRecommendation} 
       options={{header: () => <Header />, }} />
 
       <Stack.Screen 
       name='FertilizerRecScreen' 
-      component={FertilizerRecScreen} 
+      component={FertilizerRecommendation} 
       options={{header: () => <Header />, }} />
 
       <Stack.Screen 
