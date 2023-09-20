@@ -4,7 +4,7 @@ import React from 'react'
 const CropRecommendation = () => {
   return (
     <View>
-      <Text>CropRecommendation</Text>
+
     </View>
   )
 }

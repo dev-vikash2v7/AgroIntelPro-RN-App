@@ -1,13 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import HomeScreen from './Screens/HomeScreen';
 import Header from './Components/Header';
-import DiseasePredScreen from './Screens/DiseasePrediction';
-import CropRecScreen from './Screens/CropRecommendation';
-import FertilizerRecScreen from './Screens/FertilizerRecommendation';
 
-// import LogInScreen from './Screens/LogInScreen';
-// import SignUpScreen from './Screens/SignUpScreen';
+import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
+import CropRecScreen from './Screens/Crop Model Screens/CropRecommendation';
+import FertilizerRecScreen from './Screens/Crop Model Screens/FertilizerRecommendation';
+
+import LogInScreen from './Screens/Auth Screens/LogInScreen';
+import SignUpScreen from './Screens/Auth Screens/SignUpScreen';
+
 
 const Stack = createNativeStackNavigator()
 
@@ -38,18 +41,18 @@ export default function AppNavigator() {
       component={FertilizerRecScreen} 
       options={{header: () => <Header />, }} />
 
-      {/* <Stack.Screen 
+      <Stack.Screen 
       name='SignUp' 
       component={SignUpScreen} 
-       options={{headerShown: false}}
-       /> 
+      options={{header: () => <Header />, }} />
        
        <Stack.Screen 
       name='LogIn' 
       component={LogInScreen} 
-       options={{headerShown: false}}
-       /> */}
+      options={{header: () => <Header />, }} />
+      
    </Stack.Navigator>
+
       
       </NavigationContainer>
 

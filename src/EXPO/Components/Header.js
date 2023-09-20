@@ -2,26 +2,27 @@ import React from 'react'
 import { View, Text , StyleSheet  , Dimensions , TouchableOpacity, Image } from 'react-native'
 import {Entypo}   from  '@expo/vector-icons';
 import PopupMenu from './PopupMenu';
-import colors from '../../colors';
+import colors from '../../Constants/colors';
+import icons from '../../Constants/icons';
 
 const { width} = Dimensions.get('window');
 
 export default function Header() {
   return (
-
-
-
     <View style = {styles.container}> 
 
     <View style = {{ height : 30  , backgroundColor : 'green' , width : '100%'}}/> 
 
     <View style = {styles.header}>
+      <View style = {{flexDirection:'row' , alignItems :'center'}}>
            <Image
-        source={require('../../../assets/logo.png')} 
+        source={icons.logo} 
         style={styles.logo}
       />
 
-      <Text style={styles.title}>AgroAid</Text>
+      <Text style={styles.title}>AgroIntel Pro</Text>
+
+      </View>
 
       <TouchableOpacity onPress={() => <PopupMenu/> }>
         <Entypo  name='dots-three-vertical' size={20} color={colors.text}/>
@@ -59,8 +60,8 @@ container :{
   },
 
   title: {
-    fontSize: 24,
-    fontWeight : '600' ,
+    fontSize: 20,
+    fontWeight : '500' ,
     color: colors.text, 
   },
   

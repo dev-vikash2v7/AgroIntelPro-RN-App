@@ -4,23 +4,22 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  
+  StyleSheet,  
 } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
-import CustomButton from '../Components/CustomButton';
 import {useDispatch }  from 'react-redux'
+import { collection,addDoc} from "firebase/firestore";
+import {Ionicons}   from '@expo/vector-icons';
 
-import { setUser } from '../Redux/Slices/AuthSlice';
-import Ionicons   from 'react-native-vector-icons/Ionicons';
-
-import {db} from '../../config/firebaseConfig' 
-import { collection, addDoc } from "firebase/firestore"; 
-
+import { db } from '../../firebase_config'; 
+import { setUser } from '../../../Redux/Slices/AuthSlice';
+import CustomButton from '../../Components/CustomButton';
 
 
 const SignUpScreen = () => {
-  const [name, setName] = useState('vk');
+
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,15 +30,12 @@ const SignUpScreen = () => {
 
 
 
-
-
-
-const  registerUser = async ( data  )=>{
-    try{
+ const  registerUser = async ( data  )=>{
+     try{
      const docRef =  await addDoc(collection(db, "Users"), data);
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
       dispatch(setUser(data))
-      navigation.navigate('Main');
+      navigation.navigate('HomeScreen');
     }
     catch (e) {
         console.error("Error adding document: ", e);
@@ -53,23 +49,18 @@ const  registerUser = async ( data  )=>{
       setErrorMessage('Please fill in all fields');
       return;
     }
-
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
     }
-
     registerUser({name, email, password})
-
-    
-
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":40 , "position":'absolute', "left" : 20 }}>
-    <Ionicons name = 'arrow-back' size = {20} />
-    </TouchableOpacity>
+      {/* <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":30 , "position":'absolute', "left" : 30 }}>
+    <Ionicons name = 'arrow-back' size = {30} />
+    </TouchableOpacity> */}
 
 
       <Text style={styles.title}>Sign Up</Text>

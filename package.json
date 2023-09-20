@@ -10,6 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0-0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0-0",
+    "@babel/plugin-transform-arrow-functions": "^7.0.0-0",
+    "@babel/plugin-transform-shorthand-properties": "^7.0.0-0",
+    "@babel/plugin-transform-template-literals": "^7.0.0-0",
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
     "@react-navigation/drawer": "^6.6.3",
@@ -22,7 +27,9 @@
     "expo-font": "~11.4.0",
     "expo-image-picker": "14.3.2",
     "expo-location": "16.1.0",
+    "expo-modules-autolinking": "~1.5.0",
     "expo-splash-screen": "^0.20.5",
+    "firebase": "^10.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.4",

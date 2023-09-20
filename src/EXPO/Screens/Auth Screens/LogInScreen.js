@@ -8,13 +8,13 @@ import {
   Alert
 } from 'react-native';
 
+
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import CustomButton from '../Components/CustomButton';
-import { setUser  } from '../Redux/Slices/AuthSlice';
-import {db} from '../../config/firebaseConfig' 
-import Ionicons   from 'react-native-vector-icons/Ionicons';
+import { db } from '../../firebase_config'; 
+import {Ionicons}   from '@expo/vector-icons';
 import { collection, query, where, getDocs } from "firebase/firestore";
+import CustomButton from '../../Components/CustomButton';
 
 
 const LogInScreen = () => {
@@ -34,9 +34,7 @@ const LogInScreen = () => {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
 
-      console.log(doc.id, " => ", doc.data());
       const userData = doc.data();
 
       if(userData.password == user.password){
@@ -62,9 +60,9 @@ const LogInScreen = () => {
   return (
     <View style={styles.container}>
 
-    <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":40 , "position":'absolute', "left" : 20 }}>
-    <Ionicons name = 'arrow-back' size = {20} />
-    </TouchableOpacity>
+    {/* <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":30 , "position":'absolute', "left" : 30 }}>
+    <Ionicons name = 'arrow-back' size = {30} />
+    </TouchableOpacity> */}
 
 
       <Text style={styles.title}>Login</Text>
