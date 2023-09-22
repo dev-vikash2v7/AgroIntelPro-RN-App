@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// import HomeScreen from './Screens/HomeScreen';
 import Header from './Components/Header';
 
 import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
@@ -17,6 +16,9 @@ import ProfileScreen from './Tabs/Profile';
 import NewsScreen from './Tabs/NewsList';
 import CustomTabIcon from './Components/CustomTabIcon';
 import icons from '../Constants/icons';
+import MyFarm from './Screens/Crop Model Screens/MyFarm';
+import FarmStore from './Screens/Crop Model Screens/FarmStore';
+import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
 
    
 export default function AppNavigator() {
@@ -64,10 +66,33 @@ export default function AppNavigator() {
        component={FertilizerRecommendation} 
        options={{
         headerTitle : 'Best Fertilizer Recommendation',
-       
-       }}
-       />
+       }}/>
+
+
+       <Stack.Screen 
+       name='MyFarm' 
+       component={MyFarm} 
+       options={{
+        headerTitle : 'Your Farm',
+       }}/>
+
+
+       <Stack.Screen 
+       name='FarmStore' 
+       component={FarmStore} 
+       options={{
+        headerTitle : 'Farmers Store',
+       }}/>
+
+
+       <Stack.Screen 
+       name='FarmCommunity' 
+       component={FarmCommunity} 
+       options={{
+        headerTitle : 'Community of Farmers',
+       }}/>
  
+
        <Stack.Screen 
        name='SignUp' 
        component={SignUpScreen} 

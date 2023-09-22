@@ -17,6 +17,8 @@ const Home = () => {
       link : 'DiseasePredScreen'
     },
     {
+
+
       id : 2 ,
 
       name : 'Crop Recommendation',
@@ -32,22 +34,21 @@ const Home = () => {
     },
     {
       id : 4 ,
-      name : 'Fertilizer Recommendation',
+      name : 'My Farm',
       loc : icons.intelligent,
-
-      link : 'FertilizerRecScreen'
+      link : 'MyFarm'
     },
     {
       id : 5 ,
-      name : 'Fertilizer Recommendation',
+      name : 'Farm Store',
       loc : icons.bag,
-      link : 'FertilizerRecScreen'
+      link : 'FarmStore'
     },
     {
       id : 6 ,
-      name : 'Fertilizer Recommendation',
+      name : 'Farm Community',
       loc : icons.community,
-      link : 'FertilizerRecScreen'
+      link : 'FarmCommunity'
     },
   ]
 
@@ -56,10 +57,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
 
-
-
-
-    {/* <WeatherReport/>
+    <WeatherReport/>
 
     <View style = {styles.funtionsTab}>
 
@@ -84,7 +82,7 @@ const Home = () => {
   />
 
 
-  </View> */}
+  </View>
 
     </View>
   )
