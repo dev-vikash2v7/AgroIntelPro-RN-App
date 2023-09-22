@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import * as Location from 'expo-location';
 import axios from 'axios';
 import colors from '../../Constants/colors';
-// import { getLocation } from '../Permissions';
 
 
 
@@ -68,9 +67,6 @@ const WeatherReport = () => {
 
 
 
-
-
-
   // if (!location || !weatherData) {
   //   return <Text>Loading...</Text>;
   // }
@@ -121,11 +117,10 @@ const WeatherReport = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop : 10 ,
-    height : "34%",
     paddingHorizontal : 15 ,
     borderBottomWidth : 1 , 
-    borderBottomColor : 'gray'
+    borderBottomColor : 'gray', 
+    marginTop : 10
   },
   title : {
     fontSize:20 , 
@@ -137,13 +132,13 @@ const styles = StyleSheet.create({
     justifyContent : 'space-between'
   },
   forecast:{
-    marginTop : 10 , 
+    marginVertical : 20 , 
     flexDirection : 'row',
     justifyContent : 'space-between'
   },
   day :{
-    width : 60 ,
-    height : 70, 
+    width : 50 ,
+    height : 60, 
     borderWidth:1 ,
     borderColor : colors.text, 
     borderRadius : 5 ,

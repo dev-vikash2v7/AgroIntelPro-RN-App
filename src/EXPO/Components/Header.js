@@ -1,13 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { View, Text , StyleSheet  , Dimensions , TouchableOpacity, Image } from 'react-native'
-import {Entypo}   from  '@expo/vector-icons';
-import PopupMenu from './PopupMenu';
+
 import colors from '../../Constants/colors';
 import icons from '../../Constants/icons';
 
 const { width} = Dimensions.get('window');
+import PopupMenu from '../Components/PopupMenu'
+
 
 export default function Header() {
+
+  
+  
   return (
     <View style = {styles.container}> 
 
@@ -24,9 +28,9 @@ export default function Header() {
 
       </View>
 
-      <TouchableOpacity onPress={() => <PopupMenu/> }>
-        <Entypo  name='dots-three-vertical' size={20} color={colors.text}/>
-      </TouchableOpacity>
+    <View>
+      <PopupMenu/>
+    </View>
 
       </View>
 

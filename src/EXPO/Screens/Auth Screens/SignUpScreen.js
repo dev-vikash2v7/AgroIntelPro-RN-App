@@ -16,6 +16,8 @@ import { db } from '../../firebase_config';
 import { setUser } from '../../../Redux/Slices/AuthSlice';
 import CustomButton from '../../Components/CustomButton';
 
+import Toast from 'react-native-toast-message';
+
 
 const SignUpScreen = () => {
 
@@ -28,6 +30,14 @@ const SignUpScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch()
 
+  const showToast = (type , text1 , text2) => {
+    Toast.show({
+      type ,
+       text1 ,
+        text2
+    });
+  }
+
 
 
  const  registerUser = async ( data  )=>{
@@ -35,11 +45,13 @@ const SignUpScreen = () => {
      const docRef =  await addDoc(collection(db, "Users"), data);
       // console.log("Document written with ID: ", docRef.id);
       dispatch(setUser(data))
-      navigation.navigate('HomeScreen');
+      showToast('success' , 'Welcome to AgroIntel Pro' , 'Grow More Worry Less')
+      navigation.navigate('LogIn');
     }
     catch (e) {
         console.error("Error adding document: ", e);
-        setErrorMessage('Registration failed');
+      showToast('failure' , 'Signup Failed' , 'Enter valid details')
+        setErrorMessage('Please check your credentials and try again.');
       }
 }
 
@@ -61,7 +73,6 @@ const SignUpScreen = () => {
       {/* <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":30 , "position":'absolute', "left" : 30 }}>
     <Ionicons name = 'arrow-back' size = {30} />
     </TouchableOpacity> */}
-
 
       <Text style={styles.title}>Sign Up</Text>
 
@@ -113,6 +124,8 @@ const SignUpScreen = () => {
         onClick = {handleSignup}
          color = {'#fff'} 
          />
+
+<Toast ref={(ref) => Toast.setRef(ref)} />
 
          <Text style={styles.loginText}>
          Already have an Account ?

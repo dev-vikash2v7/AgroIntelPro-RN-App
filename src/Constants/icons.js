@@ -1,8 +1,5 @@
 export default icons  = {
-<<<<<<< HEAD
     news : require('../../assets/tab_icons/news.png'),
-=======
->>>>>>> origin/main
     logo : require('../../assets/logo.png'),
     home : require('../../assets/tab_icons/home.png'),
     user : require('../../assets/tab_icons/user.png'),

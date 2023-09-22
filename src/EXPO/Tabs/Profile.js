@@ -25,7 +25,6 @@ const dispatch = useDispatch();
 </View>
 
 
-
     <View style = {{marginTop: 5 , marginBottom : 10}}>
       <TouchableOpacity style={styles.tab}>
         <Text style={styles.txt}>Edit Profile</Text>

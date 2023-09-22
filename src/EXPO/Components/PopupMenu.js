@@ -1,52 +1,60 @@
-import React, { useState } from 'react';
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { MenuProvider , Menu , MenuTrigger , MenuOption , MenuOptions } from "react-native-popup-menu";
+import {Entypo}   from  '@expo/vector-icons';
+import colors from "../../Constants/colors";
 
 const PopupMenu = () => {
-  const [isVisible, setIsVisible] = useState(false);
+ return (
+    <MenuProvider style={styles.container}>
 
-  const showMenu = () => {
-    setIsVisible(true);
-  };
+    <Menu>
+      <MenuTrigger
+        customStyles={{
+          triggerWrapper: {
+            right: 0,
+            position:'abosulte',
+          },
 
-  const hideMenu = () => {
-    setIsVisible(false);
-  };
-
-  return (
-    <View>
-      <TouchableOpacity onPress={showMenu}>
-        <Text>Show Menu</Text>
-      </TouchableOpacity>
-
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={isVisible}
-        onRequestClose={hideMenu}
+        }}
       >
-        <View style={styles.modalContainer}>
+            <Entypo  name='dots-three-vertical' size={20} color={colors.text} />
 
-          <TouchableOpacity onPress={hideMenu}>
-            <Text>Setting</Text>
-          </TouchableOpacity>
+      </MenuTrigger>
 
-          <TouchableOpacity onPress={hideMenu}>
-            <Text>About Us</Text>
-          </TouchableOpacity>
+      <MenuOptions  style = {styles.menu}>
 
-        </View>
-      </Modal>
-    </View>
-  );
+        <MenuOption 
+            onSelect={() => alert(`Save`)} 
+            text="Save"
+            customStyles={{
+                optionWrapper: {
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                }}}
+             />
+
+        <MenuOption onSelect={() => alert(`Delete`)} text="Delete" />
+      </MenuOptions>
+
+    </Menu>
+  </MenuProvider>
+);
 };
 
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-});
 
+const styles = StyleSheet.create({
+container: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+},
+
+menu : {
+    // backgroundColor: colors.primary
+}
+});
+ 
 export default PopupMenu;

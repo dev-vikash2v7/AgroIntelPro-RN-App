@@ -1,9 +1,9 @@
 import  React,{useEffect, useState }  from 'react'
 import { View  , StyleSheet   , TouchableOpacity, Image , Text , FlatList} from 'react-native'
-import WeatherReport from '../../Components/WeatherReport'
+import WeatherReport from '../Components/WeatherReport'
 import {  useNavigation} from '@react-navigation/native'
-import colors from '../../../Constants/colors'
-import icons from '../../../Constants/icons'
+import colors from '../../Constants/colors'
+import icons from '../../Constants/icons'
 
 const Home = () => {
   const navigation = useNavigation()
@@ -56,7 +56,10 @@ const Home = () => {
   return (
     <View style={styles.container}>
 
-    <WeatherReport/>
+
+
+
+    {/* <WeatherReport/>
 
     <View style = {styles.funtionsTab}>
 
@@ -81,7 +84,7 @@ const Home = () => {
   />
 
 
-  </View>
+  </View> */}
 
     </View>
   )
