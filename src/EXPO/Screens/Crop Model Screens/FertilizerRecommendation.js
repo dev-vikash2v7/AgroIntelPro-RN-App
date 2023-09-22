@@ -14,7 +14,8 @@ import colors from '../../../Constants/colors';
     const [temp, setTemp] = useState('');
     const [ph, setPh] = useState('');
     const [rainfall, setRainfall] = useState('');
-    const [predictedCrop, setPredictedCrop] = useState('');
+
+    const [predictedFertilizer, setPredictedFertilizer] = useState('');
 
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -50,9 +51,9 @@ import colors from '../../../Constants/colors';
 
       console.log(data)
 
-      AxiosInstance.post('/api/crop_recommend' , data)
+      AxiosInstance.post('/api/fertilizer_recommend' , data)
       .then(res=>{
-        setPredictedCrop(res.data.best_crop)
+        setPredictedFertilizer(res.data.best_fertilizer)
       })
       .catch((e)=>{
         Alert('error')
@@ -68,7 +69,7 @@ import colors from '../../../Constants/colors';
   return (
     <View style={styles.container}>
 
-      <Text style={styles.heading}>Enter Deatils To suggest Best Crop To grow</Text>
+      <Text style={styles.heading}>Enter Deatils To suggest Best Fertilizer for crop</Text>
 
       <View style = {styles.featuresBox}>
 
@@ -101,7 +102,20 @@ import colors from '../../../Constants/colors';
 
       </View>
 
+
+
     
+      <View>
+        <Text>Crop Type :</Text>
+
+      <TextInput
+        placeholder="Enter type of crop (eg. Rabi)"
+        value={cropType}
+        onChange={(newValue) => setCropType(newValue)}
+        sty
+      />
+      </View>
+
       <FloatInputWithRange
         placeholder="Nitrogen (0-200)"
         value={N}
@@ -110,8 +124,8 @@ import colors from '../../../Constants/colors';
         maxValue={200}
         onChange={(newValue) => setN(newValue)}
       checkFormValidity = {checkFormValidity}
-
       />
+
       <FloatInputWithRange
         placeholder="Phosphorous (0-200)"
         value={P}
@@ -184,7 +198,7 @@ import colors from '../../../Constants/colors';
       />
 
       {predictedCrop ? (
-        <Text style={styles.result}>Recommended Crop: {predictedCrop}</Text>
+        <Text style={styles.result}>Recommended Crop: {predictedFertilizer}</Text>
       ) : null}
 
 
@@ -227,3 +241,4 @@ const styles = StyleSheet.create({
 
 
 export default FertilizeRecommendationScreen;
+

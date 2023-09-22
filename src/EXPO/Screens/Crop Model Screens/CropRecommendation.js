@@ -68,7 +68,7 @@ import colors from '../../../Constants/colors';
   return (
     <View style={styles.container}>
 
-      <Text style={styles.heading}>Enter Deatils To suggest Best Crop To grow</Text>
+      {/* <Text style={styles.heading}>Enter Deatils To suggest Best Crop To grow</Text> */}
 
       <View style = {styles.featuresBox}>
 
@@ -76,7 +76,7 @@ import colors from '../../../Constants/colors';
        <Text style = {{fontWeight : '600'}}>
          NPK (Nitrogen, Phosphorus, Potassium) :
          </Text> 
-         NPK values represent the concentration of these nutrients in soil or fertilizer. 
+         Represent the concentration of these nutrients in soil. 
        </Text>
 
         <Text style = {styles.featureText}>
@@ -203,8 +203,9 @@ const styles = StyleSheet.create({
     borderWidth : 1 , 
     borderRadius : 10 ,
     height : 'max-content',
-    marginVertical:5 ,
-    padding : 5
+    marginTop:0 ,
+    padding : 5,
+    marginBottom : 7 
   },
   featureText :{
     fontSize :12 , 

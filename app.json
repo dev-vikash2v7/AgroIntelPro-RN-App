@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "AgriIntel",
-    "slug": "AgriIntel",
+    "name": "AgroIntel Pro",
+    "slug": "AgroIntel Pro",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/android/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/android/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,17 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/android/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/android/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fd2d5dba-f398-41c6-87a1-e028c54b2aa1"
+      }
     }
   }
 }
