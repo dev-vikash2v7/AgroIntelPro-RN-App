@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Components/Header';
 
 import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
-import CropRecommendation from './Screens/Crop Model Screens/CropRecommendation';
-import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommendation';
+import CropRecommendation from './Screens/Crop Model Screens/CropRecommend';
+import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
 
 import LogInScreen from './Screens/Auth Screens/LogInScreen';
 import SignUpScreen from './Screens/Auth Screens/SignUpScreen';
@@ -31,7 +31,7 @@ export default function AppNavigator() {
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='HomeScreen'
+        initialRouteName='CropRecScreen'
         screenOptions={ {
           headerTitleStyle: {
               fontSize: 15, 
@@ -118,7 +118,8 @@ export default function AppNavigator() {
           tabBarStyle:  [
             {
               "display": "flex",
-              "height" : 60 ,
+              "height" : 80 ,
+              "alignItems" : 'center'
             },
             ],
         }}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
 
-const FloatInputWithRange = ({ placeholder ,  label, value, minValue, maxValue, onChange , check }) => {
+const FloatInputWithRange = ({ placeholder ,  label, value, minValue, maxValue, onChange  }) => {
 
   const [isValid, setIsValid] = useState(true);
 
@@ -12,18 +12,19 @@ const FloatInputWithRange = ({ placeholder ,  label, value, minValue, maxValue, 
     if (floatRegex.test(text)) {
       const floatValue = parseFloat(text);
       if (floatValue >= minValue && floatValue <= maxValue) {
-        onChange(text); 
         setIsValid(true);
       } else {
         setIsValid(false);
       }
     } else {
       setIsValid(false);
-    }    
+    }
+    onChange(text);
   };
 
   return (
-    <View>
+    <>
+    <View style={styles.container}>
       <Text>{label}:</Text>
       <TextInput
         placeholder={placeholder}
@@ -32,21 +33,25 @@ const FloatInputWithRange = ({ placeholder ,  label, value, minValue, maxValue, 
         value={value}
         keyboardType="numeric"
       />
-      {!isValid && <Text style={styles.errorText}>Invalid input. Please enter a valid number.</Text>}
     </View>
+      {!isValid && <Text style={styles.errorText}>Invalid input. Please enter a valid number.</Text>}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
 
-    input : {
+  container :{
+      flexDirection : 'row' ,
+      alignItems : 'center',
+  },
 
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
+    input : {
+    borderBottomWidth: 1,
     borderRadius: 5,
     marginBottom: 10,
     paddingLeft: 10,
+    marginLeft : 10 
     },
 
   validInput: {

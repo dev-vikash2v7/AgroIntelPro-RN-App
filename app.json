@@ -4,10 +4,10 @@
     "slug": "AgroIntel Pro",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/android/icon.png",
+    "icon": "./assets/android_icons/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/android/splash.png",
+      "image": "./assets/android_icons/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/android/adaptive-icon.png",
+        "foregroundImage": "./assets/android_icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/android/favicon.png"
+      "favicon": "./assets/android_icons/favicon.png"
     },
     "extra": {
       "eas": {
