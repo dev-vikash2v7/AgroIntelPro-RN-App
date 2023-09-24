@@ -6,13 +6,10 @@ import colors from '../../../Constants/colors';
 
 import CropDataArr from '../../../Constants/CropData';
 
-import {Constants} from "expo-constants";
 
 
 
   const CropRecommendationScreen = () => {
-
-
 
     const [N, setN] = useState('');
     const [P, setP] = useState('');
@@ -60,22 +57,29 @@ import {Constants} from "expo-constants";
          'rainfall' : parseFloat(rainfall),
       }
 
+      CropDataArr.forEach((crop_obj)=>{
+            if(crop_obj.name == 'rice'){
+              setCropData(crop_obj);
+              return;
+            }
+          })
 
-      AxiosInstance.post('/api/crop_recommend' , data)
-      .then((res)=>{
-        console.log('resss , ' , res.data)
 
-        CropDataArr.forEach((crop_obj)=>{
-          if(crop_obj.name == 'rice'){
-            setCropData(crop_obj);
-            return;
-          }
-        })
-      })
-      .catch((e)=>{
-        Alert('error')
-        console.log("eeeeeeeeeeeeeee" , e)
-      })
+      // AxiosInstance.post('/api/crop_recommend' , data)
+      // .then((res)=>{
+      //   console.log('resss , ' , res.data)
+
+      //   CropDataArr.forEach((crop_obj)=>{
+      //     if(crop_obj.name == 'rice'){
+      //       setCropData(crop_obj);
+      //       return;
+      //     }
+      //   })
+      // })
+      // .catch((e)=>{
+      //   Alert('error')
+      //   console.log("eeeeeeeeeeeeeee" , e)
+      // })
 
       setIsLoading(false)
 

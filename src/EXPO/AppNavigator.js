@@ -1,3 +1,5 @@
+import { Text , StyleSheet} from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -19,7 +21,6 @@ import icons from '../Constants/icons';
 import MyFarm from './Screens/Crop Model Screens/MyFarm';
 import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
-
    
 export default function AppNavigator() {
   
@@ -31,7 +32,7 @@ export default function AppNavigator() {
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='CropRecScreen'
+        initialRouteName='HomeScreen'
         screenOptions={ {
           headerTitleStyle: {
               fontSize: 15, 
@@ -115,13 +116,15 @@ export default function AppNavigator() {
       screenOptions={{
             header: () => <Header />,
 
-          tabBarStyle:  [
+          tabBarStyle:  
             {
               "display": "flex",
               "height" : 80 ,
-              "alignItems" : 'center'
+              "alignItems" : 'center',
+              "marginBottom" : 4
             },
-            ],
+
+            
         }}>
 
       <Tab.Screen
@@ -130,6 +133,11 @@ export default function AppNavigator() {
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon iconName={icons.home}  focused={focused} />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text style={[styles.tabLabel, focused && styles.tabLabelFocused]}>
+              Home
+            </Text>
           ),
         }}
       />
@@ -140,7 +148,11 @@ export default function AppNavigator() {
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon iconName={icons.news} focused={focused} />
           ),
-          tabBarLabel: 'Top News'
+          tabBarLabel: ({ focused }) => (
+            <Text style={[styles.tabLabel, focused && styles.tabLabelFocused]}>
+              Top News
+            </Text>
+          ),
         }}
       />
       <Tab.Screen
@@ -149,6 +161,11 @@ export default function AppNavigator() {
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon iconName={icons.user} focused={focused} />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text style={[styles.tabLabel, focused && styles.tabLabelFocused]}>
+              Profile
+            </Text>
           ),
         }}
       />
@@ -169,3 +186,15 @@ export default function AppNavigator() {
 
   );
 }
+
+const styles = StyleSheet.create({
+  tabLabel: {
+    color: 'black', // Set your desired text color
+    fontSize: 12, // Set your desired font size
+    fontWeight: 'bold', // Set font weight if needed
+    marginBottom : 4
+  },
+  tabLabelFocused: {
+    color: 'blue', // Set the text color for the focused tab
+  },
+});

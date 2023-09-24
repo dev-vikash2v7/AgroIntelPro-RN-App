@@ -6,5 +6,6 @@ export default colors  = {
     accent: '#9C27B0',
     highlight : '#FF5722',
     success : '#4CAF50',
-    error : '#FF5252'
+    error : '#FF5252',
+    light_green:'#90EE90'
 }

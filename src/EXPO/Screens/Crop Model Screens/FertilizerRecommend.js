@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView } from 'react-native';
 import AxiosInstance from '../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import colors from '../../../Constants/colors';
 
+import CropDataArr from '../../../Constants/CropData';
 
-  const FertilizerRecommendation = () => {
+
+  const FertiRecommendScreen = () => {
 
     const [N, setN] = useState('');
     const [P, setP] = useState('');
@@ -15,8 +17,10 @@ import colors from '../../../Constants/colors';
     const [ph, setPh] = useState('');
     const [rainfall, setRainfall] = useState('');
     
-    const [predictedCrop, setPredictedCrop] = useState('');
+    const [cropData, setCropData] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    
 
 
     const checkFormValidity = () => {
@@ -35,43 +39,65 @@ import colors from '../../../Constants/colors';
       }
     };
 
-    const handleSubmit = ()=>{
+    const handleSubmit =  ()=>{
 
       if(isFormValid){
 
+        setIsLoading(true)
+
       const data = {
-        'N' : N,
-        'P' :  P,
-        'K' :  K,
-        'temperature' : temp ,
-         'ph' : ph ,
-         'rainfall' : rainfall,
-         'humidity' : humidity
+        'N' : parseFloat(N),
+        'P' : parseFloat(P),
+        'K' : parseFloat(K),
+        'temperature' : parseFloat(temp) ,
+        'humidity' : parseFloat(humidity),
+         'ph' : parseFloat(ph) ,
+         'rainfall' : parseFloat(rainfall),
       }
 
-      console.log(data)
+      CropDataArr.forEach((crop_obj)=>{
+            if(crop_obj.name == 'rice'){
+              setCropData(crop_obj);
+              return;
+            }
+          })
 
-      AxiosInstance.post('/api/crop_recommend' , data)
-      .then(res=>{
-        setPredictedCrop(res.data.best_crop)
-      })
-      .catch((e)=>{
-        Alert('error')
-        console.log(e)
-      })
+
+      // AxiosInstance.post('/api/crop_recommend' , data)
+      // .then((res)=>{
+      //   console.log('resss , ' , res.data)
+
+      //   CropDataArr.forEach((crop_obj)=>{
+      //     if(crop_obj.name == 'rice'){
+      //       setCropData(crop_obj);
+      //       return;
+      //     }
+      //   })
+      // })
+      // .catch((e)=>{
+      //   Alert('error')
+      //   console.log("eeeeeeeeeeeeeee" , e)
+      // })
+
+      setIsLoading(false)
+
     }
     else{
       Alert('Please fill in all required fields.')
     }
     }
+
+    useEffect(()=>{
+      checkFormValidity()
+    },[N,P,K,humidity,temp , rainfall ,ph])
   
 
   return (
     <View style={styles.container}>
 
-      {/* <Text style={styles.heading}>Enter Deatils To suggest Best Crop To grow</Text> */}
+      <Text style={styles.heading}>Enter Deatils To Suggest Best Crop :</Text>
 
-      <View style = {styles.featuresBox}>
+      {/* <View style = {styles.featuresBox}>
 
         <Text style = {styles.featureText}>
        <Text style = {styles.feature}>
@@ -99,8 +125,7 @@ import colors from '../../../Constants/colors';
        <Text style = {styles.feature}>Rainfall: </Text> 
        Rainfall is the amount of precipitation (rain) that occurs in a given area and time.
        </Text>
-
-      </View>
+      </View> */}
 
     <ScrollView>
 
@@ -111,7 +136,6 @@ import colors from '../../../Constants/colors';
         minValue={0}
         maxValue={250}
         onChange={(newValue) => setN(newValue)}
-      checkFormValidity = {checkFormValidity}
 
       />
       <FloatInputWithRange
@@ -121,7 +145,6 @@ import colors from '../../../Constants/colors';
         minValue={0}
         maxValue={250}
         onChange={(newValue) => setP(newValue)}
-      checkFormValidity = {checkFormValidity}
 
       />
       <FloatInputWithRange
@@ -131,7 +154,6 @@ import colors from '../../../Constants/colors';
         minValue={5}
         maxValue={250}
         onChange={(newValue) => setK(newValue)}
-      checkFormValidity = {checkFormValidity}
       />
 
       <FloatInputWithRange
@@ -141,7 +163,6 @@ import colors from '../../../Constants/colors';
         minValue={10}
         maxValue={250}
         onChange={(newValue) => setHumidity(newValue)}
-      checkFormValidity = {checkFormValidity}
 
       />
 
@@ -152,7 +173,6 @@ import colors from '../../../Constants/colors';
         minValue={5}
         maxValue={60}
         onChange={(newValue) => setTemp(newValue)}
-      checkFormValidity = {checkFormValidity}
 
       />
 
@@ -163,7 +183,6 @@ import colors from '../../../Constants/colors';
         minValue={0}
         maxValue={14}
         onChange={(newValue) => setPh(newValue)}
-      checkFormValidity = {checkFormValidity}
 
       />
 
@@ -174,21 +193,34 @@ import colors from '../../../Constants/colors';
         minValue={10}
         maxValue={350}
         onChange={(newValue) => setRainfall(newValue)}
-      checkFormValidity = {checkFormValidity}
 
       />
 
       <Button 
-      title="Predict Fertilizer" 
+      title="Predict Crop" 
       onPress={handleSubmit} 
       disabled={!isFormValid}
-style = {{marginTop : 5}}      
+style = {{marginTop : 20}}      
       />
 
+      {
+        isLoading &&
+        <ActivityIndicator size="large" color="#007BFF" />
+      }
+      {cropData && (
+        <View style = {styles.cropView}>
 
-      {predictedCrop ? (
-        <Text style={styles.result}>Recommended Fertilizer : {predictedFertilizer}</Text>
-      ) : null}
+            <Text style={styles.crop_text}>Recommended Crop: {cropData.best_crop}</Text>
+
+            <Image source={ cropData.crop_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
+            
+            <Text> Description : {cropData.describe} </Text>
+            <Text> Best Weather and Soil : {cropData.condition} </Text>
+            <Text> Harvesting Cycle : {cropData.duration} </Text>
+
+        </View>
+
+      ) }
 </ScrollView>
 
 
@@ -221,17 +253,25 @@ const styles = StyleSheet.create({
     marginVertical : 1
   },
   heading: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
     marginBottom: 5,
+    textDecorationLine : 'underline'
   },
   result: {
     marginTop: 20,
     fontSize: 18,
     fontWeight: 'bold',
   },
+
+
+  crop_img:{
+    width:100,
+    height : 100 ,
+
+  }
   
 })
 
 
-export default FertilizerRecommendation;
+export default FertiRecommendScreen;
