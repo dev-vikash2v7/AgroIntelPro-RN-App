@@ -13,14 +13,15 @@ import LogInScreen from './Screens/Auth Screens/LogInScreen';
 import SignUpScreen from './Screens/Auth Screens/SignUpScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Home from './Tabs/Home';
-import ProfileScreen from './Tabs/Profile';
-import NewsScreen from './Tabs/NewsList';
+import Home from './Tabs/HomeTab';
+import ProfileScreen from './Tabs/ProfileTab';
+import NewsScreen from './Tabs/NewsTab';
 import CustomTabIcon from './Components/CustomTabIcon';
 import icons from '../Constants/icons';
 import MyFarm from './Screens/Crop Model Screens/MyFarm';
 import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
+import colors from '../Constants/colors';
    
 export default function AppNavigator() {
   
@@ -32,7 +33,7 @@ export default function AppNavigator() {
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='HomeScreen'
+        initialRouteName='SignUp'
         screenOptions={ {
           headerTitleStyle: {
               fontSize: 15, 
@@ -97,6 +98,9 @@ export default function AppNavigator() {
        <Stack.Screen 
        name='SignUp' 
        component={SignUpScreen} 
+       options={{
+        headerTitle : 'Create Account',
+       }}
      />
         
         <Stack.Screen 
@@ -121,7 +125,7 @@ export default function AppNavigator() {
               "display": "flex",
               "height" : 80 ,
               "alignItems" : 'center',
-              "marginBottom" : 4
+              "marginBottom" : 4,
             },
 
             
@@ -195,6 +199,6 @@ const styles = StyleSheet.create({
     marginBottom : 4
   },
   tabLabelFocused: {
-    color: 'blue', // Set the text color for the focused tab
+    color: colors.primary, // Set the text color for the focused tab
   },
 });

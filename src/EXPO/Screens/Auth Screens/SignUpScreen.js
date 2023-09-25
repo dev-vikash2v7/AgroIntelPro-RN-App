@@ -5,6 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,  
+  Image,
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -17,6 +20,7 @@ import { setUser } from '../../../Redux/Slices/AuthSlice';
 import CustomButton from '../../Components/CustomButton';
 
 import Toast from 'react-native-toast-message';
+import icons from '../../../Constants/icons';
 
 
 const SignUpScreen = () => {
@@ -29,6 +33,8 @@ const SignUpScreen = () => {
 
   const navigation = useNavigation();
   const dispatch = useDispatch()
+
+
 
   const showToast = (type , text1 , text2) => {
     Toast.show({
@@ -43,7 +49,7 @@ const SignUpScreen = () => {
  const  registerUser = async ( data  )=>{
      try{
      const docRef =  await addDoc(collection(db, "Users"), data);
-      // console.log("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ", docRef.id);
       dispatch(setUser(data))
       showToast('success' , 'Welcome to AgroIntel Pro' , 'Grow More Worry Less')
       navigation.navigate('LogIn');
@@ -61,20 +67,33 @@ const SignUpScreen = () => {
       setErrorMessage('Please fill in all fields');
       return;
     }
+
+
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match');
       return;
     }
+
     registerUser({name, email, password})
   };
 
-  return (
-    <View style={styles.container}>
-      {/* <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":30 , "position":'absolute', "left" : 30 }}>
-    <Ionicons name = 'arrow-back' size = {30} />
-    </TouchableOpacity> */}
 
-      <Text style={styles.title}>Sign Up</Text>
+   
+  return (
+      <ImageBackground  
+      source={ icons.bg} 
+      style = { styles.bgImage}>
+
+    {/* <View style={styles.container}> */}
+
+
+      <Image source={icons.logo} style = {styles.logo}/>
+ 
+
+      {/* <Text style={styles.title}>Sign Up</Text> */}
+
+      <View style ={styles.inputView}>
+
 
       <TextInput
         style={styles.input}
@@ -92,7 +111,6 @@ const SignUpScreen = () => {
         keyboardType="email-address"
         autoCapitalize="none"
     placeholderTextColor =  'gray'
-
       />
       <TextInput
         style={styles.input}
@@ -102,8 +120,8 @@ const SignUpScreen = () => {
         secureTextEntry
         autoCapitalize="none"
     placeholderTextColor =  'gray'
-
       />
+
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
@@ -118,6 +136,9 @@ const SignUpScreen = () => {
         <Text style={styles.errorMessage}>{errorMessage}</Text>
        }
 
+      </View>
+
+
       <CustomButton
        bg = {'orange'} 
        title = {'Sign Up'}
@@ -125,31 +146,41 @@ const SignUpScreen = () => {
          color = {'#fff'} 
          />
 
-<Toast ref={(ref) => Toast.setRef(ref)} />
+{/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
 
          <Text style={styles.loginText}>
          Already have an Account ?
           <Text style={styles.loginLink} onPress={()=>navigation.navigate('LogIn')}>Click Here</Text>
           </Text>
 
-    </View>
+    {/* </View> */}
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  bgImage:{
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 20,
-    color : '#000',
+ width : Dimensions.get('screen').width ,
+ height:Dimensions.get('screen').height,
+ flex: 1,
+    resizeMode: 'cover'
+},
+logo:{
+width : 60 ,
+height : 60 ,
+alignItems : 'center',
+marginTop : 15 ,
+    resizeMode: 'cover',
+},
 
-  },
+ inputView : {
+  width: '90%',
+ },
+
   input: {
-    width: '90%',
+    width : '100%',
     height: 50,
     borderColor: 'gray',
     borderWidth: 0.5,
@@ -160,20 +191,23 @@ const styles = StyleSheet.create({
     color : '#000'
   },
   errorMessage: {
+    marginTop : 5 ,
     color: 'red',
-    marginBottom: 10,
+    marginBottom: 7,
+    fontWeight : 'bold'
   },
   loginText :{
     fontSize : 15,
     alignSelf : 'center',
-    marginTop:10,
-    color  :  'gray'
+    marginTop:15,
+    color  :  '#000',
+    fontWeight : '500'
 
   },
   loginLink:{
     marginLeft : 4,
     textDecorationLine:'underline',
-    color : 'blue'
+    color : 'blue',
   }
 });
 
