@@ -84,13 +84,11 @@ const SignUpScreen = () => {
       source={ icons.bg} 
       style = { styles.bgImage}>
 
-    {/* <View style={styles.container}> */}
-
+    
 
       <Image source={icons.logo} style = {styles.logo}/>
  
 
-      {/* <Text style={styles.title}>Sign Up</Text> */}
 
       <View style ={styles.inputView}>
 
@@ -150,10 +148,9 @@ const SignUpScreen = () => {
 
          <Text style={styles.loginText}>
          Already have an Account ?
-          <Text style={styles.loginLink} onPress={()=>navigation.navigate('LogIn')}>Click Here</Text>
+          <Text style={styles.loginLink} onPress={()=>navigation.navigate('LogIn')}>Login Here</Text>
           </Text>
 
-    {/* </View> */}
     </ImageBackground>
   );
 };

@@ -33,7 +33,7 @@ export default function AppNavigator() {
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='SignUp'
+        initialRouteName='DiseasePredScreen'
         screenOptions={ {
           headerTitleStyle: {
               fontSize: 15, 
@@ -102,11 +102,17 @@ export default function AppNavigator() {
         headerTitle : 'Create Account',
        }}
      />
+     
         
         <Stack.Screen 
        name='LogIn' 
        component={LogInScreen} 
+       options={{
+        headerTitle : 'Login To Your Account',
+       }}
         />
+
+
        
     </Stack.Navigator>
  

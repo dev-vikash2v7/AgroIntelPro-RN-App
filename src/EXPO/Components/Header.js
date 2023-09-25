@@ -5,7 +5,7 @@ import colors from '../../Constants/colors';
 import icons from '../../Constants/icons';
 
 const { width} = Dimensions.get('window');
-import PopupMenu from '../Components/PopupMenu'
+// import PopupMenu from '../Components/PopupMenu'
 
 
 export default function Header() {
@@ -28,9 +28,9 @@ export default function Header() {
 
       </View>
 
-    <View>
+    {/* <View>
       <PopupMenu/>
-    </View>
+    </View> */}
 
       </View>
 

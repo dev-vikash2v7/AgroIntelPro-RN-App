@@ -5,14 +5,16 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Alert
+  Alert,
+  Dimensions,
+  ImageBackground,
+  Image
 } from 'react-native';
 
 
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../../firebase_config'; 
-import {Ionicons}   from '@expo/vector-icons';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import CustomButton from '../../Components/CustomButton';
 
@@ -57,67 +59,100 @@ const LogInScreen = () => {
   };
 
 
+
+
+
   return (
-    <View style={styles.container}>
+    <ImageBackground  
+    source={ icons.bg} 
+    style = { styles.bgImage}>
 
-    {/* <TouchableOpacity onPress = {()=> navigation.goBack() }   style = {{"top":30 , "position":'absolute', "left" : 30 }}>
-    <Ionicons name = 'arrow-back' size = {30} />
-    </TouchableOpacity> */}
+  
+
+    <Image source={icons.logo} style = {styles.logo}/>
 
 
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={text => setEmail(text)}
-        value={email}
-             autoCapitalize="none"
-    placeholderTextColor =  'gray'
 
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        onChangeText={text => setPassword(text)}
-        value={password}
-    placeholderTextColor =  'gray'
+    <View style ={styles.inputView}>
 
-      />
-      {errorMessage ? (
-        <Text style={styles.errorMessage}>{errorMessage}</Text>
-      ) : null}
 
-      <CustomButton
-       bg = {'orange'} 
-       title = {'Log In'}
-        onClick = {handleLogin}
-         color = {'#fff'} 
-         />
 
-        <Text style={styles.loginText}>
-         Dont't have an Account ?
-          <Text style={styles.loginLink} onPress={()=>navigation.navigate('SignUp')}>Create Here</Text>
-          </Text>
+    <TextInput
+      style={styles.input}
+      placeholder="Email"
+      onChangeText={text => setEmail(text)}
+      value={email}
+      keyboardType="email-address"
+      autoCapitalize="none"
+  placeholderTextColor =  'gray'
+    />
+    <TextInput
+      style={styles.input}
+      placeholder="Password"
+      onChangeText={text => setPassword(text)}
+      value={password}
+      secureTextEntry
+      autoCapitalize="none"
+  placeholderTextColor =  'gray'
+    />
 
+  
+    {errorMessage &&
+      <Text style={styles.errorMessage}>{errorMessage}</Text>
+     }
 
     </View>
-  );
+
+
+    <CustomButton
+     bg = {'orange'} 
+     title = {'LogIn'}
+      onClick = {handleLogin}
+       color = {'#fff'} 
+       />
+
+
+{/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+
+       <Text style={styles.loginText}>
+       Dont't Have an Account ?
+        <Text style={styles.loginLink} onPress={()=>navigation.navigate('SignUp')}>Create Here</Text>
+        </Text>
+
+  </ImageBackground>
+
+
+  )
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 20,
-    color : '#000',
 
-  },
+
+
+
+
+const styles = StyleSheet.create({
+  bgImage:{
+    flex: 1,
+    alignItems: 'center',
+ width : Dimensions.get('screen').width ,
+ height:Dimensions.get('screen').height,
+ flex: 1,
+    resizeMode: 'cover'
+},
+logo:{
+width : 60 ,
+height : 60 ,
+alignItems : 'center',
+marginTop : 15 ,
+    resizeMode: 'cover',
+},
+
+ inputView : {
+  width: '90%',
+ },
+
   input: {
-    width: '90%',
+    width : '100%',
     height: 50,
     borderColor: 'gray',
     borderWidth: 0.5,
@@ -128,21 +163,23 @@ const styles = StyleSheet.create({
     color : '#000'
   },
   errorMessage: {
+    marginTop : 5 ,
     color: 'red',
-    marginTop: 10,
-    fontWeight : "600"
+    marginBottom: 7,
+    fontWeight : 'bold'
   },
   loginText :{
     fontSize : 15,
     alignSelf : 'center',
-    marginTop:10,
-    color  :  'gray'
+    marginTop:15,
+    color  :  '#000',
+    fontWeight : '500'
 
   },
   loginLink:{
     marginLeft : 4,
     textDecorationLine:'underline',
-    color : 'blue'
+    color : 'blue',
   }
 });
 
