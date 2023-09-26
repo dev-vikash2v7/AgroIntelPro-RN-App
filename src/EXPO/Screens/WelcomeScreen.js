@@ -1,15 +1,26 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Image, StyleSheet  } from 'react-native';
 import { Button } from 'react-native-elements';
 import icons from '../../Constants/icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-const WelcomeScreen = ({ navigation }) => {
+
+const WelcomeScreen = () => {
+
+  const user = null ;
+
   const navigation = useNavigation()
 
 
+  useEffect(()=>{
+      if(user){
+      navigation.navigate('HomeScreen')
+      }
+  } , [])
+
   return (
+    
     <View style={styles.container}>
       {/* Logo */}
       <Image
@@ -22,15 +33,27 @@ const WelcomeScreen = ({ navigation }) => {
       <Text style={styles.slogan}>Grow More , Worry Less !</Text>
 
       {/* Authentication Buttons */}
+
+      <View style = {{borderBottomWidth : 0.5 , borderBottomColor : 'gray' , paddingBottom : 10 , alignItems :'center',justifyContent :'center'}}>
       <Button
         title="Login"
         onPress={()=> navigation.navigate('LogIn')}
         buttonStyle={styles.button}
       />
+
+      <Text style = {{fontWeight : '600' , fontSize : 16 , textAlign : 'center'}}> OR </Text>
+
       <Button
         title="Register"
         onPress={()=> navigation.navigate('SignUp')}
         buttonStyle={[styles.button, { backgroundColor: 'gray' }]}
+      />
+
+</View>
+      <Button
+        title="Continue as Guest"
+        onPress={()=> navigation.navigate('HomeScreen')}
+        buttonStyle={[styles.button, { backgroundColor: 'green' , marginTop : 10}]}
       />
     </View>
   );
@@ -58,7 +81,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    width: 200,
+    width: "100%",
     backgroundColor: 'blue',
     marginTop: 10,
   },

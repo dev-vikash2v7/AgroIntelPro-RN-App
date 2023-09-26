@@ -23,18 +23,19 @@ import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
 import colors from '../Constants/colors';
 import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
+import WelcomeScreen from './Screens/WelcomeScreen';
    
 export default function AppNavigator() {
   
   const Stack = createNativeStackNavigator()
   const Tab = createBottomTabNavigator();
 
-  
+
 
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='DiseasePredScreen'
+        initialRouteName='WelcomeScreen'
         screenOptions={ {
           headerTitleStyle: {
               fontSize: 15, 
@@ -118,6 +119,13 @@ export default function AppNavigator() {
        component={LogInScreen} 
        options={{
         headerTitle : 'Login To Your Account',
+       }}
+        />
+        <Stack.Screen 
+       name='WelcomeScreen' 
+       component={WelcomeScreen} 
+       options={{
+        headerTitle : 'Welcome',
        }}
         />
 
