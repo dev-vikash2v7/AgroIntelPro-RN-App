@@ -22,6 +22,7 @@ import MyFarm from './Screens/Crop Model Screens/MyFarm';
 import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
 import colors from '../Constants/colors';
+import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
    
 export default function AppNavigator() {
   
@@ -92,6 +93,14 @@ export default function AppNavigator() {
        component={FarmCommunity} 
        options={{
         headerTitle : 'Community of Farmers',
+       }}/>
+
+
+       <Stack.Screen 
+       name='DiseasePredResult'  
+       component={DiseasePredResult} 
+       options={{
+        headerTitle : 'Disease Details',
        }}/>
  
 

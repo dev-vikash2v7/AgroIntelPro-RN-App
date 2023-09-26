@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , Picker} from 'react-native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { FontAwesome } from '@expo/vector-icons';
 import colors from '../../../Constants/colors';
 import { useNavigation } from '@react-navigation/native';
-
+import { Dropdown } from 'react-native-material-dropdown';
+import AxiosInstance from '../../../AxiosInstance';
 
 const CropDiseasePredictionScreen = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedCrop, setSelectedCrop] = useState('');
   const navigation = useNavigation()
+
+
+  const crops = [
+    { value: 'rice' },
+    { value: 'wheat' },
+    { value: 'maize' },
+    { value: 'potato' },
+  ];
 
   // Function to handle image selection from the gallery
   const handleGalleryPress = async () => {
@@ -56,18 +65,42 @@ const CropDiseasePredictionScreen = () => {
     });
   
     if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
+      setSelectedImage(result.assets[0]);
     }
-  
 };
 
 
+// send request to server
+const handleSubmit = async () =>{
 
+  const {uri , fileName , type} = selectedImage
+
+  const formData = new FormData();
+
+  formData.append('image', { uri,  fileName, type });
+  formData.append('crop_name', JSON.stringify({selectedCrop}));
+
+
+  await AxiosInstance.post('/api/disease_predict' , formData , {
+    headers: {
+      'Content-Type': 'multipart/form-data', 
+    }} )
+  .then(res=>{
+    console.log("res : " , res.data)
+    navigation.navigate('DiseasePredResult' , {'diseaseName' : 'potato_earyl_blight'}  )
+  })
+  .catch((e)=>{
+    console.log('eee ' , e);
+    Alert('Error in uploading ' )
+  })
+}
 
 
 
 
   return (
+
+
     <View style={styles.container}>
 
       <Text style={styles.instructions}>
@@ -76,65 +109,64 @@ const CropDiseasePredictionScreen = () => {
 
 
     
+    {/* Instruction to use */}
     <View style = {{width : '100%' , padding : 5 , backgroundColor:colors.light_green }}>
       <Text style={styles.step}> 1. Select an image of the affected crop leaf:</Text>
       <Text style={styles.step}> 2. Upload the image (make sure the image is clear)</Text>
       <Text style={styles.step}> 3. Get Results</Text>
-      </View>
-
-
-      <View style={styles.selectView}>
-        <Text style={styles.label}>Select your diseased crop:</Text>
-        <Picker
-          selectedValue={selectedValue}
-          style={styles.dropdown}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        >
-          <Picker.Item label="Option 1" value="option1" />
-          <Picker.Item label="Option 2" value="option2" />
-          <Picker.Item label="Option 3" value="option3" />
-          <Picker.Item label="Option 4" value="option4" />
-        </Picker>
-
-        <Text style={styles.selectedValue}>Selected Value: {selectedValue}</Text>
     </View>
 
 
+      
+      {/* Dropdown to select crop */}
+      <View style={styles.selectView}>
+         <Text style={styles.label}>Select an option:</Text> 
+        <Dropdown
+          label="Select Crop"
+          data={crops}
+          value={selectedCrop}
+        onChangeText={value => setSelectedCrop(value)}
+        containerStyle={styles.dropdownContainer}
+        />
 
-
-
-
-
-      {/* Options to open camera or gallery */}
-      <View style={styles.imageOptions}>
-
-      <View style = {{alignItems :'center' }}>
-            <TouchableOpacity onPress={handleCameraPress}>
-                <FontAwesome name="camera" size={34} color="blue" />
-            </TouchableOpacity>
-          <Text style={styles.optionText}>Open Camera</Text>
+       <Text style={styles.selectedValue}>Selected Crop: {selectedCrop}</Text>
       </View> 
 
-        <View style = {{alignItems :'center'}}>
-          <TouchableOpacity onPress={handleGalleryPress}>
-            <FontAwesome name="photo" size={34} color="blue" />
-          </TouchableOpacity>
-            <Text style={styles.optionText}>Open Gallery</Text>
-        </View>
+
+
+
+      {/* // Options to open camera or gallery */}
+      <View style={styles.imageOptions}>
+
+       <View style = {{alignItems :'center' }}>
+            <TouchableOpacity onPress={handleCameraPress}>
+                 <FontAwesome name="camera" size={34} color="blue" />
+             </TouchableOpacity>
+           <Text style={styles.optionText}>Open Camera</Text>
+       </View> 
+
+         <View style = {{alignItems :'center'}}>
+           <TouchableOpacity onPress={handleGalleryPress}>
+             <FontAwesome name="photo" size={34} color="blue" />
+           </TouchableOpacity>
+             <Text style={styles.optionText}>Open Gallery</Text>
+         </View>
 
 
       </View>
 
-      {/* Display the selected image */}
+     {/* Display the selected image */}
       {selectedImage && (
         <View>
-        <Image source={{ uri: selectedImage }} style={styles.selectedImage} />
+        <Image source={{ uri: selectedImage.uri }} style={styles.selectedImage} />
         </View>
       )}
 
-      <Button title="Submit" onPress={()=>navigation.navigate('SignUp')} disabled={!selectedImage} />
-
-
+{/* Button to predict */}
+      <Button
+     title="Predict Disease"
+        onPress={ handleSubmit}
+         disabled={!selectedImage && !selectedCrop} />
 
 
     </View>
@@ -174,6 +206,22 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     marginBottom: 20,
     marginTop : 12
+  },
+
+
+  selectView: {
+    // flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    marginTop : 10
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  selectedValue: {
+    fontSize: 18,
+    marginTop: 20,
   },
 });
 

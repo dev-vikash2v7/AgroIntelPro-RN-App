@@ -1,20 +1,29 @@
-import React from 'react';
+import React,{useEffect , useState} from 'react';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import icons from '../../../Constants/icons';
 
-export default  CropDiseaseDetails = ({disease_img}) => {
+export default  DiseasePredResult = ({route}) => {
   // Sample data for a crop disease
 
-  const diseaseData = {
-    name: 'Example Disease',
-    image: require('./path-to-your-image.jpg'),
+  const {diseaseName } = route.params 
+
+
+  const[diseaseData , setDiseaseData] =  useState({
+    name: 'Example Disease', 
+    image: icons.bg,
     description:
       'This is a sample description of the crop disease. It provides information about the symptoms and effects on crops.',
     cure: 'Apply treatment X and Y for a period of Z days.',
     fertilizerRecommendation: 'Use fertilizer type A and B for best results.',
-  };
+  })
+
+  
+  
 
   return (
     <ScrollView style={styles.container}>
+
+
       {/* Disease Image */}
       <Image source={diseaseData.image} style={styles.image} />
 
@@ -32,6 +41,8 @@ export default  CropDiseaseDetails = ({disease_img}) => {
       {/* Recommended Fertilizer */}
       <Text style={styles.sectionTitle}>Recommended Fertilizer:</Text>
       <Text style={styles.description}>{diseaseData.fertilizerRecommendation}</Text>
+   
+
     </ScrollView>
   );
 };
