@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet  } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Text, Image, StyleSheet ,Button } from 'react-native';
 import icons from '../../Constants/icons';
 import { useNavigation } from '@react-navigation/native';
-
+import CustomButton from '../Components/CustomButton';
+import { useSelector } from 'react-redux';
 
 
 const WelcomeScreen = () => {
 
-  const user = null ;
+  const user = useSelector(state => state.auth.user)
 
   const navigation = useNavigation()
 
@@ -34,27 +34,39 @@ const WelcomeScreen = () => {
 
       {/* Authentication Buttons */}
 
-      <View style = {{borderBottomWidth : 0.5 , borderBottomColor : 'gray' , paddingBottom : 10 , alignItems :'center',justifyContent :'center'}}>
-      <Button
+      <View style = {{width : '100%' ,  borderBottomWidth : 0.5 , borderBottomColor : 'gray' , paddingBottom : 10 , alignItems :'center',justifyContent :'center'}}>
+    
+      <CustomButton 
+      bg = 'blue' 
+      color  = 'white'
         title="Login"
-        onPress={()=> navigation.navigate('LogIn')}
-        buttonStyle={styles.button}
+        onClick={()=> navigation.navigate('LogIn')}
+        style={styles.button}
       />
 
-      <Text style = {{fontWeight : '600' , fontSize : 16 , textAlign : 'center'}}> OR </Text>
+      <Text style = 
+      {{fontWeight : '600' , 
+      fontSize : 16 , 
+      textAlign : 'center' ,
+       marginVertical : 6
+       }}> OR </Text>
 
-      <Button
+
+<CustomButton 
+      bg = 'gray' 
+      color  = 'white'
         title="Register"
-        onPress={()=> navigation.navigate('SignUp')}
-        buttonStyle={[styles.button, { backgroundColor: 'gray' }]}
+        onClick={()=> navigation.navigate('SignUp')}
+        style={styles.button}
       />
 
 </View>
-      <Button
-        title="Continue as Guest"
-        onPress={()=> navigation.navigate('HomeScreen')}
-        buttonStyle={[styles.button, { backgroundColor: 'green' , marginTop : 10}]}
-      />
+        <Text
+      style=  {{marginTop : 5 , fontSize : 16, color : 'red' , textDecorationLine :'underline', fontWeight : '500'}}
+        > 
+        Continue as Guest
+         </Text>
+    
     </View>
   );
 };
@@ -76,15 +88,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+
   slogan: {
     fontSize: 16,
     marginBottom: 30,
   },
-  button: {
-    width: "100%",
-    backgroundColor: 'blue',
-    marginTop: 10,
-  },
+
+
+
 });
 
 export default WelcomeScreen;

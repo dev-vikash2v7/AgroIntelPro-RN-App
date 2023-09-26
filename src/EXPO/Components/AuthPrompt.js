@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Entypo from 'react-native-vector-icons/Entypo'
+import {Entypo} from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -39,7 +39,7 @@ const AuthPrompt = ({onClose }) => {
 
       </View>
 
-       <TouchableOpacity style={styles.crossBtn} onPress={() => {setModelVisible(false) ; nav.navigate('HomeScreen')}}>
+       <TouchableOpacity style={styles.crossBtn} onPress={() => {setModelVisible(false) ; nav.navigate(onClose)}}>
           <Entypo name ='circle-with-cross' size = {25} color = '#000'/>
         </TouchableOpacity>
 

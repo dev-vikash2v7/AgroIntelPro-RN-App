@@ -30,7 +30,7 @@ import {
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'center',
-      marginTop: 30,
+      marginTop: 10,
       borderRadius: 10,
     },
   });

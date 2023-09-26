@@ -12,9 +12,9 @@ const WeatherReport = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [forcastData, setForcastData] = useState(null);
 
-  // useEffect(() => {
-  //   getLocation();
-  // }, []);
+  useEffect(() => {
+    getLocation();
+  }, []);
 
 
   const getLocation = async () => {
@@ -46,8 +46,7 @@ const WeatherReport = () => {
     try {
       const response = await axios.get(apiUrl);
       setWeatherData(response.data);
-      console.log("response : " , response.data)
-      // response :  {"base": "stations", "clouds": {"all": 100}, "cod": 200, "coord": {"lat": 23.252, "lon": 77.4992}, "dt": 1694880629, "id": 1275841, "main": {"feels_like": 296.37, "humidity": 100, "pressure": 1001, "temp": 295.47, "temp_max": 295.47, "temp_min": 295.47}, "name": "Bhopal", "sys": {"country": "IN", "id": 9063, "sunrise": 1694824602, "sunset": 1694868824, "type": 1}, "timezone": 19800, "visibility": 1500, "weather": [{"description": "light intensity drizzle", "icon": "09n", "id": 300, "main": "Drizzle"}], "wind": {"deg": 200, "speed": 7.2}}
+      // console.log("response : " , response.data)
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
@@ -67,9 +66,9 @@ const WeatherReport = () => {
 
 
 
-  // if (!location || !weatherData) {
-  //   return <Text>Loading...</Text>;
-  // }
+  if (!location || !weatherData) {
+    return <Text style = {{paddingTop : 10 , textAlign :'center', fontSize : 16 , fontWeight : 'bold'}}>Loading...</Text>;
+  }
   return (
     <View style={styles.container}>
 
@@ -81,22 +80,28 @@ const WeatherReport = () => {
 
       <View>
         <Text style = {{fontSize : 30 , fontWeight : 500 }}> 
-          24°C
+          {/* 24°C */}
+          {weatherData.main.temp}
         </Text>
         <Text style = {{fontSize : 10 , fontWeight : 300 }}> 
-           Feels like 24°C
+           {/* Feels like 24°C */}
+          {weatherData.main.feels_like}
         </Text>
 
         <Text style = {{fontSize : 20 , fontWeight : 400 }}> 
-           Bhopal , IN
+        {weatherData.name}  ,   {weatherData.sys.country} 
         </Text>
       </View>
 
-      <View>
-        <Text style={{ fontSize : 20 , fontWeight : 500}}> Mostly Cloudy </Text>
+      <View style = {{marginTop : -10}}>
+        {/* <Text style={{ fontSize : 20 , fontWeight : 500}}> Mostly Cloudy </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : 20%  </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Humidity : 100% </Text>
-        <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  8 km/h </Text>
+        <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  8 km/h </Text> */}
+        <Text style={{ fontSize : 20 , fontWeight : 500}}> {weatherData.weather[0].description} </Text>
+        <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : {weatherData.main.humidity}  </Text>
+        <Text style={{ fontSize : 15 , fontWeight : 400}}> Humidity : {weatherData.main.humidity} </Text>
+        <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  {weatherData.wind.speed} m/s</Text>
       </View>
 
       </View>
@@ -110,6 +115,8 @@ const WeatherReport = () => {
           </View>)
       )}
       </View>
+
+      
 
     </View>
   );
@@ -132,7 +139,8 @@ const styles = StyleSheet.create({
     justifyContent : 'space-between'
   },
   forecast:{
-    marginVertical : 20 , 
+    marginTop : 5,
+    marginBottom : 20 , 
     flexDirection : 'row',
     justifyContent : 'space-between'
   },
@@ -152,3 +160,39 @@ const styles = StyleSheet.create({
 });
 
 export default WeatherReport;
+
+
+// response : 
+//  {
+  // "base": "stations", 
+// "clouds": {"all": 100}, 
+// "cod": 200, 
+// "coord": {"lat": 23.252, "lon": 77.4992},
+//  "dt": 1694880629,
+//  "id": 1275841,
+
+//  "main": 
+// {"feels_like": 296.37, 
+// "humidity": 100,
+//  "pressure": 1001, 
+//  "temp": 295.47, 
+//  "temp_max": 295.47,
+//   "temp_min": 295.47}, 
+
+// "name": "Bhopal", 
+// "sys": 
+// {"country": "IN",
+//  "id": 9063, 
+//  "sunrise": 1694824602,
+//   "sunset": 1694868824, 
+//   "type": 1},
+  
+//   "timezone": 19800, 
+//   "visibility": 1500, 
+//   "weather": [
+//     {"description": "light intensity drizzle", 
+//     "icon": "09n", 
+//     "id": 300, 
+//     "main": "Drizzle"
+//   }], 
+//   "wind": {"deg": 200, "speed": 7.2}}

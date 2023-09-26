@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     marginTop : 20 , 
     justifyContent : 'space-between',
     alignItems:'center',
-    // paddingHorizontal : 15 ,
   },
 
 
@@ -124,15 +123,14 @@ borderWidth: 1,
     flex: 1,
     width: undefined, // Let the width adjust to the parent (box)
     height: undefined,
-
   },
 
   title : {
-    fontSize : 12,
+    fontSize : 14,
     maxWidth: '100%', // Set the maximum width for the text
     overflow: 'hidden',
     textAlign : 'center',
-    fontWeight : "400", 
+    fontWeight : "500", 
     marginTop : 5
   }
   

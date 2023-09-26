@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { db } from '../../firebase_config'; 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import CustomButton from '../../Components/CustomButton';
+import { setUser } from '../../../Redux/Slices/AuthSlice';
 
 
 const LogInScreen = () => {
@@ -32,7 +33,7 @@ const LogInScreen = () => {
   
   const checkCredentials =async  (user)=>{
     const q = query(collection(db, "Users"), where("email", "==", user.email));
-    
+
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {

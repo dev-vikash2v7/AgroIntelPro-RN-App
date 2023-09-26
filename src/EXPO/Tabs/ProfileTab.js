@@ -1,17 +1,17 @@
 import React,{useState} from 'react'
 import { View, Text  , StyleSheet , TouchableOpacity  ,FlatList } from 'react-native'
 import {FontAwesome, MaterialIcons ,MaterialCommunityIcons , Entypo} from  '@expo/vector-icons'
-// import { useNavigation } from '@react-navigation/native';
-// import { useSelector} from 'react-redux'
-
+import { useNavigation } from '@react-navigation/native';
+import { useSelector , useDispatch} from 'react-redux'
 import colors from '../../Constants/colors';
-
+import { removeUser } from '../../Redux/Slices/AuthSlice'
+import AuthPrompt from '../Components/AuthPrompt';
+import WelcomeScreen from '../Screens/WelcomeScreen';
 export default function Profile(){
 
-  const user = {name:'vikash' , email:'vk@gmail.com'}
-
-//   const nav = useNavigation();
-// const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user)
+  const dispatch = useDispatch()
+  const nav = useNavigation();
 
 const tabData  = [
 {
@@ -58,8 +58,11 @@ const tabData  = [
   id : 6 ,
   title : 'Logout' ,
   describe : '',
-  icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="black" />,
-  onClick : ''
+  icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="red" />,
+  onClick : ()=>{
+    dispatch(removeUser());
+    nav.navigate('WelcomeScreen')
+  }
 },
 
 ]
@@ -69,7 +72,6 @@ const tabData  = [
     user ? 
     <View style={styles.container}>
 
-    
     <View style = {styles.userView}>
     <FontAwesome name =  'user-circle-o'   size = {50} />
     <Text style={styles.name}>{user.name}</Text>
@@ -87,7 +89,7 @@ const tabData  = [
 
     renderItem={ ({item,index}) =>
   (  
-  <TouchableOpacity style={styles.tab} >
+  <TouchableOpacity style={styles.tab} onPress={() => item.onClick()}>
 
     <View style = {{flexDirection:'row'}}>
 
@@ -115,8 +117,10 @@ const tabData  = [
 
     </View>
     :
-    <></>
-    // <AuthPrompt onClose = {'HomeScreen'} />
+    // <AuthPrompt onClose = {'WelcomeScreen'} />
+    // nav.navigate('WelcomeScreen')
+
+    <WelcomeScreen/>
   )
 }
 
