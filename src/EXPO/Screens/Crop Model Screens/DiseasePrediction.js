@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert } from 'react-native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import colors from '../../../Constants/colors';
 import { useNavigation } from '@react-navigation/native';
-import { Dropdown } from 'react-native-material-dropdown';
 import AxiosInstance from '../../../AxiosInstance';
+import { FontAwesome } from '@expo/vector-icons';
+import DropDownPicker from 'react-native-dropdown-picker';
+
+
 
 const CropDiseasePredictionScreen = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedCrop, setSelectedCrop] = useState('');
+  const [selectedCrop, setSelectedCrop] = useState(null);
+  
+  const [crops, setCrops] = useState([
+    {label : 'Rice' ,
+     value: 'rice',
+     icon: () => <FontAwesome name='user'/>
+    },
+    { label : 'Wheat' ,value: 'wheat' },
+    { label : 'Maize' ,value: 'maize' },
+    { label : 'Potato' , value: 'potato' },
+  ]);
+  const [open, setOpen] = useState(false);
+
+
+  
   const navigation = useNavigation()
 
-
-  const crops = [
-    { value: 'rice' },
-    { value: 'wheat' },
-    { value: 'maize' },
-    { value: 'potato' },
-  ];
 
   // Function to handle image selection from the gallery
   const handleGalleryPress = async () => {
@@ -42,7 +52,7 @@ const CropDiseasePredictionScreen = () => {
 
 
   if (!result.canceled) {
-    setSelectedImage(result.assets[0].uri);
+    setSelectedImage(result.assets[0]);
   }
 };
 
@@ -80,7 +90,7 @@ const handleSubmit = async () =>{
   formData.append('image', { uri,  fileName, type });
   formData.append('crop_name', JSON.stringify({selectedCrop}));
 
-
+  console.log(formData)
   await AxiosInstance.post('/api/disease_predict' , formData , {
     headers: {
       'Content-Type': 'multipart/form-data', 
@@ -100,44 +110,64 @@ const handleSubmit = async () =>{
 
   return (
 
-
     <View style={styles.container}>
 
-      <Text style={styles.instructions}>
+  <ScrollView>
+
+
+    {/* Instruction to use */}
+    <View style={styles.instructionView}>
+
+      <Text style={{fontWeight : 'bold' , marginVertical : 10}}>
         Follow these steps to predict crop disease:
       </Text>
 
+      <View style = { styles.instructionBox}>
+        <Text style={styles.instruction}> 1. Select an image of the affected crop leaf:</Text>
+        <Text style={styles.instruction}> 2. Upload the image (make sure the image is clear)</Text>
+        <Text style={styles.instruction}> 3. Get Results</Text>
+      </View>
 
-    
-    {/* Instruction to use */}
-    <View style = {{width : '100%' , padding : 5 , backgroundColor:colors.light_green }}>
-      <Text style={styles.step}> 1. Select an image of the affected crop leaf:</Text>
-      <Text style={styles.step}> 2. Upload the image (make sure the image is clear)</Text>
-      <Text style={styles.step}> 3. Get Results</Text>
-    </View>
+  </View>
 
 
-      
+  
+          
       {/* Dropdown to select crop */}
-      <View style={styles.selectView}>
-         <Text style={styles.label}>Select an option:</Text> 
-        <Dropdown
-          label="Select Crop"
-          data={crops}
-          value={selectedCrop}
-        onChangeText={value => setSelectedCrop(value)}
-        containerStyle={styles.dropdownContainer}
-        />
+      {/* <View style={styles.selectView}> */}
+
+         <Text style={[styles.labelText , {marginVertical : 10}]}>Select an option : </Text> 
+
+         <DropDownPicker
+      open={open}
+      value={selectedCrop}
+      items={crops}
+      setOpen={setOpen}
+      setValue={setSelectedCrop}
+      setItems={setCrops}
+      placeholder="Select crop"
+      placeholderStyle={{
+        color: "grey",
+        fontWeight: "bold"
+      }}
+    zIndex = {1000}
+
+    />
 
        <Text style={styles.selectedValue}>Selected Crop: {selectedCrop}</Text>
-      </View> 
+      {/* </View>  */}
 
 
 
 
       {/* // Options to open camera or gallery */}
-      <View style={styles.imageOptions}>
 
+      {selectedCrop &&
+      <View style={styles.imageSelectionView}>
+
+        <Text style={ styles.labelText} > Select Diseased {selectedCrop} Image :   </Text>
+
+      <View style={styles.imageOptions}>
        <View style = {{alignItems :'center' }}>
             <TouchableOpacity onPress={handleCameraPress}>
                  <FontAwesome name="camera" size={34} color="blue" />
@@ -151,9 +181,12 @@ const handleSubmit = async () =>{
            </TouchableOpacity>
              <Text style={styles.optionText}>Open Gallery</Text>
          </View>
-
-
       </View>
+      </View>
+}
+
+
+
 
      {/* Display the selected image */}
       {selectedImage && (
@@ -164,10 +197,11 @@ const handleSubmit = async () =>{
 
 {/* Button to predict */}
       <Button
+      style = {styles.submitBtn}
      title="Predict Disease"
         onPress={ handleSubmit}
-         disabled={!selectedImage && !selectedCrop} />
-
+         disabled={!selectedImage || !selectedCrop} />
+</ScrollView>
 
     </View>
   );
@@ -176,53 +210,92 @@ const handleSubmit = async () =>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal : 10,
+    paddingBottom : 20
   },
-  instructions: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    marginBottom: 16,
+  instructionView: {
+borderBottomWidth : 0.5 ,
+borderBottomColor : 'gray',
+paddingBottom : 15 
   },
-  step: {
+
+  instructionBox: {
     fontSize: 12,
-    marginBottom: 5,
-    fontWeight : '400'
+    fontWeight : '400',
+    backgroundColor : colors.light_green,
+    padding : 5 ,
+    borderRadius:5
   },
-  imageOptions: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 16,
-    marginTop : 20,
-  },
-  optionText: {
-    fontSize: 16,
-    color: 'blue',
-    textDecorationLine:'underline'
-
-  },
-  selectedImage: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
-    marginBottom: 20,
-    marginTop : 12
+  instruction:{
+    fontSize: 12,
+    fontWeight: '400',
+    marginVertical : 3 
   },
 
+  labelText : { 
+    fontWeight : 'bold',
+    marginBottom : 5,
+    textTransform:'capitalize',
+    fontSize : 16,
+    color:'blue',
+    textAlign:'center',
+    textDecorationLine :'underline'
+  },
 
+  
+  
   selectView: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    marginTop : 10
+    marginTop : 10,
+    borderBottomWidth : 0.3 , 
+    borderBottomColor : 'gray',
+    paddingBottom : 10 ,
+    alignItems: 'center',
   },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
+  dropdown :{
+    zIndex : 1000,
   },
   selectedValue: {
     fontSize: 18,
-    marginTop: 20,
+    marginTop: 12,
+    fontWeight : 'bold',
+    textTransform:'capitalize',
+    borderBottomColor : 'gray',
+    paddingBottom : 10 ,
   },
+
+
+  imageSelectionView:{
+    marginTop : 10,
+    borderBottomWidth : 0.3 , 
+    borderTopWidth : 0.3 , 
+    borderBottomColor : 'gray',
+    paddingBottom : 10 ,
+    paddingTop : 10 ,
+  }
+    ,
+  
+    imageOptions: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginBottom: 16,
+      marginTop : 18,
+    },
+    optionText: {
+      fontSize: 16,
+      color: 'blue',
+      textDecorationLine:'underline'
+  
+    },
+    selectedImage: {
+      width: '100%',
+      height: 200,
+      resizeMode: 'cover',
+      marginBottom: 20,
+      marginTop : 12
+    },
+    submitBtn:{
+    
+    }
 });
 
 export default CropDiseasePredictionScreen;
@@ -230,15 +303,15 @@ export default CropDiseasePredictionScreen;
 /*
 {"assets": [
   {"assetId": null,
-   "base64": null, 
-   "duration": null, 
-   "exif": null, 
-   "height": 1716,
-    "rotation": null,
-     "type": "image", 
-     "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAgriIntel-c23264c5-d3d3-450a-864c-056d16a02dc1/ImagePicker/0f57073d-db06-4b18-b090-3014ac80b04e.png",
-      "width": 2288
-    }
-    ],
-   "canceled": false, "cancelled": undefined}
+  "base64": null, 
+  "duration": null, 
+  "exif": null, 
+  "height": 1716,
+  "rotation": null,
+  "type": "image", 
+  "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAgriIntel-c23264c5-d3d3-450a-864c-056d16a02dc1/ImagePicker/0f57073d-db06-4b18-b090-3014ac80b04e.png",
+  "width": 2288
+}
+],
+"canceled": false, "cancelled": undefined}
 */

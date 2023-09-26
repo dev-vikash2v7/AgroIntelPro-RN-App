@@ -1,6 +1,7 @@
 import { View, Text  , ActivityIndicator , FlatList , StyleSheet , ScrollView} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import colors from '../../Constants/colors'
 
 const NewsList = () => {
 
@@ -23,8 +24,9 @@ const NewsList = () => {
     
     <View style={styles.container}>
 
-    <Text style = {{justifyContent :'center' , fontSize : 20 , fontWeight : '600'}}> Top News For You </Text>
+    <Text style = {styles.heading}> Top News For You </Text>
 
+<View style = {styles.newsView}>
     { articles.length != 0 ?
       <FlatList
         data={articles}
@@ -37,9 +39,12 @@ const NewsList = () => {
           </View>
         )}
       />
+      
       :
       <ActivityIndicator size="large" color="#007BFF" />
     }
+    </View>
+
     </View>
   )
 }
@@ -48,19 +53,32 @@ const NewsList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal : 12,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical : 10
+  },
+  heading: {
+    justifyContent :'center' ,
+     fontSize : 20 , 
+     fontWeight : '600',
+     marginTop : 10,
+     paddingVertical : 5
+    },
+  newsView:{
+marginTop : 5
   },
   newsItem: {
     marginBottom: 16,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.light_green,
     padding: 12,
     borderRadius: 8,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    textDecorationLine : 'underline',
+    textDecorationColor:'orange'
   },
   description: {
     fontSize: 16,
