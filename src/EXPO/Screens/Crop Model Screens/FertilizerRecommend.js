@@ -3,12 +3,10 @@ import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image, ActivityIndic
 import AxiosInstance from '../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import colors from '../../../Constants/colors';
-import DropDownPicker from 'react-native-dropdown-picker';
-import CropDataArr from '../../../Constants/crop_data';
+import fertilizers_data from '../../../Constants/fertilizers_data';
+import SelectionDropdown from '../../Components/SelectionDropdown';
 
-
-
-  const CropRecommendationScreen = () => {
+ export default FertilizerRecommendScreen = () => {
 
     const [N, setN] = useState('');
     const [P, setP] = useState('');
@@ -16,20 +14,24 @@ import CropDataArr from '../../../Constants/crop_data';
     const [humidity, setHumidity] = useState('');
     const [temp, setTemp] = useState('');
     const [moisture, setMoisture] = useState('');
+    const [selectedSoil, setSelectedSoil] = useState('');
+    const [selectedCrop, setSelectedCrop] = useState('');
 
-    const [fertilizer, setFertilizerData] = useState('');
+    const [fertilizerData, setFertilizerData] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [open, setOpen] = useState(false);
 
-    const [soil_type, setSoilType] = useState([
+
+    const [soilTypeData ,setSoilTypeData ]  = useState([
       {label : 'Sandy' ,value: 'Sandy', },
       { label : 'Loamy' ,value: 'Loamy' },
       { label : 'Black' ,value: 'Black' },
       { label : 'Red' , value: 'Red' },
       { label : 'Clayey' , value: 'Clayey' },
-    ]);
+    ])
 
-    const [crop_type, setCropType] = useState([
+    const [cropTypeData , setCropTypeData] =useState( [
       {label : 'Maize' ,value: 'Maize', },
       { label : 'Sugarcane' ,value: 'Sugarcane' },
       { label : 'Cotton' ,value: 'Cotton' },
@@ -40,7 +42,7 @@ import CropDataArr from '../../../Constants/crop_data';
       { label : 'Oil seeds' , value: 'Oil seeds' },
       { label : 'Pulses' , value: 'Pulses' },
       { label : 'Ground Nuts' , value: 'Ground Nuts' },
-    ]);
+    ])
 
     
     const checkFormValidity = () => {
@@ -48,10 +50,11 @@ import CropDataArr from '../../../Constants/crop_data';
         N.trim() !== '' && 
         P.trim() !== '' && 
         K.trim() !== '' &&
-        ph.trim() !== '' &&
+        moisture.trim() !== '' &&
         humidity.trim() !== '' &&
         temp.trim() !== '' &&
-        rainfall.trim() !== '' 
+        selectedCrop.trim() !== '' &&
+        selectedSoil.trim() !== '' 
         ) {
         setIsFormValid(true);
       } else {
@@ -71,183 +74,145 @@ import CropDataArr from '../../../Constants/crop_data';
         'K' : parseFloat(K),
         'temperature' : parseFloat(temp) ,
         'humidity' : parseFloat(humidity),
-         'ph' : parseFloat(ph) ,
-         'rainfall' : parseFloat(rainfall),
+         'moisture' : parseFloat(moisture) ,
+         'soil_type' : soil_type,
+         'crop_type' : crop_type,
       }
 
-      // CropDataArr.forEach((crop_obj)=>{
-      //       if(crop_obj.name == 'rice'){
-      //         setCropData(crop_obj);
-      //         return;
-      //       }
-      //     })
-
-
-    await  AxiosInstance.post('/api/crop_recommend' , data)
+    await  AxiosInstance.post('/api/fertilizer_recommend' , data)
       .then((res)=>{
-        console.log('resss , ' , res.data)
-
-        CropDataArr.forEach((crop_obj)=>{
-          if(crop_obj.name == 'rice'){
-            setCropData(crop_obj);
+        console.log('resss ::::: ' , res.data)
+'ABC'.toLowerCase
+        fertilizers_data.forEach((ferti_obj)=>{
+          if(ferti_obj.name.toLowerCase() == 'Urea'.toLowerCase()) {
+            setFertilizerData(ferti_obj);
             return;
           }
         })
       })
       .catch((e)=>{
         Alert('error')
+       setIsLoading(false)
+
         console.log("eeeeeeeeeeeeeee" , e)
       })
-
       setIsLoading(false)
-
     }
     else{
       Alert('Please fill in all required fields.')
+      setIsLoading(false)
     }
-    }
+
+  }
 
     useEffect(()=>{
       checkFormValidity()
-    },[N,P,K,humidity,temp , rainfall ,ph])
+    },[N,P,K,humidity,temp , selectedSoil ,selectedCrop])
   
 
   return (
-    <View style={styles.container}>
-
-      <Text style={styles.heading}>Enter Deatils To Suggest Best Crop :</Text>
-
-      {/* <View style = {styles.featuresBox}>
-
-        <Text style = {styles.featureText}>
-       <Text style = {styles.feature}>
-         NPK(Nitrogen, Phosphorus, Potassium) :
-         </Text> 
-         Represent the concentration of these nutrients in soil. 
-       </Text>
-
-        <Text style = {styles.featureText}>
-       <Text style = {styles.feature}>Humidity : </Text> 
-       Humidity refers to the amount of moisture or water vapor present in the air. 
-       </Text>
-
-       <Text style = {styles.featureText}>
-       <Text style = {styles.feature}>Temperature : </Text> 
-       Temperature indicates the degree of heat in the environment
-       </Text>
-
-       <Text style = {styles.featureText}>
-       <Text style = {styles.feature}>PH Level : </Text> 
-       PH measures the acidity or alkalinity of soil or water.
-       </Text>
-
-       <Text style = {styles.featureText}>
-       <Text style = {styles.feature}>Rainfall: </Text> 
-       Rainfall is the amount of precipitation (rain) that occurs in a given area and time.
-       </Text>
-      </View> */}
-
     <ScrollView>
 
-      <FloatInputWithRange
-        placeholder="Nitrogen Level"
-        value={N}
-        label="Nitrogen(N) (5 - 250)"
-        minValue={0}
-        maxValue={250}
-        onChange={(newValue) => setN(newValue)}
 
-      />
-      <FloatInputWithRange
-        placeholder="Phosphorous Level"
-        value={P}
-        label="Phosphorous(P) (5-250)"
-        minValue={0}
-        maxValue={250}
-        onChange={(newValue) => setP(newValue)}
+    {/* <Text style={styles.heading}>Enter Deatils To Suggest Best Fertilizer :</Text> */}
 
-      />
-      <FloatInputWithRange
-        placeholder="Potassium Level"
-        value={K}
-        label="Potassium(K) (5-250)"
-        minValue={5}
-        maxValue={250}
-        onChange={(newValue) => setK(newValue)}
-      />
 
-      <FloatInputWithRange
-        placeholder="Humidity Level"
-        value={humidity}
-        label="Humidity (10 - 100)"
-        minValue={10}
-        maxValue={250}
-        onChange={(newValue) => setHumidity(newValue)}
+      <View style={styles.container}>
 
-      />
+        <FloatInputWithRange
+          placeholder="Nitrogen Level"
+          value={N}
+          label="Nitrogen(N) (5 - 250)"
+          minValue={0}
+          maxValue={250}
+          onChange={(newValue) => setN(newValue)}
 
-      <FloatInputWithRange
-        placeholder="Temperature (°C) "
-        value={temp}
-        label="Temperature (5°C - 60°C)"
-        minValue={5}
-        maxValue={60}
-        onChange={(newValue) => setTemp(newValue)}
+        />
+        <FloatInputWithRange
+          placeholder="Phosphorous Level"
+          value={P}
+          label="Phosphorous(P) (5-250)"
+          minValue={0}
+          maxValue={250}
+          onChange={(newValue) => setP(newValue)}
 
-      />
+        />
+        <FloatInputWithRange
+          placeholder="Potassium Level"
+          value={K}
+          label="Potassium(K) (5-250)"
+          minValue={5}
+          maxValue={250}
+          onChange={(newValue) => setK(newValue)}
+        />
 
-      <FloatInputWithRange
-        placeholder="PH Level "
-        value={ph}
-        label="PH (0-14)"
-        minValue={0}
-        maxValue={14}
-        onChange={(newValue) => setPh(newValue)}
+        <FloatInputWithRange
+          placeholder="Humidity Level"
+          value={humidity}
+          label="Humidity (10 - 100)"
+          minValue={10}
+          maxValue={250}
+          onChange={(newValue) => setHumidity(newValue)}
 
-      />
+        />
 
-      <FloatInputWithRange
-        placeholder="Rainfall (mm)"
-        value={rainfall}
-        label="Rainfall (10mm - 300mm)"
-        minValue={10}
-        maxValue={350}
-        onChange={(newValue) => setRainfall(newValue)}
+        <FloatInputWithRange
+          placeholder="Temperature (°C) "
+          value={temp}
+          label="Temperature (5°C - 60°C)"
+          minValue={5}
+          maxValue={60}
+          onChange={(newValue) => setTemp(newValue)}
 
-      />
+        />
 
-      <Button 
-      title="Predict Crop" 
-      onPress={handleSubmit} 
-      disabled={!isFormValid}
-style = {{marginTop : 20}}      
-      />
+        <FloatInputWithRange
+          placeholder="Moisture Level "
+          value={moisture}
+          label="PH (0-100)"
+          minValue={0}
+          maxValue={100}
+          onChange={(newValue) => setMoisture(newValue)}
+        />
 
-      {
-        isLoading &&
-        <ActivityIndicator size="large" color="#007BFF" />
-      }
-      {cropData && (
-        <View style = {styles.cropView}>
 
-            <Text style={styles.crop_text}>Recommended Crop: {cropData.name}</Text>
+<SelectionDropdown data = {cropTypeData} value={ selectedCrop}  setValue={ setSelectedCrop}/>
+<SelectionDropdown data = {soilTypeData} value={ selectedSoil}  setValue={ setSelectedSoil}/>
+        
+        
 
-            <Image source={ cropData.crop_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
-            
-            <View style ={{}}>
-            <Text style={styles.crop_describe}> Description : {cropData.describe} </Text>
-            <Text style={styles.crop_describe}> Best Weather and Soil : {cropData.condition} </Text>
-            <Text style={styles.crop_describe}> Harvesting Cycle : {cropData.duration} </Text>
-          </View>
+        <Button 
+        title="Submit Deatils" 
+        onPress={handleSubmit} 
+        disabled={!isFormValid}
+  style = {{marginTop : 20}}      
+        />
 
-        </View>
+            {
+              isLoading &&
+              <ActivityIndicator size="large" color="#007BFF" />
+            }
+            {fertilizerData && (
+              <View style = {styles.cropView}>
 
-      ) }
-</ScrollView>
+                  <Text style={styles.crop_text}>Recommended fertilizer : {fertilizerData.name}</Text>
 
+                  <Image source={ fertilizerData.ferti_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
+                  
+                  <View style ={{}}>
+                  <Text style={styles.crop_describe}> Description : {fertilizerData.describe} </Text>
+                  <Text style={styles.crop_describe}> Best Weather and Soil : {fertilizerData.condition} </Text>
+                </View>
+
+              </View>
+
+            ) }
 
     </View>
-  )
+    
+    </ScrollView>
+    )
+
 }
 
 
@@ -312,8 +277,30 @@ crop_text:{
     fontSize : 12 , 
     fontWeight : '500' ,
     padding:2
-  }
+  },
+
+
+  dropdown: {
+    margin: 16,
+    height: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
 })
-
-
-export default CropRecommendationScreen;

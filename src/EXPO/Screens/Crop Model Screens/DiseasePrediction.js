@@ -13,17 +13,15 @@ const CropDiseasePredictionScreen = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCrop, setSelectedCrop] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   
   const [crops, setCrops] = useState([
-    {label : 'Rice' ,
-     value: 'rice',
-    },
+    {label : 'Rice' ,value: 'rice',},
     { label : 'Wheat' ,value: 'wheat' },
     { label : 'Maize' ,value: 'maize' },
     { label : 'Potato' , value: 'potato' },
     { label : 'Corn' , value: 'corn' },
   ]);
-  const [open, setOpen] = useState(false);
 
 
   
@@ -155,9 +153,9 @@ const handleSubmit = async () =>{
 
          <DropDownPicker
       open={open}
+      setOpen={setOpen}
       value={selectedCrop}
       items={crops}
-      setOpen={setOpen}
       setValue={setSelectedCrop}
       setItems={setCrops}
       placeholder="Select crop"
