@@ -13,7 +13,7 @@ const WeatherReport = () => {
   const [forcastData, setForcastData] = useState(null);
 
   useEffect(() => {
-    getLocation();
+    // getLocation();
   }, []);
 
 
@@ -51,6 +51,8 @@ const WeatherReport = () => {
       console.error('Error fetching weather data:', error);
     }
   };
+
+
   const getForcastData = async (latitude, longitude) => {
     const apiKey = '29c4f65a50394abafbd9a1c707e67d9f'; 
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
@@ -58,7 +60,7 @@ const WeatherReport = () => {
     try {
       const response = await axios.get(apiUrl);
       setForcastData(response.data.list);
-      console.log("response : " , response.data.list)
+      // console.log("response : " , response.data.list)
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
@@ -67,12 +69,12 @@ const WeatherReport = () => {
 
 
   if (!location || !weatherData) {
-    return <Text style = {{paddingTop : 10 , textAlign :'center', fontSize : 16 , fontWeight : 'bold'}}>Loading...</Text>;
+    return <Text style = {{paddingTop : 10 , textAlign :'center', fontSize : 16 , fontWeight : 'bold'}}>Loading Live Weather Report...</Text>;
   }
   return (
     <View style={styles.container}>
 
-      <Text style={ styles.title}> Weather </Text>
+      <Text style={ styles.title}> Weather Type :{weatherData.weather[0].description}  </Text>
 
       <Text style = {{fontSize : 10}}> Now </Text>
 
@@ -98,7 +100,7 @@ const WeatherReport = () => {
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : 20%  </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Humidity : 100% </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  8 km/h </Text> */}
-        <Text style={{ fontSize : 20 , fontWeight : 500}}> {weatherData.weather[0].description} </Text>
+        {/* <Text style={{ fontSize : 20 , fontWeight : 500}}>  </Text> */}
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : {weatherData.main.humidity}  </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Humidity : {weatherData.main.humidity} </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  {weatherData.wind.speed} m/s</Text>
@@ -160,38 +162,7 @@ const styles = StyleSheet.create({
 });
 
 export default WeatherReport;
-
-
-// response : 
-//  {
-  // "base": "stations", 
-// "clouds": {"all": 100}, 
-// "cod": 200, 
-// "coord": {"lat": 23.252, "lon": 77.4992},
-//  "dt": 1694880629,
-//  "id": 1275841,
-
-//  "main": 
-// {"feels_like": 296.37, 
-// "humidity": 100,
-//  "pressure": 1001, 
-//  "temp": 295.47, 
-//  "temp_max": 295.47,
-//   "temp_min": 295.47}, 
-
-// "name": "Bhopal", 
-// "sys": 
-// {"country": "IN",
-//  "id": 9063, 
-//  "sunrise": 1694824602,
-//   "sunset": 1694868824, 
-//   "type": 1},
   
-//   "timezone": 19800, 
-//   "visibility": 1500, 
-//   "weather": [
-//     {"description": "light intensity drizzle", 
-//     "icon": "09n", 
 //     "id": 300, 
 //     "main": "Drizzle"
 //   }], 

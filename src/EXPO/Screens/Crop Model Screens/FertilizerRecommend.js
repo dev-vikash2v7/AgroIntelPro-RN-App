@@ -1,28 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image, ActivityIndicator } from 'react-native';
 import AxiosInstance from '../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import colors from '../../../Constants/colors';
+import DropDownPicker from 'react-native-dropdown-picker';
+import CropDataArr from '../../../Constants/crop_data';
 
-import CropDataArr from '../../../Constants/CropData';
 
 
-  const FertiRecommendScreen = () => {
+  const CropRecommendationScreen = () => {
 
     const [N, setN] = useState('');
     const [P, setP] = useState('');
     const [K, setK] = useState('');
     const [humidity, setHumidity] = useState('');
     const [temp, setTemp] = useState('');
-    const [ph, setPh] = useState('');
-    const [rainfall, setRainfall] = useState('');
-    
-    const [cropData, setCropData] = useState('');
+    const [moisture, setMoisture] = useState('');
+
+    const [fertilizer, setFertilizerData] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    const [soil_type, setSoilType] = useState([
+      {label : 'Sandy' ,value: 'Sandy', },
+      { label : 'Loamy' ,value: 'Loamy' },
+      { label : 'Black' ,value: 'Black' },
+      { label : 'Red' , value: 'Red' },
+      { label : 'Clayey' , value: 'Clayey' },
+    ]);
+
+    const [crop_type, setCropType] = useState([
+      {label : 'Maize' ,value: 'Maize', },
+      { label : 'Sugarcane' ,value: 'Sugarcane' },
+      { label : 'Cotton' ,value: 'Cotton' },
+      { label : 'Tobacco' , value: 'Tobacco' },
+      { label : 'Paddy' , value: 'Paddy' },
+      { label : 'Barley' , value: 'Barley' },
+      { label : 'Wheat' , value: 'Wheat' },
+      { label : 'Oil seeds' , value: 'Oil seeds' },
+      { label : 'Pulses' , value: 'Pulses' },
+      { label : 'Ground Nuts' , value: 'Ground Nuts' },
+    ]);
+
     
-
-
     const checkFormValidity = () => {
       if (
         N.trim() !== '' && 
@@ -39,7 +59,7 @@ import CropDataArr from '../../../Constants/CropData';
       }
     };
 
-    const handleSubmit =  ()=>{
+    const handleSubmit = async ()=>{
 
       if(isFormValid){
 
@@ -55,29 +75,29 @@ import CropDataArr from '../../../Constants/CropData';
          'rainfall' : parseFloat(rainfall),
       }
 
-      CropDataArr.forEach((crop_obj)=>{
-            if(crop_obj.name == 'rice'){
-              setCropData(crop_obj);
-              return;
-            }
-          })
+      // CropDataArr.forEach((crop_obj)=>{
+      //       if(crop_obj.name == 'rice'){
+      //         setCropData(crop_obj);
+      //         return;
+      //       }
+      //     })
 
 
-      // AxiosInstance.post('/api/crop_recommend' , data)
-      // .then((res)=>{
-      //   console.log('resss , ' , res.data)
+    await  AxiosInstance.post('/api/crop_recommend' , data)
+      .then((res)=>{
+        console.log('resss , ' , res.data)
 
-      //   CropDataArr.forEach((crop_obj)=>{
-      //     if(crop_obj.name == 'rice'){
-      //       setCropData(crop_obj);
-      //       return;
-      //     }
-      //   })
-      // })
-      // .catch((e)=>{
-      //   Alert('error')
-      //   console.log("eeeeeeeeeeeeeee" , e)
-      // })
+        CropDataArr.forEach((crop_obj)=>{
+          if(crop_obj.name == 'rice'){
+            setCropData(crop_obj);
+            return;
+          }
+        })
+      })
+      .catch((e)=>{
+        Alert('error')
+        console.log("eeeeeeeeeeeeeee" , e)
+      })
 
       setIsLoading(false)
 
@@ -210,13 +230,15 @@ style = {{marginTop : 20}}
       {cropData && (
         <View style = {styles.cropView}>
 
-            <Text style={styles.crop_text}>Recommended Crop: {cropData.best_crop}</Text>
+            <Text style={styles.crop_text}>Recommended Crop: {cropData.name}</Text>
 
             <Image source={ cropData.crop_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
             
-            <Text> Description : {cropData.describe} </Text>
-            <Text> Best Weather and Soil : {cropData.condition} </Text>
-            <Text> Harvesting Cycle : {cropData.duration} </Text>
+            <View style ={{}}>
+            <Text style={styles.crop_describe}> Description : {cropData.describe} </Text>
+            <Text style={styles.crop_describe}> Best Weather and Soil : {cropData.condition} </Text>
+            <Text style={styles.crop_describe}> Harvesting Cycle : {cropData.duration} </Text>
+          </View>
 
         </View>
 
@@ -227,6 +249,8 @@ style = {{marginTop : 20}}
     </View>
   )
 }
+
+
 
 
 
@@ -264,14 +288,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-
+cropView : {
+  justifyContent :'center' ,
+  alignItems :'center',
+  marginTop : 8
+},
+crop_text:{
+  textAlign:'center',
+  fontSize:14 ,
+  fontWeight : '600',
+  paddingBottom : 6 ,
+  textTransform:'capitalize'
+}
+  ,
   crop_img:{
-    width:100,
-    height : 100 ,
-
+    width:300,
+    height : 200 ,
+    borderRadius :10,
+    marginBottom : 10
   }
-  
+  ,
+  crop_describe:{
+    fontSize : 12 , 
+    fontWeight : '500' ,
+    padding:2
+  }
 })
 
 
-export default FertiRecommendScreen;
+export default CropRecommendationScreen;
