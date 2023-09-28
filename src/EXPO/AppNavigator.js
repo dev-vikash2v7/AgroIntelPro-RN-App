@@ -23,7 +23,7 @@ import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
 import colors from '../Constants/colors';
 import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
-import WelcomeScreen from './Screens/WelcomeScreen';
+import WelcomeScreen from './Screens/App Screens/WelcomeScreen';
    
 export default function AppNavigator() {
   

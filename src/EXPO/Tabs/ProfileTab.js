@@ -1,12 +1,15 @@
 import React,{useState} from 'react'
-import { View, Text  , StyleSheet , TouchableOpacity  ,FlatList } from 'react-native'
+import { View, Text  , StyleSheet , TouchableOpacity  ,FlatList, ScrollView } from 'react-native'
 import {FontAwesome, MaterialIcons ,MaterialCommunityIcons , Entypo} from  '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
 import { useSelector , useDispatch} from 'react-redux'
 import colors from '../../Constants/colors';
 import { removeUser } from '../../Redux/Slices/AuthSlice'
-import AuthPrompt from '../Components/AuthPrompt';
-import WelcomeScreen from '../Screens/WelcomeScreen';
+import WelcomeScreen from '../Screens/App Screens/WelcomeScreen';
+import icons from '../../Constants/icons';
+// import AuthPrompt from '../Components/AuthPrompt';
+import { Avatar} from 'react-native-paper';
+
 export default function Profile(){
 
   const user = useSelector(state => state.auth.user)
@@ -67,13 +70,20 @@ const tabData  = [
 
 ]
 
-
   return (
     user ? 
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 
     <View style = {styles.userView}>
+      {user.image ? 
     <FontAwesome name =  'user-circle-o'   size = {50} />
+    :
+    <Avatar.Image
+    style={styles.avatar}
+    source={icons.logo}
+  />
+    }
+
     <Text style={styles.name}>{user.name}</Text>
       <Text style={styles.email}>{user.email} </Text>
     </View>
@@ -115,7 +125,7 @@ const tabData  = [
     
 
 
-    </View>
+    </ScrollView>
     :
     // <AuthPrompt onClose = {'WelcomeScreen'} />
     // nav.navigate('WelcomeScreen')
@@ -126,7 +136,8 @@ const tabData  = [
 
 const styles = StyleSheet.create({
   container : {
-    flex:1
+    flex:1,
+    marginBottom : 20
   },
   userView : {
 marginTop : 20 , 
@@ -185,6 +196,10 @@ tabView:{
     fontWeight : '400' ,
     
   }
+  ,
+  avatar: {
+    margin: 8,
+  },
 
 
 

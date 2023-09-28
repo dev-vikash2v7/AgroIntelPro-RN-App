@@ -20,18 +20,17 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
     const [fertilizerData, setFertilizerData] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [open, setOpen] = useState(false);
 
 
-    const [soilTypeData ,setSoilTypeData ]  = useState([
+    const soilTypeData  = [
       {label : 'Sandy' ,value: 'Sandy', },
       { label : 'Loamy' ,value: 'Loamy' },
       { label : 'Black' ,value: 'Black' },
       { label : 'Red' , value: 'Red' },
       { label : 'Clayey' , value: 'Clayey' },
-    ])
+    ]
 
-    const [cropTypeData , setCropTypeData] =useState( [
+    const cropTypeData = [
       {label : 'Maize' ,value: 'Maize', },
       { label : 'Sugarcane' ,value: 'Sugarcane' },
       { label : 'Cotton' ,value: 'Cotton' },
@@ -42,7 +41,7 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
       { label : 'Oil seeds' , value: 'Oil seeds' },
       { label : 'Pulses' , value: 'Pulses' },
       { label : 'Ground Nuts' , value: 'Ground Nuts' },
-    ])
+    ]
 
     
     const checkFormValidity = () => {
@@ -75,14 +74,14 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
         'temperature' : parseFloat(temp) ,
         'humidity' : parseFloat(humidity),
          'moisture' : parseFloat(moisture) ,
-         'soil_type' : soil_type,
-         'crop_type' : crop_type,
+         'soil_type' : selectedSoil,
+         'crop_type' : selectedCrop,
       }
 
-    await  AxiosInstance.post('/api/fertilizer_recommend' , data)
+     await AxiosInstance.post('/api/fertilizer_recommend' , data)
       .then((res)=>{
         console.log('resss ::::: ' , res.data)
-'ABC'.toLowerCase
+
         fertilizers_data.forEach((ferti_obj)=>{
           if(ferti_obj.name.toLowerCase() == 'Urea'.toLowerCase()) {
             setFertilizerData(ferti_obj);
@@ -91,33 +90,50 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
         })
       })
       .catch((e)=>{
-        Alert('error')
-       setIsLoading(false)
-
+        // Alert('error')
+        setIsLoading(false)
         console.log("eeeeeeeeeeeeeee" , e)
       })
       setIsLoading(false)
     }
     else{
       Alert('Please fill in all required fields.')
-      setIsLoading(false)
     }
 
   }
 
     useEffect(()=>{
       checkFormValidity()
-    },[N,P,K,humidity,temp , selectedSoil ,selectedCrop])
+    },[N,P,K,humidity,temp ,moisture , selectedSoil ,selectedCrop ])
   
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
 
 
-    {/* <Text style={styles.heading}>Enter Deatils To Suggest Best Fertilizer :</Text> */}
+    <Text style={styles.heading}>Enter Deatils To Suggest Best Fertilizer :</Text>
 
 
-      <View style={styles.container}>
+        <View style = {styles.input_form}>
+
+        <View style={styles.dropdown}>
+            <SelectionDropdown 
+            data = {cropTypeData} 
+            value={ selectedCrop} 
+            setValue={ setSelectedCrop}
+            placeholder ='Select Crop Type'
+        searchText = 'search crop type..'
+            />
+        </View>
+
+        <View style={styles.dropdown}>
+        <SelectionDropdown 
+        data = {soilTypeData} 
+        value={ selectedSoil}  
+        setValue={ setSelectedSoil}
+        placeholder ='Select Soil Type'
+        searchText = 'search soil type..'/>
+        </View>
 
         <FloatInputWithRange
           placeholder="Nitrogen Level"
@@ -169,46 +185,42 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
         <FloatInputWithRange
           placeholder="Moisture Level "
           value={moisture}
-          label="PH (0-100)"
+          label="Moisture (0-100)"
           minValue={0}
           maxValue={100}
           onChange={(newValue) => setMoisture(newValue)}
         />
 
 
-<SelectionDropdown data = {cropTypeData} value={ selectedCrop}  setValue={ setSelectedCrop}/>
-<SelectionDropdown data = {soilTypeData} value={ selectedSoil}  setValue={ setSelectedSoil}/>
-        
+
+      </View>
         
 
         <Button 
         title="Submit Deatils" 
         onPress={handleSubmit} 
         disabled={!isFormValid}
-  style = {{marginTop : 20}}      
         />
 
             {
               isLoading &&
-              <ActivityIndicator size="large" color="#007BFF" />
+              <ActivityIndicator size="large" color="#007BFF"  style={{marginTop : 5}}/>
             }
             {fertilizerData && (
-              <View style = {styles.cropView}>
+              <View style = {styles.resultView}>
 
-                  <Text style={styles.crop_text}>Recommended fertilizer : {fertilizerData.name}</Text>
+                  <Text style={styles.text}>Recommended fertilizer : {fertilizerData.name}</Text>
 
-                  <Image source={ fertilizerData.ferti_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
+                  <Image source={ fertilizerData.image  } style ={ styles.result_img} resizeMode = 'cover'/>
                   
                   <View style ={{}}>
-                  <Text style={styles.crop_describe}> Description : {fertilizerData.describe} </Text>
-                  <Text style={styles.crop_describe}> Best Weather and Soil : {fertilizerData.condition} </Text>
+                  <Text style={styles.describe}> Description : {fertilizerData.describe} </Text>
+                  <Text style={styles.describe}> Best Weather and Soil : {fertilizerData.condition} </Text>
                 </View>
 
               </View>
 
             ) }
-
-    </View>
     
     </ScrollView>
     )
@@ -241,6 +253,9 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginVertical : 1
   },
+  input_form : {
+marginBottom : 30
+  },
   heading: {
     fontSize: 15,
     fontWeight: 'bold',
@@ -253,12 +268,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-cropView : {
+resultView : {
   justifyContent :'center' ,
   alignItems :'center',
   marginTop : 8
 },
-crop_text:{
+text:{
   textAlign:'center',
   fontSize:14 ,
   fontWeight : '600',
@@ -266,14 +281,14 @@ crop_text:{
   textTransform:'capitalize'
 }
   ,
-  crop_img:{
-    width:300,
+  result_img:{
+    width:250,
     height : 200 ,
     borderRadius :10,
     marginBottom : 10
   }
   ,
-  crop_describe:{
+  describe:{
     fontSize : 12 , 
     fontWeight : '500' ,
     padding:2
@@ -281,26 +296,10 @@ crop_text:{
 
 
   dropdown: {
-    margin: 16,
-    height: 50,
-    borderBottomColor: 'gray',
-    borderBottomWidth: 0.5,
+    marginTop: 8,
+    marginBottom:10,
+    width :'100%'
   },
-  icon: {
-    marginRight: 5,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
+ 
+  
 })

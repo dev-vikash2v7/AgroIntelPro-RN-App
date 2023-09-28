@@ -130,6 +130,9 @@ import CropDataArr from '../../../Constants/crop_data';
 
     <ScrollView>
 
+    <View style = {styles.input_form}>
+
+
       <FloatInputWithRange
         placeholder="Nitrogen Level"
         value={N}
@@ -197,6 +200,8 @@ import CropDataArr from '../../../Constants/crop_data';
 
       />
 
+      </View>
+
       <Button 
       title="Predict Crop" 
       onPress={handleSubmit} 
@@ -257,6 +262,9 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginVertical : 1
   },
+  input_form : {
+    marginBottom : 30
+      },
   heading: {
     fontSize: 15,
     fontWeight: 'bold',

@@ -3,7 +3,7 @@ export default icons  = {
     logo : require('../../assets/app_icons/logo.png'),
     home : require('../../assets/tab_icons/home.png'),
     user : require('../../assets/tab_icons/user.png'),
-    community : require('../../assets/tab_icons/community.png'),
+    community : require('../../assets/home_screen_icons/community.png'),
     bag : require('../../assets/home_screen_icons/bag.png'),
     camera : require('../../assets/home_screen_icons/camera.png'),
     fertilizer : require('../../assets/home_screen_icons/fertilizer.png'),

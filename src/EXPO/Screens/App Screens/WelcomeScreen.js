@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet ,Button } from 'react-native';
-import icons from '../../Constants/icons';
+import icons from '../../../Constants/icons';
 import { useNavigation } from '@react-navigation/native';
-import CustomButton from '../Components/CustomButton';
+import CustomButton from '../../Components/CustomButton';
 import { useSelector } from 'react-redux';
 
 

@@ -6,22 +6,22 @@ import { useNavigation } from '@react-navigation/native';
 import AxiosInstance from '../../../AxiosInstance';
 import { FontAwesome } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
-import axios from 'axios';
+import SelectionDropdown from '../../Components/SelectionDropdown';
+// import axios from 'axios';
 
 const CropDiseasePredictionScreen = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCrop, setSelectedCrop] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
   
-  const [crops, setCrops] = useState([
+  const cropsData =  [
     {label : 'Rice' ,value: 'rice',},
     { label : 'Wheat' ,value: 'wheat' },
     { label : 'Maize' ,value: 'maize' },
     { label : 'Potato' , value: 'potato' },
     { label : 'Corn' , value: 'corn' },
-  ]);
+  ]
 
 
   
@@ -104,7 +104,7 @@ const handleSubmit = async () =>{
 
     if(diseaseName.includes("Healthy")) {
       setIsLoading(false)
-      Alert('No Disese Detected')
+      // Alert('No Disese Detected')
       return ;
     }
 
@@ -147,28 +147,22 @@ const handleSubmit = async () =>{
   
           
       {/* Dropdown to select crop */}
-      {/* <View style={styles.selectView}> */}
+      <View style={styles.selectView}>
 
-         <Text style={[styles.labelText , {marginVertical : 10}]}>Select an option : </Text> 
+         <Text style={[styles.labelText , {marginVertical : 10}]}>Select Crop Type : </Text> 
 
-         <DropDownPicker
-      open={open}
-      setOpen={setOpen}
-      value={selectedCrop}
-      items={crops}
-      setValue={setSelectedCrop}
-      setItems={setCrops}
-      placeholder="Select crop"
-      placeholderStyle={{
-        color: "grey",
-        fontWeight: "bold"
-      }}
-    zIndex = {1000}
-
-    />
+         <View style={styles.dropdown}>
+            <SelectionDropdown 
+            data = {cropsData} 
+            value={ selectedCrop} 
+            setValue={ setSelectedCrop}
+            placeholder ='Select Crop'
+        searchText = 'search crop name..'
+            />
+        </View>
 
        <Text style={styles.selectedValue}>Selected Crop: {selectedCrop}</Text>
-      {/* </View>  */}
+      </View> 
 
 
 
@@ -267,7 +261,6 @@ paddingBottom : 15
     borderBottomWidth : 0.3 , 
     borderBottomColor : 'gray',
     paddingBottom : 10 ,
-    alignItems: 'center',
   },
   dropdown :{
     zIndex : 1000,
@@ -285,7 +278,6 @@ paddingBottom : 15
   imageSelectionView:{
     marginTop : 10,
     borderBottomWidth : 0.3 , 
-    borderTopWidth : 0.3 , 
     borderBottomColor : 'gray',
     paddingBottom : 10 ,
     paddingTop : 10 ,

@@ -3,6 +3,7 @@ import { View, Text , StyleSheet  , Dimensions , TouchableOpacity, Image } from 
 
 import colors from '../../Constants/colors';
 import icons from '../../Constants/icons';
+import { Avatar} from 'react-native-paper';
 
 const { width} = Dimensions.get('window');
 // import PopupMenu from '../Components/PopupMenu'
@@ -18,10 +19,13 @@ export default function Header() {
     <View style = {{ height : 30  , backgroundColor : 'green' , width : '100%'}}/> 
 
     <View style = {styles.header}>
+
       <View style = {{flexDirection:'row' , alignItems :'center'}}>
-           <Image
+
+           <Avatar.Image
         source={icons.logo} 
         style={styles.logo}
+        size={ 50}
       />
 
       <Text style={styles.title}>AgroIntel Pro</Text>
@@ -61,6 +65,8 @@ container :{
     width: 50,
     height: 50,
     marginRight: 10,
+    alignItems:'center',
+    justifyContent :'center',
   },
 
   title: {

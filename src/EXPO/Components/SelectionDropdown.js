@@ -1,10 +1,9 @@
-import { View, StyleSheet } from 'react-native'
-import React from 'react'
+import {  StyleSheet } from 'react-native'
 import {Dropdown} from 'react-native-element-dropdown';
 import { AntDesign } from '@expo/vector-icons';
 
 
-export default  SelectionDropdown = ({data , value ,setValue}) => {
+export default  SelectionDropdown = ({data , value ,setValue , placeholder , searchText}) => {
   return (
       <Dropdown
         style={styles.dropdown}
@@ -17,8 +16,8 @@ export default  SelectionDropdown = ({data , value ,setValue}) => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder="Select crop type"
-        searchPlaceholder="Search crop type..."
+        placeholder={placeholder}
+        searchPlaceholder={searchText}
         value={value}
         onChange={item => {
             setValue(item.value);
@@ -37,6 +36,8 @@ dropdown: {
     height: 50,
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
+    // borderTopWidth: 0.5,
+    // borderTopColor: 'gray',
   },
   icon: {
     marginRight: 5,
