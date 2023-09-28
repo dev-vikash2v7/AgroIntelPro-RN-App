@@ -56,6 +56,7 @@ export default function AppNavigator() {
         headerTitle : 'Crop Disease Prediction'
        }}
         />
+      
  
        <Stack.Screen 
        name='CropRecScreen' 

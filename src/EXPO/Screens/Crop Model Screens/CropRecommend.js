@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image, ActivityIndicator } from 'react-native';
 import AxiosInstance from '../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import colors from '../../../Constants/colors';
 
 import CropDataArr from '../../../Constants/CropData';
-
 
 
 
@@ -41,7 +40,7 @@ import CropDataArr from '../../../Constants/CropData';
       }
     };
 
-    const handleSubmit =  ()=>{
+    const handleSubmit = async ()=>{
 
       if(isFormValid){
 
@@ -57,29 +56,29 @@ import CropDataArr from '../../../Constants/CropData';
          'rainfall' : parseFloat(rainfall),
       }
 
-      CropDataArr.forEach((crop_obj)=>{
-            if(crop_obj.name == 'rice'){
-              setCropData(crop_obj);
-              return;
-            }
-          })
+      // CropDataArr.forEach((crop_obj)=>{
+      //       if(crop_obj.name == 'rice'){
+      //         setCropData(crop_obj);
+      //         return;
+      //       }
+      //     })
 
 
-      // AxiosInstance.post('/api/crop_recommend' , data)
-      // .then((res)=>{
-      //   console.log('resss , ' , res.data)
+    await  AxiosInstance.post('/api/crop_recommend' , data)
+      .then((res)=>{
+        console.log('resss , ' , res.data)
 
-      //   CropDataArr.forEach((crop_obj)=>{
-      //     if(crop_obj.name == 'rice'){
-      //       setCropData(crop_obj);
-      //       return;
-      //     }
-      //   })
-      // })
-      // .catch((e)=>{
-      //   Alert('error')
-      //   console.log("eeeeeeeeeeeeeee" , e)
-      // })
+        CropDataArr.forEach((crop_obj)=>{
+          if(crop_obj.name == 'rice'){
+            setCropData(crop_obj);
+            return;
+          }
+        })
+      })
+      .catch((e)=>{
+        Alert('error')
+        console.log("eeeeeeeeeeeeeee" , e)
+      })
 
       setIsLoading(false)
 
@@ -212,13 +211,15 @@ style = {{marginTop : 20}}
       {cropData && (
         <View style = {styles.cropView}>
 
-            <Text style={styles.crop_text}>Recommended Crop: {cropData.best_crop}</Text>
+            <Text style={styles.crop_text}>Recommended Crop: {cropData.name}</Text>
 
             <Image source={ cropData.crop_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
             
-            <Text> Description : {cropData.describe} </Text>
-            <Text> Best Weather and Soil : {cropData.condition} </Text>
-            <Text> Harvesting Cycle : {cropData.duration} </Text>
+            <View style ={{}}>
+            <Text style={styles.crop_describe}> Description : {cropData.describe} </Text>
+            <Text style={styles.crop_describe}> Best Weather and Soil : {cropData.condition} </Text>
+            <Text style={styles.crop_describe}> Harvesting Cycle : {cropData.duration} </Text>
+          </View>
 
         </View>
 
@@ -268,13 +269,31 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-
+cropView : {
+  justifyContent :'center' ,
+  alignItems :'center',
+  marginTop : 8
+},
+crop_text:{
+  textAlign:'center',
+  fontSize:14 ,
+  fontWeight : '600',
+  paddingBottom : 6 ,
+  textTransform:'capitalize'
+}
+  ,
   crop_img:{
-    width:100,
-    height : 100 ,
-
+    width:300,
+    height : 200 ,
+    borderRadius :10,
+    marginBottom : 10
   }
-  
+  ,
+  crop_describe:{
+    fontSize : 12 , 
+    fontWeight : '500' ,
+    padding:2
+  }
 })
 
 

@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , ScrollView } from 'react-native';
+import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , ScrollView  , ActivityIndicator} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import colors from '../../../Constants/colors';
 import { useNavigation } from '@react-navigation/native';
 import AxiosInstance from '../../../AxiosInstance';
 import { FontAwesome } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
-
-
+import axios from 'axios';
 
 const CropDiseasePredictionScreen = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCrop, setSelectedCrop] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   
   const [crops, setCrops] = useState([
     {label : 'Rice' ,
      value: 'rice',
-     icon: () => <FontAwesome name='user'/>
     },
     { label : 'Wheat' ,value: 'wheat' },
     { label : 'Maize' ,value: 'maize' },
     { label : 'Potato' , value: 'potato' },
+    { label : 'Corn' , value: 'corn' },
   ]);
   const [open, setOpen] = useState(false);
 
@@ -83,26 +83,41 @@ const CropDiseasePredictionScreen = () => {
 // send request to server
 const handleSubmit = async () =>{
 
-  const {uri , fileName , type} = selectedImage
+  setIsLoading(true)
+
+  const {uri } = selectedImage
+  const name =  uri.split('/')[uri.split('/').length - 1]
 
   const formData = new FormData();
+  
+  formData.append('image', { uri,  type: 'image/jpeg',  name }  );
+  formData.append('crop_name',selectedCrop);
 
-  formData.append('image', { uri,  fileName, type });
-  formData.append('crop_name', JSON.stringify({selectedCrop}));
-
-  console.log(formData)
-  await AxiosInstance.post('/api/disease_predict' , formData , {
+ await AxiosInstance.post('/api/disease_predict' , formData , {
     headers: {
-      'Content-Type': 'multipart/form-data', 
-    }} )
+      'Content-Type': 'multipart/form-data',
+      'Accept' :'application/json'
+    },
+  })
   .then(res=>{
     console.log("res : " , res.data)
-    navigation.navigate('DiseasePredResult' , {'diseaseName' : 'potato_earyl_blight'}  )
+
+    const diseaseName  = res.data.diseaseName
+
+    if(diseaseName.includes("Healthy")) {
+      setIsLoading(false)
+      Alert('No Disese Detected')
+      return ;
+    }
+
+    navigation.navigate('DiseasePredResult' , {cropName : selectedCrop ,  'diseaseName' : diseaseName}  )
   })
   .catch((e)=>{
+  setIsLoading(false)
     console.log('eee ' , e);
-    Alert('Error in uploading ' )
+    Alert('Error in Detecting' )
   })
+  setIsLoading(false)
 }
 
 
@@ -162,7 +177,7 @@ const handleSubmit = async () =>{
 
       {/* // Options to open camera or gallery */}
 
-      {selectedCrop &&
+      {/* {selectedCrop && */}
       <View style={styles.imageSelectionView}>
 
         <Text style={ styles.labelText} > Select Diseased {selectedCrop} Image :   </Text>
@@ -183,7 +198,7 @@ const handleSubmit = async () =>{
          </View>
       </View>
       </View>
-}
+{/* } */}
 
 
 
@@ -196,12 +211,17 @@ const handleSubmit = async () =>{
       )}
 
 {/* Button to predict */}
+{isLoading ? (
+        <ActivityIndicator size="large" color="blue" />
+      ) : 
       <Button
       style = {styles.submitBtn}
      title="Predict Disease"
         onPress={ handleSubmit}
          disabled={!selectedImage || !selectedCrop} />
+}
 </ScrollView>
+
 
     </View>
   );

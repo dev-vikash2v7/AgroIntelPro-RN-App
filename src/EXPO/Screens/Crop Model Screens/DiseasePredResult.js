@@ -1,26 +1,32 @@
 import React,{useEffect , useState} from 'react';
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet  } from 'react-native';
 import icons from '../../../Constants/icons';
+import CropDiseaseData from '../../../Constants/crop_disease_data';
 
 export default  DiseasePredResult = ({route}) => {
   // Sample data for a crop disease
 
-  const {diseaseName } = route.params 
+  const { cropName ,diseaseName } = route.params 
 
 
-  const[diseaseData , setDiseaseData] =  useState({
-    name: 'Example Disease', 
-    image: icons.bg,
-    description:
-      'This is a sample description of the crop disease. It provides information about the symptoms and effects on crops.',
-    cure: 'Apply treatment X and Y for a period of Z days.',
-    fertilizerRecommendation: 'Use fertilizer type A and B for best results.',
-  })
+  const[diseaseData , setDiseaseData] =  useState(null)
 
-  
+  useEffect(()=>{
+
+console.log(cropName , diseaseName)
+
+if( ! CropDiseaseData[cropName][diseaseName]){
+  return 
+}
+
+setDiseaseData(CropDiseaseData[cropName][diseaseName])
+
+
+  } , [])
   
 
   return (
+    diseaseData ? 
     <ScrollView style={styles.container}>
 
 
@@ -42,8 +48,9 @@ export default  DiseasePredResult = ({route}) => {
       <Text style={styles.sectionTitle}>Recommended Fertilizer:</Text>
       <Text style={styles.description}>{diseaseData.fertilizerRecommendation}</Text>
    
-
     </ScrollView>
+    :
+    <Text style = {{justifyContent :'center' , alignSelf:'center' , fontSize : 16  , color :'red' ,fontWeight :'bold'}}>Unable to predict disease </Text>
   );
 };
 
@@ -71,6 +78,8 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     marginTop: 8,
+    marginBottom : 10
+
   },
 });
 

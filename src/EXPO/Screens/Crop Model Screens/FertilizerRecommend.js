@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image } from 'react-native';
 import AxiosInstance from '../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import colors from '../../../Constants/colors';
