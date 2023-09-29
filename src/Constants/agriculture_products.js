@@ -1,4 +1,4 @@
-const agricultureProducts = [
+export default agricultureProducts = [
     {
       id: 1,
       name: 'Wheat Seeds',
@@ -48,7 +48,7 @@ const agricultureProducts = [
       category: 'Plants',
     },
     {
-      id: 3,
+      id: 7,
       name: 'Tomato Plants',
       price: 2.49,
       image: 'tomato.jpg',

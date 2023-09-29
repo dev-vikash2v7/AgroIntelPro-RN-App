@@ -18,7 +18,7 @@ export default  data = {
     
     "Potato___Late_Blight" : {
         name: 'Late Blight Disease',
-        image : require('./plant.png'),
+        image : require('../../assets/crop_img/apple.jpg'),
         
         description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
 
@@ -40,7 +40,7 @@ export default  data = {
     "corn" : {
         "Corn___Common_Rust": {
             name: 'Commong Rust',
-            image : require('./plant.png'),
+            image : require('../../assets/crop_img/apple.jpg'),
             
             description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
@@ -58,7 +58,7 @@ export default  data = {
         } ,
         "Corn___Gray_Leaf_Spot":{
             name: 'Gray Leaf Spot',
-            image : require('./plant.png'),
+            image : require('../../assets/crop_img/apple.jpg'),
             
             description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
@@ -77,7 +77,7 @@ export default  data = {
        
         "Corn___Northern_Leaf_Blight":{
             name: 'northern leaf blight',
-            image : require('./plant.png'),
+            image : require('../../assets/crop_img/apple.jpg'),
             
             description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     

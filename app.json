@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "AgroIntel Pro",
-    "slug": "AgroIntel Pro",
+    "slug": "AgroIntelPro-Hackaton-Project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/android_icons/icon.png",
@@ -28,8 +28,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "fd2d5dba-f398-41c6-87a1-e028c54b2aa1"
+        "projectId": "7e3b055f-c80c-40ac-8470-e0db0925f993"
       }
-    }
+    },
+    "owner": "vikash129"
   }
 }

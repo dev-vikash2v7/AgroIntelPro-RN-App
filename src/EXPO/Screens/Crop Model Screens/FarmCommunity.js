@@ -1,14 +1,40 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity , TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
 
+const AddPost = () => {
+  const [postText, setPostText] = useState('');
+  // const [selectedImage, setSelectedImage] = useState(null);
+
+return (
+  <View>
+<TextInput
+        placeholder="Write your post here..."
+        multiline
+        numberOfLines={4}
+        value={postText}
+        onChangeText={setPostText}
+        style={styles.textInput}
+      />
+
+<TouchableOpacity onPress={()=>{}} style={styles.postButton}>
+        <Text style={styles.postButtonText}>Post</Text>
+      </TouchableOpacity>
+
+</View>
+)
+}
+
+
+
 const FarmersCommunity = () => {
+
+
   const communityPosts = [
     {
       id: 1,
       user: 'Rahul Gandhi',
-      postText:
-        'Just harvested my wheat crop today. Feeling great! Anyone in need of wheat? Contact me.',
+      postText:  'Just harvested my wheat crop today. Feeling great! Anyone in need of wheat? Contact me.',
       date: '2 hours ago',
     },
     {
@@ -40,16 +66,8 @@ const FarmersCommunity = () => {
 </View>
 
       
-<TextInput
-        placeholder="Write your post here..."
-        multiline
-        numberOfLines={4}
-        value={postText}
-        onChangeText={setPostText}
-        style={styles.textInput}
-      />
+<AddPost/>
 
-        <Button style={styles.newPostButton}   onPress={() => {}} title='Create New Post'/>
 
     </ScrollView>
   );
@@ -88,25 +106,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888',
   },
-  newPostButton: {
-    backgroundColor: 'green',
+
+  textInput: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 8,
+    marginBottom: 16,
+    borderRadius : 20
+  },
+  postButton: {
+    backgroundColor: 'blue',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom : 40
   },
-  newPostButton: {
-    backgroundColor: 'green',
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  newPostButtonText: {
+
+  postButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
   },
+ 
 });
 
 export default FarmersCommunity;
