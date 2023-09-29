@@ -1,17 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, FlatList } from 'react-native';
 
 const FarmStore = ({ route }) => {
-  const { product } = route.params;
+  const { products } = route.params;
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: product.imageUrl }} style={styles.productImage} />
-      <Text style={styles.productName}>{product.name}</Text>
-      <Text style={styles.productDescription}>{product.description}</Text>
-      <Text style={styles.productPrice}>Price: ${product.price}</Text>
-      <Text style={styles.productQuantity}>Available Quantity: {product.quantity}</Text>
-      <Text style={styles.productCategory}>Category: {product.category}</Text>
+
+      <FlatList 
+      data={products}
+      keyExtractor={({item}) => item.id}
+      renderItem={({item,index}) =>{
+<View style={styles.product}>
+        <Image source={{ uri: item.imageUrl }} style={styles.productImage} />
+      <Text style={styles.productName}>{item.name}</Text>
+      <Text style={styles.productDescription}>{item.description}</Text>
+      <Text style={styles.productPrice}>Price: ${item.price}</Text>
+      <Text style={styles.productQuantity}>Available Quantity: {item.quantity}</Text>
+      <Text style={styles.productCategory}>Category: {item.category}</Text>
+      </View>
+      }}
+      />
+
     </ScrollView>
   );
 };
@@ -20,6 +30,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+  },
+  product:{
+    padding : 5 , 
+    // marginBottom:5
   },
   productImage: {
     width: '100%',

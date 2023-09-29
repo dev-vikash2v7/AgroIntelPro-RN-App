@@ -1,43 +1,56 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { Button } from 'react-native-paper';
 
 const FarmersCommunity = () => {
   const communityPosts = [
     {
       id: 1,
-      user: 'John Doe',
+      user: 'Rahul Gandhi',
       postText:
         'Just harvested my wheat crop today. Feeling great! Anyone in need of wheat? Contact me.',
       date: '2 hours ago',
     },
     {
       id: 2,
-      user: 'Jane Smith',
+      user: 'Narendra Modi',
       postText: 'Looking for advice on pest control for my tomato plants.',
+      date: '4 hours ago',
+    },
+    {
+      id: 3,
+      user: 'Mamata Banerjee ',
+      postText: 'HAMBA HAMDA RAMBA RAMBA TAMBA TAMBA',
       date: 'Yesterday',
     },
-    // Add more posts as needed
   ];
 
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Farmers' Community</Text>
+
+<View style={styles.postView}>
       {communityPosts.map((post) => (
         <View key={post.id} style={styles.postContainer}>
           <Text style={styles.userName}>{post.user}</Text>
           <Text style={styles.postText}>{post.postText}</Text>
           <Text style={styles.postDate}>{post.date}</Text>
-          {/* Add additional UI elements like comments, likes, and shares here */}
         </View>
       ))}
-      <TouchableOpacity
-        style={styles.newPostButton}
-        onPress={() => {
-          // Implement logic to create a new post
-        }}
-      >
-        <Text style={styles.newPostButtonText}>Create New Post</Text>
-      </TouchableOpacity>
+</View>
+
+      
+<TextInput
+        placeholder="Write your post here..."
+        multiline
+        numberOfLines={4}
+        value={postText}
+        onChangeText={setPostText}
+        style={styles.textInput}
+      />
+
+        <Button style={styles.newPostButton}   onPress={() => {}} title='Create New Post'/>
+
     </ScrollView>
   );
 };
@@ -51,6 +64,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
+  },
+  postView : {
+    marginBottom : 10
   },
   postContainer: {
     marginBottom: 16,
