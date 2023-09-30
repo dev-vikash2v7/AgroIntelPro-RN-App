@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "AgroIntel Pro",
@@ -20,7 +21,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/android_icons/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#fefffe"
       },
       "package": "com.vikash129.AgroIntelProHackatonProject"
     },
@@ -32,6 +33,7 @@
         "projectId": "7e3b055f-c80c-40ac-8470-e0db0925f993"
       }
     },
-    "owner": "vikash129"
+    "owner": "vikash129",
+    "scheme": ["http", "https"]
   }
 }

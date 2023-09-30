@@ -1,4 +1,4 @@
-import { View, Text  , ActivityIndicator , FlatList , StyleSheet , Image} from 'react-native'
+import { View, Text  , ActivityIndicator , FlatList , StyleSheet , Image, Dimensions, TouchableOpacity} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import {COLORS} from '../../../constants/theme'
@@ -7,6 +7,7 @@ const NewsList = () => {
 
   const[articles , setArticles] =   useState([])
 
+ 
   useEffect(()=>{
    const base_url = 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=3f3b61c5f48445e594d57355f0303984'
 
@@ -32,16 +33,19 @@ const NewsList = () => {
         data={articles}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
-          <View style={styles.newsItem}>
 
-<View style = {{flexDirection:'row' , height : 80 }}>
+          <TouchableOpacity style={styles.newsItem} onPress={() => {}}>
+
             <Image source={ { uri : item.urlToImage }} style={styles.img}/>
-            <Text style={styles.title}>{item.title}</Text>
-</View>
 
+<View style = {{ width : 190 , justifyContent :'space-around'}}>
+            <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.description}>{item.description}</Text>
             <Text style={styles.source}>Source: {item.source.name}</Text>
-          </View>
+</View>
+          </TouchableOpacity>
+
+
         )}
       />
       :
@@ -57,42 +61,46 @@ const NewsList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal : 12,
+    paddingHorizontal : 5,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical : 10
-  },
-  img:{
-width:100,
-height:100,
-marginRight:5,
-borderRadius:5
-
+    // alignItems: 'center',
+    paddingVertical : 10,
   },
   heading: {
-    justifyContent :'center' ,
-     fontSize : 20 , 
-     fontWeight : '600',
-     marginTop : 10,
-     paddingVertical : 5
-    },
+    fontSize : 20 , 
+    fontWeight : '600',
+    marginTop : 30,
+    textAlign:'center',
+    marginBottom : 10,
+    textDecorationLine:'underline'
+  },
   newsView:{
-marginTop : 5
+    marginTop : 5
   },
   newsItem: {
     marginBottom: 16,
-    backgroundColor: COLORS.light_green,
+    backgroundColor: COLORS.lightWhite,
     padding: 12,
     borderRadius: 8,
+    flexDirection:'row',
+    width : Dimensions.get('screen').width - 5,
+    height : 250
+  },
+  img:{
+width:120,
+height:"100%",
+resizeMode:'cover',
+marginRight:10,
+borderRadius:5
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     textDecorationLine : 'underline',
     textDecorationColor:'orange'
   },
   description: {
-    fontSize: 16,
+    fontSize: 12,
     marginTop: 8,
   },
   source: {

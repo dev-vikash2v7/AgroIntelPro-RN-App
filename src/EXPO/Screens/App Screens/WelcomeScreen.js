@@ -1,36 +1,28 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet ,Button } from 'react-native';
-import icons from '../../../../constants/icons';
+import { View, Text, Image, StyleSheet ,Button, TouchableOpacity  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomButton from '../../Components/CustomButton';
-import { useSelector } from 'react-redux';
+// import { Avatar } from 'react-native-paper';
 
 
 const WelcomeScreen = () => {
 
-  const user = useSelector(state => state.auth.user)
 
   const navigation = useNavigation()
 
 
-  useEffect(()=>{
-      if(user){
-      navigation.navigate('HomeScreen')
-      }
-  } , [])
-
   return (
     
     <View style={styles.container}>
-      {/* Logo */}
+      
       <Image
-        source={icons.logo}
+        source={require('./splash.png')}
         style={styles.logo}
       />
-
+{/* 
       <Text style={styles.appName}>AgroIntel Pro</Text>
 
-      <Text style={styles.slogan}>Grow More , Worry Less !</Text>
+      <Text style={styles.slogan}>Grow More , Worry Less !</Text> */}
 
       {/* Authentication Buttons */}
 
@@ -61,11 +53,14 @@ const WelcomeScreen = () => {
       />
 
 </View>
+
+<TouchableOpacity onPress={ ()=>navigation.navigate('HomeScreen')}>
         <Text
       style=  {{marginTop : 5 , fontSize : 16, color : 'red' , textDecorationLine :'underline', fontWeight : '500'}}
         > 
         Continue as Guest
          </Text>
+         </TouchableOpacity>
     
     </View>
   );
@@ -79,9 +74,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200,
     marginBottom: 20,
+    resizeMode :'cover'
   },
   appName: {
     fontSize: 24,

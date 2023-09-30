@@ -10,8 +10,6 @@ const { width} = Dimensions.get('window');
 
 export default function Header() {
 
-  
-  
   return (
     <View style = {styles.container}> 
 
@@ -19,7 +17,7 @@ export default function Header() {
 
       <View style = {{flexDirection:'row' , alignItems :'center' , justifyContent:'center'}}>
 
-           <Avatar.Image
+           <Image
         source={icons.logo} 
         style={styles.logo}
         size={ 50}
@@ -48,14 +46,14 @@ container :{
     paddingVertical: 10,
     backgroundColor:COLORS.primary , 
     elevation: 4,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 2 },            
     shadowOpacity: 0.2,
   },
 
   logo: {
     resizeMode :'cover' ,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     marginRight: 10,
     alignItems:'center',
     justifyContent :'center',

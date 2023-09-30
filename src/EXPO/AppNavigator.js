@@ -27,11 +27,13 @@ import WelcomeScreen from './Screens/App Screens/WelcomeScreen';
 
 import {COLORS} from '../../constants/theme';
 
+
 export default function AppNavigator() {
   
   const user = useSelector(state => state.auth.user)
   const Stack = createNativeStackNavigator()
   const Tab = createBottomTabNavigator();
+
 
   function StackNavigator() {
     return (
@@ -47,7 +49,6 @@ export default function AppNavigator() {
               elevation: 0,
               marginTop: 20,     
             },
-            headerTintColor: 'black',
           
         }}
         > 

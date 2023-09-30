@@ -75,15 +75,15 @@ const tabData  = [
 
     <View style = {styles.userView}>
 
-      {user.image ? 
+      {
+      user.image ? 
     <Avatar.Image
     style={styles.avatar}
     source={{uri : user.image}}
   />
     :
-    <FontAwesome name =  'user-circle-o'   size = {50} />
+    <FontAwesome name =  'user-circle-o'   size = {50} color={ 'blue'}/>
     }
-
 
     <Text style={styles.name}>{user.name}</Text>
       <Text style={styles.email}>{user.email} </Text>

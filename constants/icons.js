@@ -9,4 +9,5 @@ export default icons  = {
     fertilizer : require('../assets/home_screen_icons/fertilizer.png'),
     plant : require('../assets/home_screen_icons/plant.png'),
     intelligent : require('../assets/home_screen_icons/intelligent.png'),
+
 }
