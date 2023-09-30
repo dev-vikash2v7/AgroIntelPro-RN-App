@@ -185,9 +185,9 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
         <FloatInputWithRange
           placeholder="Moisture Level "
           value={moisture}
-          label="Moisture (0-100)"
-          minValue={0}
-          maxValue={100}
+          label="Moisture (20-80)"
+          minValue={20}
+          maxValue={80}
           onChange={(newValue) => setMoisture(newValue)}
         />
 

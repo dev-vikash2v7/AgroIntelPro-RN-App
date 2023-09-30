@@ -91,7 +91,9 @@ const handleSubmit = async () =>{
   formData.append('image', { uri,  type: 'image/jpeg',  name }  );
   formData.append('crop_name',selectedCrop);
 
- await AxiosInstance.post('/api/disease_predict' , formData , {
+  const url = 'https://204a-152-58-59-195.ngrok-free.app'
+
+ await AxiosInstance.post( url + '/api/disease_predict' , formData , {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Accept' :'application/json'

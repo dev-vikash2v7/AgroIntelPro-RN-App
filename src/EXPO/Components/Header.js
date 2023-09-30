@@ -17,7 +17,7 @@ export default function Header() {
 
     <View style = {styles.header}>
 
-      <View style = {{flexDirection:'row' , alignItems :'center'}}>
+      <View style = {{flexDirection:'row' , alignItems :'center' , justifyContent:'center'}}>
 
            <Avatar.Image
         source={icons.logo} 
@@ -37,7 +37,6 @@ export default function Header() {
 
 const styles = StyleSheet.create({
 container :{
-  // height  : 100,
   width : width
 },
   header : {
@@ -48,13 +47,13 @@ container :{
     paddingHorizontal: 16,
     paddingVertical: 10,
     backgroundColor:COLORS.primary , 
-    elevation: 4, // Android shadow
+    elevation: 4,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
-    // height : 90
   },
 
   logo: {
+    resizeMode :'cover' ,
     width: 50,
     height: 50,
     marginRight: 10,

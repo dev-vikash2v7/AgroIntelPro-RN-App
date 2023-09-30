@@ -20,7 +20,7 @@ const tabData  = [
   id : 1 ,
   title : 'Edit Profile' ,
   describe : 'Add or modify name , mobile number ,email',
-  icon :()=> <MaterialCommunityIcons name="account-edit-outline" size={30} color="black" />,
+  icon :()=> <MaterialCommunityIcons name="account-edit-outline" size={30} color="green" />,
   onClick : ()=>{}
 },
 
@@ -29,7 +29,7 @@ const tabData  = [
   id : 2 ,
   title : 'Saved Address' ,
   describe : 'Modify address of your farm or home where you want your shoped products to be delivered',
-  icon :()=>  <MaterialIcons name="edit-location" size={30} color="black" />,
+  icon :()=>  <MaterialIcons name="edit-location" size={30} color="brown" />,
   onClick : ()=>{}
 },
 
@@ -39,21 +39,21 @@ const tabData  = [
   id : 3 ,
   title : 'Security & Privacy' ,
   describe : 'Change account password , payment method',
-  icon : ()=><MaterialIcons name="security" size={30} color="black" />,
+  icon : ()=><MaterialIcons name="security" size={30} color="orange" />,
   onClick : ()=>{}
 },
 {
   id : 4 ,
   title : 'Manage Notifications' ,
   describe : 'Manage how you want to receive important updates',
-  icon : ()=><MaterialIcons name="notifications-none" size={30} color="black" />,
+  icon : ()=><MaterialIcons name="notifications-none" size={30} color="pink" />,
   onClick : ()=>{}
 },
 {
   id : 5 ,
   title : 'Change Language' ,
   describe : 'Change Language of app',
-  icon : ()=><Entypo name="language" size={30} color="black" />,
+  icon : ()=><Entypo name="language" size={30} color="blue" />,
   onClick : ()=>{}
 },
 {
@@ -71,32 +71,33 @@ const tabData  = [
 
   return (
     user ? 
-    <ScrollView>
     <View style={styles.container}>
 
     <View style = {styles.userView}>
+
       {user.image ? 
-    <FontAwesome name =  'user-circle-o'   size = {50} />
-    :
     <Avatar.Image
     style={styles.avatar}
-    source={icons.logo}
+    source={{uri : user.image}}
   />
+    :
+    <FontAwesome name =  'user-circle-o'   size = {50} />
     }
+
 
     <Text style={styles.name}>{user.name}</Text>
       <Text style={styles.email}>{user.email} </Text>
-    </View>
+    </View>                                                         
 
 
-    <View style = {styles.tabView}>
+    <View style = {styles.tabView}>         
 
 
 
     <FlatList  
     data={tabData}
     keyExtractor={(item) => item.id}
-
+ showsVerticalScrollIndicator={true} 
     renderItem={ ({item,index}) =>
   (  
   <TouchableOpacity style={styles.tab} onPress={() => item.onClick()}>
@@ -124,7 +125,6 @@ const tabData  = [
     </View>
     
     </View>
-    </ScrollView>
     :
     // <AuthPrompt onClose = {'WelcomeScreen'} />
     // nav.navigate('WelcomeScreen')
@@ -148,20 +148,19 @@ marginBottom : 30 ,
   name: {
     marginTop: 10,
     fontSize: 20,
-    fontWeight: '400',
+    fontWeight: '500',
     textTransform : 'capitalize',
     color: COLORS.text,
   },
 email :{
-  fontSize: 20,
+  fontSize: 16,
     fontWeight: '400',
     color:COLORS.text,
 },
 
 tabView:{
     marginBottom : 10 , 
-    backgroundColor : COLORS.light_green,
-    paddingVertical : 10,
+    backgroundColor : COLORS.lightWhite,
     borderRadius : 5 ,
     justifyContent : 'center' ,
     alignItems : 'center',

@@ -97,6 +97,8 @@
       },
       "dt_txt": "2022-08-30 15:00:00"
     },
+
+
     {
       "dt": 1661882400,
       "main": {
@@ -230,3 +232,77 @@
         
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     response :  {
+      "clouds": {"all": 31}, 
+      "dt": 1696107600, 
+      "dt_txt": "2023-09-30 21:00:00", 
+      "main": {
+        "feels_like": 25.31, 
+        "grnd_level": 953, 
+        "humidity": 60,
+         "pressure": 1008,
+          "sea_level": 1008, 
+          "temp": 25.17, 
+          "temp_kf": 2.31, 
+          "temp_max": 25.17,
+           "temp_min": 22.86
+           },
+            "pop": 0,
+             "sys": {"pod": "n"},
+              "visibility": 10000,
+               "weather": [
+                {
+                  "description": "scattered clouds", 
+                "icon": "03n", 
+                "id": 802, 
+                "main": "Clouds"
+                }], 
+                "wind": {
+                  "deg": 81, 
+                  "gust": 0.7,
+                   "speed": 0.67
+                   }}

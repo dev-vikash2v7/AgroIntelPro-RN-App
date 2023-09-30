@@ -22,9 +22,9 @@ export default  SelectionDropdown = ({data , value ,setValue , placeholder , sea
         onChange={item => {
             setValue(item.value);
         }} 
-        renderLeftIcon={() => (
-            <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
-          )}
+        // renderLeftIcon={() => (
+        //     <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
+        //   )}
         />
   )
 }
