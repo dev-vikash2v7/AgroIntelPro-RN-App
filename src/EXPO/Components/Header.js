@@ -1,12 +1,11 @@
 import React,{useState} from 'react'
 import { View, Text , StyleSheet  , Dimensions , TouchableOpacity, Image } from 'react-native'
 
-import colors from '../../Constants/colors';
-import icons from '../../Constants/icons';
+import {COLORS} from '../../../constants/theme';
+import icons from '../../../constants/icons';
 import { Avatar} from 'react-native-paper';
 
 const { width} = Dimensions.get('window');
-// import PopupMenu from '../Components/PopupMenu'
 
 
 export default function Header() {
@@ -15,8 +14,6 @@ export default function Header() {
   
   return (
     <View style = {styles.container}> 
-
-    <View style = {{ height : 30  , backgroundColor : 'green' , width : '100%'}}/> 
 
     <View style = {styles.header}>
 
@@ -32,10 +29,6 @@ export default function Header() {
 
       </View>
 
-    {/* <View>
-      <PopupMenu/>
-    </View> */}
-
       </View>
 
     </View>
@@ -44,7 +37,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
 container :{
-  height  : 100,
+  // height  : 100,
   width : width
 },
   header : {
@@ -54,7 +47,7 @@ container :{
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor:colors.primary , 
+    backgroundColor:COLORS.primary , 
     elevation: 4, // Android shadow
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -72,7 +65,7 @@ container :{
   title: {
     fontSize: 20,
     fontWeight : '500' ,
-    color: colors.text, 
+    color: COLORS.text, 
   },
   
 })

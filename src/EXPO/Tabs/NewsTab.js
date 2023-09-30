@@ -1,7 +1,7 @@
-import { View, Text  , ActivityIndicator , FlatList , StyleSheet , ScrollView} from 'react-native'
+import { View, Text  , ActivityIndicator , FlatList , StyleSheet , Image} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
-import colors from '../../Constants/colors'
+import {COLORS} from '../../../constants/theme'
 
 const NewsList = () => {
 
@@ -33,13 +33,17 @@ const NewsList = () => {
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <View style={styles.newsItem}>
+
+<View style = {{flexDirection:'row' , height : 80 }}>
+            <Image source={ { uri : item.urlToImage }} style={styles.img}/>
             <Text style={styles.title}>{item.title}</Text>
+</View>
+
             <Text style={styles.description}>{item.description}</Text>
             <Text style={styles.source}>Source: {item.source.name}</Text>
           </View>
         )}
       />
-      
       :
       <ActivityIndicator size="large" color="#007BFF" />
     }
@@ -58,6 +62,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical : 10
   },
+  img:{
+width:100,
+height:100,
+marginRight:5,
+borderRadius:5
+
+  },
   heading: {
     justifyContent :'center' ,
      fontSize : 20 , 
@@ -70,7 +81,7 @@ marginTop : 5
   },
   newsItem: {
     marginBottom: 16,
-    backgroundColor: colors.light_green,
+    backgroundColor: COLORS.light_green,
     padding: 12,
     borderRadius: 8,
   },

@@ -1,10 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Text , StyleSheet} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Header from './Components/Header';
 
+import Header from './Components/Header';
 import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
 import CropRecommendation from './Screens/Crop Model Screens/CropRecommend';
 import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
@@ -17,29 +18,37 @@ import Home from './Tabs/HomeTab';
 import ProfileScreen from './Tabs/ProfileTab';
 import NewsScreen from './Tabs/NewsTab';
 import CustomTabIcon from './Components/CustomTabIcon';
-import icons from '../Constants/icons';
+import icons from '../../constants/icons';
 import MyFarm from './Screens/Crop Model Screens/MyFarm';
 import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
-import colors from '../Constants/colors';
 import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
 import WelcomeScreen from './Screens/App Screens/WelcomeScreen';
-   
+
+import {COLORS} from '../../constants/theme';
+
 export default function AppNavigator() {
   
+  const user = useSelector(state => state.auth.user)
   const Stack = createNativeStackNavigator()
   const Tab = createBottomTabNavigator();
-
-
 
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='WelcomeScreen'
+        initialRouteName='HomeScreen'
         screenOptions={ {
           headerTitleStyle: {
               fontSize: 15, 
+    fontWeight: 'bold', 
             },
+            headerStyle : {
+              backgroundColor: COLORS.lightWhite,
+              elevation: 0,
+              marginTop: 20,     
+            },
+            headerTintColor: 'black',
+          
         }}
         > 
 
@@ -108,23 +117,23 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='SignUp' 
-       component={SignUpScreen} 
+       component={!user ? SignUpScreen : Home} 
        options={{
         headerTitle : 'Create Account',
        }}
      />
      
-        
         <Stack.Screen 
        name='LogIn' 
-       component={LogInScreen} 
+       component={!user ? LogInScreen : Home} 
        options={{
         headerTitle : 'Login To Your Account',
        }}
+
         />
         <Stack.Screen 
        name='WelcomeScreen' 
-       component={WelcomeScreen} 
+       component={!user ? WelcomeScreen : Home} 
        options={{
         headerTitle : 'Welcome',
        }}
@@ -198,8 +207,6 @@ export default function AppNavigator() {
         }}
       />
     </Tab.Navigator>
-  
-
 
     );
   }
@@ -223,6 +230,6 @@ const styles = StyleSheet.create({
     marginBottom : 4
   },
   tabLabelFocused: {
-    color: colors.primary, // Set the text color for the focused tab
+    color: COLORS.primary, // Set the text color for the focused tab
   },
 });

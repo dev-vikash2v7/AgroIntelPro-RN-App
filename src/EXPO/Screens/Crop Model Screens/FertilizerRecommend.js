@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image, ActivityIndicator } from 'react-native';
-import AxiosInstance from '../../../AxiosInstance';
+import AxiosInstance from '../../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
-import colors from '../../../Constants/colors';
-import fertilizers_data from '../../../Constants/fertilizers_data';
+import {COLORS} from '../../../../constants/theme';
+import fertilizers_data from '../../../../constants/fertilizers_data';
 import SelectionDropdown from '../../Components/SelectionDropdown';
 
  export default FertilizerRecommendScreen = () => {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   },
   featureText :{
     fontSize :12 , 
-    color : colors.text,
+    color : COLORS.text,
     fontWeight: '400',
     marginVertical : 1
   },

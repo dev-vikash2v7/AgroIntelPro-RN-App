@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, FlatList } from 'react-native';
 
-import agriculture_products  from '../../../Constants/agriculture_products';
+import agriculture_products  from '../../../../constants/agriculture_products';
 
 const FarmStore = () => {
 

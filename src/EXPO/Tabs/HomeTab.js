@@ -2,8 +2,8 @@ import  React,{useEffect, useState }  from 'react'
 import { View  , StyleSheet   , TouchableOpacity, Image , Text , FlatList} from 'react-native'
 import WeatherReport from '../Components/WeatherReport'
 import {  useNavigation} from '@react-navigation/native'
-import colors from '../../Constants/colors'
-import icons from '../../Constants/icons'
+import {COLORS} from '../../../constants/theme'
+import icons from '../../../constants/icons'
 
 const Home = () => {
   const navigation = useNavigation()
@@ -110,7 +110,7 @@ marginBottom : 20 ,
   },
 
   imgBox : {
-backgroundColor : colors.primary , 
+backgroundColor : COLORS.primary , 
 width : 100 ,
 height :100 ,
 borderRadius : 4 ,

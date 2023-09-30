@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/android_icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.vikash129.AgroIntelProHackatonProject"
     },
     "web": {
       "favicon": "./assets/android_icons/favicon.png"

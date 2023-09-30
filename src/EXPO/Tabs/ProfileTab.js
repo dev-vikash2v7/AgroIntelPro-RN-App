@@ -3,11 +3,10 @@ import { View, Text  , StyleSheet , TouchableOpacity  ,FlatList, ScrollView } fr
 import {FontAwesome, MaterialIcons ,MaterialCommunityIcons , Entypo} from  '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
 import { useSelector , useDispatch} from 'react-redux'
-import colors from '../../Constants/colors';
-import { removeUser } from '../../Redux/Slices/AuthSlice'
+import {COLORS} from '../../../constants/theme';
+import { removeUser } from '../../../Redux/Slices/AuthSlice'
 import WelcomeScreen from '../Screens/App Screens/WelcomeScreen';
-import icons from '../../Constants/icons';
-// import AuthPrompt from '../Components/AuthPrompt';
+import icons from '../../../constants/icons';
 import { Avatar} from 'react-native-paper';
 
 export default function Profile(){
@@ -22,7 +21,7 @@ const tabData  = [
   title : 'Edit Profile' ,
   describe : 'Add or modify name , mobile number ,email',
   icon :()=> <MaterialCommunityIcons name="account-edit-outline" size={30} color="black" />,
-  onClick : ''
+  onClick : ()=>{}
 },
 
 
@@ -31,7 +30,7 @@ const tabData  = [
   title : 'Saved Address' ,
   describe : 'Modify address of your farm or home where you want your shoped products to be delivered',
   icon :()=>  <MaterialIcons name="edit-location" size={30} color="black" />,
-  onClick : ''
+  onClick : ()=>{}
 },
 
 
@@ -41,21 +40,21 @@ const tabData  = [
   title : 'Security & Privacy' ,
   describe : 'Change account password , payment method',
   icon : ()=><MaterialIcons name="security" size={30} color="black" />,
-  onClick : ''
+  onClick : ()=>{}
 },
 {
   id : 4 ,
   title : 'Manage Notifications' ,
   describe : 'Manage how you want to receive important updates',
   icon : ()=><MaterialIcons name="notifications-none" size={30} color="black" />,
-  onClick : ''
+  onClick : ()=>{}
 },
 {
   id : 5 ,
   title : 'Change Language' ,
   describe : 'Change Language of app',
   icon : ()=><Entypo name="language" size={30} color="black" />,
-  onClick : ''
+  onClick : ()=>{}
 },
 {
   id : 6 ,
@@ -72,7 +71,8 @@ const tabData  = [
 
   return (
     user ? 
-    <ScrollView style={styles.container}>
+    <ScrollView>
+    <View style={styles.container}>
 
     <View style = {styles.userView}>
       {user.image ? 
@@ -123,8 +123,7 @@ const tabData  = [
       
     </View>
     
-
-
+    </View>
     </ScrollView>
     :
     // <AuthPrompt onClose = {'WelcomeScreen'} />
@@ -137,7 +136,8 @@ const tabData  = [
 const styles = StyleSheet.create({
   container : {
     flex:1,
-    marginBottom : 20
+    marginBottom : 20,
+    paddingHorizontal : 10 
   },
   userView : {
 marginTop : 20 , 
@@ -150,17 +150,17 @@ marginBottom : 30 ,
     fontSize: 20,
     fontWeight: '400',
     textTransform : 'capitalize',
-    color: colors.text,
+    color: COLORS.text,
   },
 email :{
   fontSize: 20,
     fontWeight: '400',
-    color:colors.text,
+    color:COLORS.text,
 },
 
 tabView:{
     marginBottom : 10 , 
-    backgroundColor : colors.light_green,
+    backgroundColor : COLORS.light_green,
     paddingVertical : 10,
     borderRadius : 5 ,
     justifyContent : 'center' ,

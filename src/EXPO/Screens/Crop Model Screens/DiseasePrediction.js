@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , ScrollView  , ActivityIndicator} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import colors from '../../../Constants/colors';
+import {COLORS} from '../../../../constants/theme';
 import { useNavigation } from '@react-navigation/native';
-import AxiosInstance from '../../../AxiosInstance';
+import AxiosInstance from '../../../../AxiosInstance';
 import { FontAwesome } from '@expo/vector-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import SelectionDropdown from '../../Components/SelectionDropdown';
@@ -234,7 +234,7 @@ paddingBottom : 15
   instructionBox: {
     fontSize: 12,
     fontWeight : '400',
-    backgroundColor : colors.light_green,
+    backgroundColor : COLORS.light_green,
     padding : 5 ,
     borderRadius:5
   },

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Image, View } from 'react-native';
-import icons from '../../Constants/icons';
-import colors from '../../Constants/colors';
+import icons from '../../../constants/icons';
+import {COLORS} from '../../../constants/theme';
 
 export default CustomTabIcon = ({ focused, iconName }) => {
     return (
       <View style ={{
         width : 55 ,
         height : 50 , 
-backgroundColor : focused ? colors.light_green : 'null',
+backgroundColor : focused ? COLORS.light_green : 'null',
 opcaity : 0.5,
 borderRadius : 5 , 
 alignItems:'center',

@@ -1,7 +1,7 @@
 import React,{useEffect , useState} from 'react';
 import { View, Text, Image, ScrollView, StyleSheet  } from 'react-native';
-import icons from '../../../Constants/icons';
-import CropDiseaseData from '../../../Constants/crop_disease_data';
+import icons from '../../../../constants/icons';
+import CropDiseaseData from '../../../../constants/crop_disease_data';
 
 export default  DiseasePredResult = ({route}) => {
   // Sample data for a crop disease

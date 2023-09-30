@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import * as Location from 'expo-location';
 import axios from 'axios';
-import colors from '../../Constants/colors';
+import {COLORS} from '../../../constants/theme';
 
 
 
@@ -12,8 +12,13 @@ const WeatherReport = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [forcastData, setForcastData] = useState(null);
 
+  const [selectedTab, setSelectedTab] = useState('Temperature');
+
+
+
+
   useEffect(() => {
-    // getLocation();
+    getLocation();
   }, []);
 
 
@@ -74,7 +79,10 @@ const WeatherReport = () => {
   return (
     <View style={styles.container}>
 
-      <Text style={ styles.title}> Weather Type :{weatherData.weather[0].description}  </Text>
+
+      <Text style={ styles.title}> 
+      Weather Type : <Text style = {{color :'blue' , fontWeight :'bold' }}>Mostly Cloudy  </Text> 
+      </Text>
 
       <Text style = {{fontSize : 10}}> Now </Text>
 
@@ -85,9 +93,9 @@ const WeatherReport = () => {
           {/* 24°C */}
           {weatherData.main.temp}
         </Text>
-        <Text style = {{fontSize : 10 , fontWeight : 300 }}> 
+        <Text style = {{fontSize : 12 , fontWeight : 400 }}> 
            {/* Feels like 24°C */}
-          {weatherData.main.feels_like}
+        Feels Like {weatherData.main.feels_like}
         </Text>
 
         <Text style = {{fontSize : 20 , fontWeight : 400 }}> 
@@ -95,12 +103,10 @@ const WeatherReport = () => {
         </Text>
       </View>
 
-      <View style = {{marginTop : -10}}>
-        {/* <Text style={{ fontSize : 20 , fontWeight : 500}}> Mostly Cloudy </Text>
-        <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : 20%  </Text>
+      <View style = {{marginTop : 0}}>
+        {/* <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : 20%  </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Humidity : 100% </Text>
-        <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  8 km/h </Text> */}
-        {/* <Text style={{ fontSize : 20 , fontWeight : 500}}>  </Text> */}
+        <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  8 km/h </Text>  */}
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Precip : {weatherData.main.humidity}  </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Humidity : {weatherData.main.humidity} </Text>
         <Text style={{ fontSize : 15 , fontWeight : 400}}> Wind :  {weatherData.wind.speed} m/s</Text>
@@ -116,6 +122,8 @@ const WeatherReport = () => {
               <Text style = {{fontSize : 10 , fontWeight : '500' , justifyContent : 'center'}}> 27/23 </Text>
           </View>)
       )}
+
+
       </View>
 
       
@@ -129,19 +137,18 @@ const styles = StyleSheet.create({
     paddingHorizontal : 15 ,
     borderBottomWidth : 1 , 
     borderBottomColor : 'gray', 
-    marginTop : 10
+    paddingTop : 15
   },
   title : {
     fontSize:20 , 
     fontWeight : "600",
-    marginBottom : 10 , 
   }, 
   weatherText: {
     flexDirection : 'row' ,
     justifyContent : 'space-between'
   },
   forecast:{
-    marginTop : 5,
+    marginTop : 8,
     marginBottom : 20 , 
     flexDirection : 'row',
     justifyContent : 'space-between'
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
     width : 50 ,
     height : 60, 
     borderWidth:1 ,
-    borderColor : colors.text, 
+    borderColor : COLORS.text, 
     borderRadius : 5 ,
     justifyContent : 'center',
     alignItems : 'center',

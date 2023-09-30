@@ -14,12 +14,12 @@ import { useNavigation } from '@react-navigation/native';
 import {useDispatch }  from 'react-redux'
 import { collection,addDoc} from "firebase/firestore";
 
-import { db } from '../../firebase_config'; 
-import { setUser } from '../../../Redux/Slices/AuthSlice';
+import { db } from '../../../../firebase_config'; 
+import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import CustomButton from '../../Components/CustomButton';
 
 import Toast from 'react-native-toast-message';
-import icons from '../../../Constants/icons';
+import icons from '../../../../constants/icons';
 
 
 const SignUpScreen = () => {

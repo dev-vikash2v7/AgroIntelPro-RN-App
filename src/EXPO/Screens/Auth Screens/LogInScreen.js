@@ -14,10 +14,10 @@ import {
 
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { db } from '../../firebase_config'; 
+import { db } from '../../../../firebase_config'; 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import CustomButton from '../../Components/CustomButton';
-import { setUser } from '../../../Redux/Slices/AuthSlice';
+import { setUser } from '../../../../Redux/Slices/AuthSlice';
 
 
 const LogInScreen = () => {
