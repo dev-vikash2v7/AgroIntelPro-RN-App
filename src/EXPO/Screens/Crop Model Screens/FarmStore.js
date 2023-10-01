@@ -1,16 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 
-// ['rice', 'maize', 'chickpea', 'kidneybeans', 'pigeonpeas',
-//        'mothbeans', 'mungbean', 'blackgram', 'lentil', 'pomegranate',
-//        'banana', 'mango', 'grapes', 'watermelon', 'muskmelon', 'apple',
-//        'orange', 'papaya', 'coconut', 'cotton', 'jute', 'coffee']
+import agricultureProducts from '../../../../constants/agriculture_products'
 
 const FarmStore = () => {
 
   return (
     <View style={styles.container}>
+      <FlatList 
+      data = {agricultureProducts}
+      keyExtractor={ (item) => item.id}
+      renderItem={ ({item,index}) => {
 
+<View style = {styles.product}>
+<Image source={ item.image } style={styles.productImage} />
+      <Text style={styles.productName}>{item.name}</Text>
+      <Text style={styles.productDescription}>{item.description}</Text>
+      <Text style={styles.productPrice}>Price: ${item.price}</Text>
+      <Text style={styles.productCategory}>Category: {item.category}</Text>
+</View>
+      }}
+      />
 
     </View>
   );

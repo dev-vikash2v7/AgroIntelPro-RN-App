@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Linking ,ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, Linking ,ScrollView  , Button} from 'react-native';
 
 import fertilizers_data from '../../../../constants/fertilizers_data';
+import { COLORS } from '../../../../constants/theme';
 
 const FertilizerResult = () => {
 
-  const { name, image, description, benefits, npkValues, buyLink } = fertilizers_data[0];
+  const { name, image, description, benefits, NPK, buyLink } = fertilizers_data[0];
 
   const openBuyLink = () => {
     Linking.openURL(buyLink);
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView  style={styles.container}>
+    <View style = {{ marginBottom : 30}}>
 
-    <Image source={{ uri: image }} style={styles.image} />
+    <Image source={image } style={styles.image} />
     <Text style={styles.name}>{name}</Text>
 
     <Text style={styles.description}>{description}</Text>
@@ -22,19 +24,18 @@ const FertilizerResult = () => {
     <View style={styles.detailsContainer}>
 
       <Text style={styles.detailLabel}>Nutrients:</Text>
-      <Text style={styles.detailText}>{npkValues}</Text>
+      <Text style={styles.detailText}>{NPK}</Text>
     </View>
 
     <View style={styles.detailsContainer}>
-      <Text style={styles.detailLabel}>benefits:</Text>
+      <Text style={styles.detailLabel}>Benefits:</Text>
       <Text style={styles.detailText}>{benefits}</Text>
     </View>
 
       
-    <View style={styles.buyLink}>
-      <Text style={styles.buyLink} onPress={openBuyLink}>Buy Now</Text>
-    </View>
+      <Button  style={styles.buyLink} onPress={openBuyLink} title='Buy Now'/>
 
+  </View>
   </ScrollView>
   );
 };
@@ -42,7 +43,6 @@ const FertilizerResult = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     padding: 20,
   },
   image: {
@@ -50,12 +50,14 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
     marginBottom: 10,
+    alignSelf :'center'
   },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
+    textTransform :'capitalize'
   },
   description: {
     fontSize: 16,
@@ -75,6 +77,14 @@ const styles = StyleSheet.create({
   detailText: {
     fontSize: 16,
   },
+  buyLink:{
+    marginVertical : 5,
+    fontWeight : '600' ,
+    fontSize : 14,
+    backgroundColor : COLORS.light_green,
+    width : 60 , 
+    height :40
+  }
 
 });
 

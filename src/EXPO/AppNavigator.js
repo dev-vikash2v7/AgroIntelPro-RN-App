@@ -72,7 +72,7 @@ export default function AppNavigator() {
  
        <Stack.Screen 
        name='CropRecScreen' 
-       component={CropRecommendation} 
+       component={RecommendCropResult} 
        options={{
         headerTitle : 'Best Crop Recommendation'
        }}

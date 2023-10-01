@@ -6,7 +6,6 @@ import { useSelector , useDispatch} from 'react-redux'
 import {COLORS} from '../../../constants/theme';
 import { removeUser } from '../../../Redux/Slices/AuthSlice'
 import WelcomeScreen from '../Screens/App Screens/WelcomeScreen';
-import icons from '../../../constants/icons';
 import { Avatar} from 'react-native-paper';
 
 export default function Profile(){

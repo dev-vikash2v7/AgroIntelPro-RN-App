@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity , TextInput } from 'react-native';
-import { Button } from 'react-native-paper';
 
 const AddPost = () => {
   const [postText, setPostText] = useState('');
