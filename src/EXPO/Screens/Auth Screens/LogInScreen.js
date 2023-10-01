@@ -27,9 +27,6 @@ const LogInScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-
-
   
   const checkCredentials =async  (user)=>{
     const q = query(collection(db, "Users"), where("email", "==", user.email));

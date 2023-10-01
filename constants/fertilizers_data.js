@@ -36,9 +36,7 @@ export default fertilizer_data = [
   
   {
     "id" : 3 ,
-
     "name": "14-35-14",
-
     "image" : require('./fertilizer_img/growmore.png'),
 
     "description" : "GROMOR 14-35-14 is an ideal complex particularly for Rice, Cotton, groundnut, chillies, Soya bean, Potato and other commercial crops which require high Phosphate initially.",
@@ -55,7 +53,7 @@ export default fertilizer_data = [
 
     "name": "28-28",
 
-    "image" : require('./fertilizer_img/28-28.webp'),
+    "image" : require('./fertilizer_img/28-28.png'),
 
     "description" : "It provides the immediate nutrition to the crop during the peak growth period. It is virtually free from detrimental elements like Chloride and Sodium.",
 
@@ -88,7 +86,7 @@ export default fertilizer_data = [
 
     "name": "20-20",
 
-    "image" : require('./fertilizer_img/20 20.jpg'),
+    "image" : require('./fertilizer_img/20-20.jpg'),
 
     "description" : "Supplies 2 major nutrients 20% of nitrogen, 20 % of phosphate to the crops Ideal fertilizer for almost all crops as it supplies all 3 major nutrients.",
 

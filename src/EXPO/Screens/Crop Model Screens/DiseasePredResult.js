@@ -5,35 +5,18 @@ import CropDiseaseData from '../../../../constants/crop_disease_data';
 export default  DiseasePredResult = ({route}) => {
   // Sample data for a crop disease
 
-  const { cropName ,diseaseName } = route.params 
+  // const { diseaseData } = route.params 
+  const diseaseData = CropDiseaseData['potato']['Potato___Early_Blight']
 
-
-  const[diseaseData , setDiseaseData] =  useState(null)
-
-  useEffect(()=>{
-
-console.log(cropName , diseaseName)
-
-if( ! CropDiseaseData[cropName][diseaseName]){
-  return 
-}
-
-setDiseaseData(CropDiseaseData[cropName][diseaseName])
-
-
-  } , [])
-  
-
+ 
   return (
-    diseaseData ? 
     <ScrollView style={styles.container}>
-
-
-      {/* Disease Image */}
-      <Image source={diseaseData.image} style={styles.image} />
 
       {/* Disease Name */}
       <Text style={styles.diseaseName}>{diseaseData.name}</Text>
+
+      {/* Disease Image */}
+      <Image source={diseaseData.image} style={styles.image} />
 
       {/* Description */}
       <Text style={styles.sectionTitle}>Description:</Text>
@@ -48,36 +31,41 @@ setDiseaseData(CropDiseaseData[cropName][diseaseName])
       <Text style={styles.description}>{diseaseData.fertilizerRecommendation}</Text>
    
     </ScrollView>
-    :
-    <Text style = {{justifyContent :'center' , alignSelf:'center' , fontSize : 16  , color :'red' ,fontWeight :'bold'}}>Unable to predict disease </Text>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingVertical:8,
+    paddingBottom:20
   },
   image: {
     width: '100%',
     height: 200,
     resizeMode: 'cover',
+    marginVertical: 14,
+    alignSelf:'center',
+    borderRadius:10,
+    borderWidth:0.5,
+    borderColor:'black' 
+
   },
   diseaseName: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 12,
+    textDecorationLine:'underline'
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 16,
   },
   description: {
     fontSize: 16,
     marginTop: 8,
-    marginBottom : 10
+    marginBottom : 12
 
   },
 });

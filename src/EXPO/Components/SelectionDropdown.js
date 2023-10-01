@@ -36,8 +36,7 @@ dropdown: {
     height: 50,
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
-    // borderTopWidth: 0.5,
-    // borderTopColor: 'gray',
+    fontWeight : 500
   },
   icon: {
     marginRight: 5,

@@ -7,6 +7,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import SelectionDropdown from '../../Components/SelectionDropdown';
 import axios from 'axios';
 import ErrorPopup from '../../Components/ErrorPopup'
+import { TF_SERVER_URL } from '../../../../env';
+import icons from '../../../../constants/icons';
 
 const CropDiseasePredictionScreen = () => {
 
@@ -24,7 +26,6 @@ const CropDiseasePredictionScreen = () => {
   ]
 
 
-  
   const navigation = useNavigation()
 
 
@@ -91,9 +92,7 @@ const handleSubmit = async () =>{
   formData.append('image', { uri,  type: 'image/jpeg',  name }  );
   formData.append('crop_name',selectedCrop);
 
-  const url = 'https://204a-152-58-59-195.ngrok-free.app'
-
- await axios.post( url + '/api/disease_predict' , formData , {
+ await axios.post( TF_SERVER_URL + '/api/disease_predict' , formData , {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Accept' :'application/json'
@@ -132,12 +131,13 @@ const handleSubmit = async () =>{
     {/* Instruction to use */}
     <View style={styles.instructionView}>
 
-      <Text style={{fontWeight : 'bold' , marginVertical : 10}}>
+      <Text style={{fontWeight : 'bold' , marginVertical : 10 , textDecorationLine:'underline'}}>
         Follow these steps to predict crop disease:
       </Text>
 
       <View style = { styles.instructionBox}>
-        <Text style={styles.instruction}> 1. Select an image of the affected crop leaf:</Text>
+        <Text style={styles.instruction}> 1. Select affected crop name </Text>
+        <Text style={styles.instruction}> 1. Select an image of the affected crop leaf</Text>
         <Text style={styles.instruction}> 2. Upload the image (make sure the image is clear)</Text>
         <Text style={styles.instruction}> 3. Get Results</Text>
       </View>
@@ -162,7 +162,6 @@ const handleSubmit = async () =>{
             />
         </View>
 
-       <Text style={styles.selectedValue}>Selected Crop: {selectedCrop}</Text>
       </View> 
 
 
@@ -178,14 +177,15 @@ const handleSubmit = async () =>{
       <View style={styles.imageOptions}>
        <View style = {{alignItems :'center' }}>
             <TouchableOpacity onPress={handleCameraPress}>
-                 <FontAwesome name="camera" size={34} color="blue" />
+                 <Image source={icons.camera1} resizeMode='cover' style={{width:80 ,height:80}} />
              </TouchableOpacity>
            <Text style={styles.optionText}>Open Camera</Text>
        </View> 
 
          <View style = {{alignItems :'center'}}>
            <TouchableOpacity onPress={handleGalleryPress}>
-             <FontAwesome name="photo" size={34} color="blue" />
+             <Image source={icons.gallery} resizeMode='cover' style={{width:80 ,height:80}} />
+
            </TouchableOpacity>
              <Text style={styles.optionText}>Open Gallery</Text>
          </View>
@@ -199,6 +199,8 @@ const handleSubmit = async () =>{
      {/* Display the selected image */}
       {selectedImage && (
         <View>
+       <Text style={styles.selectedValue}>Selected Crop: {selectedCrop}</Text>
+
         <Image source={{ uri: selectedImage.uri }} style={styles.selectedImage} />
         </View>
       )}
@@ -245,7 +247,7 @@ paddingBottom : 15
   instruction:{
     fontSize: 12,
     fontWeight: '400',
-    marginVertical : 3 
+    marginVertical : 1 
   },
 
   labelText : { 
@@ -253,22 +255,20 @@ paddingBottom : 15
     marginBottom : 5,
     textTransform:'capitalize',
     fontSize : 16,
-    color:'blue',
+    color:'red',
     textAlign:'center',
     textDecorationLine :'underline'
   },
 
-  
+  dropdown :{
+marginLeft : 5,
+  },
+
   
   selectView: {
-    marginTop : 10,
-    borderBottomWidth : 0.3 , 
-    borderBottomColor : 'gray',
     paddingBottom : 10 ,
   },
-  dropdown :{
-    zIndex : 1000,
-  },
+
   selectedValue: {
     fontSize: 18,
     marginTop: 12,
@@ -280,11 +280,11 @@ paddingBottom : 15
 
 
   imageSelectionView:{
-    marginTop : 10,
+    marginTop : 2,
     borderBottomWidth : 0.3 , 
     borderBottomColor : 'gray',
     paddingBottom : 10 ,
-    paddingTop : 10 ,
+    paddingTop : 5 ,
   }
     ,
   
@@ -296,16 +296,21 @@ paddingBottom : 15
     },
     optionText: {
       fontSize: 16,
-      color: 'blue',
-      textDecorationLine:'underline'
+      color: 'black',
+      textDecorationLine:'underline',
+      fontWeight : 'bold'
   
     },
     selectedImage: {
       width: '100%',
-      height: 200,
-      resizeMode: 'cover',
+      height: 300,
+      resizeMode: 'contain',
       marginBottom: 20,
-      marginTop : 12
+      marginTop : 12,
+      alignSelf:'center',
+      borderRadius:10,
+      borderColor:'black',
+      borderWidth:0.5
     },
     submitBtn:{
     

@@ -4,9 +4,9 @@ import { View, Text, Image, StyleSheet, Linking ,ScrollView  , Button} from 'rea
 import fertilizers_data from '../../../../constants/fertilizers_data';
 import { COLORS } from '../../../../constants/theme';
 
-const FertilizerResult = () => {
+const FertilizerResult = ({route}) => {
 
-  const { name, image, description, benefits, NPK, buyLink } = fertilizers_data[0];
+  const { name, image, description, benefits, NPK, buyLink } = route.params;
 
   const openBuyLink = () => {
     Linking.openURL(buyLink);

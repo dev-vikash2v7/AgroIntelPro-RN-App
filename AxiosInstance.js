@@ -1,12 +1,11 @@
 import axios from "axios";
-
+import { ML_SERVER_URL } from "./env";
 
 export default instance = axios.create({
-    baseURL: 'https://agrointel-backend.onrender.com',
-    // baseURL: ' https://204a-152-58-59-195.ngrok-free.app',
-    timeout: 5000, // Set a timeout for requests in milliseconds (optional)
+    baseURL: ML_SERVER_URL,
+    timeout: 5000,
     headers: {
-      'Content-Type': 'application/json', // Set default headers (optional)
+      'Content-Type': 'application/json',
     },
   });
   

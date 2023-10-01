@@ -70,7 +70,6 @@ import ErrorPopup from '../../Components/ErrorPopup'
     const handleSubmit = async ()=>{
 
       if(isFormValid){
-
         setIsLoading(true)
 
       const data = {
@@ -89,7 +88,7 @@ import ErrorPopup from '../../Components/ErrorPopup'
         console.log('resss ::::: ' , res.data)
 
         fertilizers_data.forEach((ferti_obj)=>{
-          if(ferti_obj.name.toLowerCase() == 'Urea'.toLowerCase()) {
+          if(ferti_obj.name.toLowerCase() == res.data.fertilizer_name.toLowerCase()) {
             nav.navigate('FertilizerResult' , ferti_obj)
             return;
           }

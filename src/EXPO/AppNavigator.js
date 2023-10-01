@@ -63,16 +63,16 @@ export default function AppNavigator() {
  
        <Stack.Screen 
        name='DiseasePredScreen' 
-       component={DiseasePredScreen} 
+       component={DiseasePredResult} 
        options={{
         headerTitle : 'Crop Disease Prediction'
        }}
         />
       
- 
+
        <Stack.Screen 
        name='CropRecScreen' 
-       component={RecommendCropResult} 
+       component={CropRecommendation} 
        options={{
         headerTitle : 'Best Crop Recommendation'
        }}
@@ -80,7 +80,7 @@ export default function AppNavigator() {
  
        <Stack.Screen 
        name='FertilizerRecScreen' 
-       component={FertilizerResult} 
+       component={FertilizerRecommendation} 
        options={{
         headerTitle : 'Best Fertilizer Recommendation',
        }}/>

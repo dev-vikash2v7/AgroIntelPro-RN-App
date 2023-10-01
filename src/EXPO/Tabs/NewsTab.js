@@ -2,6 +2,7 @@ import { View, Text  , ActivityIndicator , FlatList , StyleSheet , Image, Dimens
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import {COLORS} from '../../../constants/theme'
+import { NEWS_API } from '../../../env'
 
 const NewsList = () => {
 
@@ -9,8 +10,8 @@ const NewsList = () => {
 
  
   useEffect(()=>{
-   const base_url = 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=3f3b61c5f48445e594d57355f0303984'
-
+    console.log(process.env)
+   const base_url = 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=' + NEWS_API
     axios.get(base_url )
     .then(res=>{
       // console.log("res : " ,  res.data.articles);

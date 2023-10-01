@@ -55,7 +55,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
 
-    {/* <WeatherReport/> */}
+    <WeatherReport/>
 
     <View style = {styles.funtionsTab}>
 

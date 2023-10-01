@@ -12,7 +12,6 @@ export default  data = {
         cure : 'Early blight can be minimized by maintaining optimum growing conditions, including proper fertilization, irrigation, and management of other pests. Grow later maturing, longer season varieties. Fungicide application is justified only when the disease is initiated early enough to cause economic loss',
 
         fertilizerRecommendation : "GardenTech® brand's Daconil® fungicides stop, control, and prevent early tomato blight and more than 65 other fungal diseases. Treat tomato plants early in the season, as soon as soon weather conditions favor early blight. Then maintain control with treatments every seven to 10 days."
-
     } ,
 
     

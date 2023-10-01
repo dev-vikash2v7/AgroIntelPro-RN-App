@@ -1,23 +1,21 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
-import crop_data from '../../../../constants/crop_data';
+import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native';
 
 const RecommendCropResult = ({ route }) => {
-  // const { cropData }  = route.params;
-  const  cropData   = crop_data[0];
-
+  const { cropData }  = route.params;
 
 
   return (
     <ScrollView style={styles.container}>
-      <View style = {{ marginBottom : 30}}>
+      <View style = {{ marginBottom : 30 , width : Dimensions.get('screen').width-10}}>
 
       <Image source={ cropData.image } style={styles.image} />
+
       <Text style={styles.name}>{cropData.name}</Text>
 
       <Text style={styles.description}>{cropData.description}</Text>
-      <View style={styles.detailsContainer}>
 
+      <View style={styles.detailsContainer}>
         <Text style={styles.detailLabel}>Soil:</Text>
         <Text style={styles.detailText}>{cropData.soil}</Text>
       </View>
@@ -39,7 +37,8 @@ const RecommendCropResult = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingVertical: 20,
+    paddingHorizontal:10
   },
   image: {
     width: 200,
@@ -64,6 +63,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    width : 300,
+    paddingHorizontal : 10 ,
   },
   detailLabel: {
     fontSize: 16,
@@ -72,6 +73,8 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 16,
+    textTransform:'capitalize'
+
   },
 });
 

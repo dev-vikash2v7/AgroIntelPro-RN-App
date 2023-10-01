@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
 import axios from 'axios';
 import { COLORS } from '../../../constants/theme';
-
+import { WEATHER_API } from '../../../env';
 
 const WeatherReport = () => {
 
@@ -53,8 +53,7 @@ const WeatherReport = () => {
 
 
   const getWeatherData = async (latitude, longitude) => {
-    const apiKey = '29c4f65a50394abafbd9a1c707e67d9f';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API}`;
 
     try {
       const response = await axios.get(apiUrl);
@@ -65,15 +64,12 @@ const WeatherReport = () => {
     }
   };
 
-
   const getForcastData = async (latitude, longitude) => {
-    const apiKey = '29c4f65a50394abafbd9a1c707e67d9f';
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API}`;
 
     try {
       const response = await axios.get(apiUrl);
       setForcastData(response.data.list.splice(0, 5));
-      // console.log("response : " , response.data.list[0] ,'----' , response.data.list.length ) 
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }

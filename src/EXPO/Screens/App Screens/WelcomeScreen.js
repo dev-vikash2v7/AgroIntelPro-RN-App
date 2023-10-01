@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet ,Button, TouchableOpacity  } from 'react-native';
+import { View, Text, Image, StyleSheet ,Button, TouchableOpacity ,ImageBackground, Dimensions  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CustomButton from '../../Components/CustomButton';
+import images from '../../../../constants/images';
 // import { Avatar } from 'react-native-paper';
-
 
 const WelcomeScreen = () => {
 
@@ -12,17 +12,17 @@ const WelcomeScreen = () => {
 
 
   return (
-    
+   
     <View style={styles.container}>
       
       <Image
-        source={require('./splash.png')}
+        source={images.splash}
         style={styles.logo}
-      />
+      /> 
 {/* 
       <Text style={styles.appName}>AgroIntel Pro</Text>
 
-      <Text style={styles.slogan}>Grow More , Worry Less !</Text> */}
+      <Text style={styles.slogan}>Grow More , Worry Less !</Text>
 
       {/* Authentication Buttons */}
 
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor : '#ffffff'
   },
   logo: {
     width: 200,

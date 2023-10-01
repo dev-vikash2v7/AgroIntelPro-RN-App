@@ -4,11 +4,13 @@ import AxiosInstance from '../../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import {COLORS} from '../../../../constants/theme';
 import ErrorPopup from '../../Components/ErrorPopup'
+import { useNavigation } from '@react-navigation/native';
 
 import CropDataArr from '../../../../constants/crop_data';
 
 
   const CropRecommendationScreen = () => {
+    const nav = useNavigation()
 
     const [N, setN] = useState('');
     const [P, setP] = useState('');
@@ -60,7 +62,7 @@ import CropDataArr from '../../../../constants/crop_data';
         console.log('resss , ' , res.data)
 
         CropDataArr.forEach((cropData)=>{
-          if(cropData.name.toLowerCase() == 'rice'.toLowerCase()){
+          if(cropData.name.toLowerCase() == res.data.crop_name.toLowerCase()){
             setIsLoading(false)
             nav.navigate('RecommendCropResult' , {cropData})
           }
@@ -68,7 +70,7 @@ import CropDataArr from '../../../../constants/crop_data';
       })
       .catch((e)=>{
         setErrorMessage('Network Error ! Please Try Again')
-        console.log("eeeeeeeeeeeeeee" , e)
+        console.log("error : " , e)
       setIsLoading(false)
       })
 

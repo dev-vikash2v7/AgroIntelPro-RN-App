@@ -10,4 +10,7 @@ export default icons  = {
     plant : require('../assets/home_screen_icons/plant.png'),
     intelligent : require('../assets/home_screen_icons/intelligent.png'),
 
+    camera1 : require('../assets/disease_prediction/camera.png'),
+    gallery : require('../assets/disease_prediction/gallery.png'),
+
 }
