@@ -3,12 +3,13 @@ import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , Scrol
 import * as ImagePicker from 'expo-image-picker';
 import {COLORS} from '../../../../constants/theme';
 import { useNavigation } from '@react-navigation/native';
-import { FontAwesome } from '@expo/vector-icons';
 import SelectionDropdown from '../../Components/SelectionDropdown';
 import axios from 'axios';
 import ErrorPopup from '../../Components/ErrorPopup'
 import { TF_SERVER_URL } from '../../../../env';
 import icons from '../../../../constants/icons';
+import CropDiseaseData from '../../../../constants/crop_disease_data';
+
 
 const CropDiseasePredictionScreen = () => {
 
@@ -37,7 +38,7 @@ const CropDiseasePredictionScreen = () => {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (status !== 'granted') {
-        Alert('Permission to access media library is required!');
+        setErrorMessage('Permission to access media library is required!');
         return;
       } 
   }
@@ -62,7 +63,7 @@ const CropDiseasePredictionScreen = () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
 
     if (status !== 'granted') {
-      Alert('Permission to access camera was denied');
+      setErrorMessage('Permission to access camera was denied');
       return
     }
 
@@ -105,15 +106,23 @@ const handleSubmit = async () =>{
 
     if(diseaseName.includes("Healthy")) {
       setIsLoading(false)
-      setErrorMessage('Network Error ! Please Try Again')
+      setErrorMessage('Congrats ! Your Crop is Healthy.')
       return ;
     }
-    navigation.navigate('DiseasePredResult' , {cropName : selectedCrop ,  'diseaseName' : diseaseName}  )
+
+    if(CropDiseaseData[selectedCrop] &&   CropDiseaseData[selectedCrop][diseaseName] ){
+      setIsLoading(false)
+      navigation.navigate('DiseasePredResult' , {diseaseData : CropDiseaseData[selectedCrop][diseaseName]}  )
+    }
+    else {
+      setIsLoading(false)
+      setErrorMessage('Sorry ! No Disease Found For This Crop.')
+    }    
   })
   .catch((e)=>{
   setIsLoading(false)
     console.log('eee ' , e);
-    setErrorMessage('Network Error ! Please Try Again')
+    setErrorMessage('Network Error ! Please Try Again.')
   })
   setIsLoading(false)
 }
@@ -319,18 +328,3 @@ marginLeft : 5,
 
 export default CropDiseasePredictionScreen;
 
-/*
-{"assets": [
-  {"assetId": null,
-  "base64": null, 
-  "duration": null, 
-  "exif": null, 
-  "height": 1716,
-  "rotation": null,
-  "type": "image", 
-  "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAgriIntel-c23264c5-d3d3-450a-864c-056d16a02dc1/ImagePicker/0f57073d-db06-4b18-b090-3014ac80b04e.png",
-  "width": 2288
-}
-],
-"canceled": false, "cancelled": undefined}
-*/

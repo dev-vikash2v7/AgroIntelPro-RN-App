@@ -32,21 +32,33 @@ const FarmersCommunity = () => {
   const communityPosts = [
     {
       id: 1,
-      user: 'Rahul Gandhi',
+      user: 'Vikas Verma',
       postText:  'Just harvested my wheat crop today. Feeling great! Anyone in need of wheat? Contact me.',
       date: '2 hours ago',
     },
     {
       id: 2,
-      user: 'Narendra Modi',
+      user: 'Raj Patil',
       postText: 'Looking for advice on pest control for my tomato plants.',
       date: '4 hours ago',
     },
     {
       id: 3,
-      user: 'Mamata Banerjee ',
-      postText: 'HAMBA HAMDA RAMBA RAMBA TAMBA TAMBA',
+      user: 'Zeeshan Khan',
+      postText: 'Looking for advice on pest control for my tomato plants.',
       date: 'Yesterday',
+    },
+    {
+      id: 4,
+      user: 'Rohan Yadav',
+      postText: 'Just harvested my wheat crop today. Feeling great! Anyone in need of wheat? Contact me.',
+      date: '12/09/2023',
+    },
+    {
+      id: 5,
+      user: 'Vinit Dubey',
+      postText: 'Just harvested my wheat crop today. Feeling great! Anyone in need of wheat? Contact me.',
+      date: '11/09/2023',
     },
   ];
 

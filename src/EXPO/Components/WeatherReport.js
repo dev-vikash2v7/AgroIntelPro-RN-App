@@ -85,7 +85,7 @@ const WeatherReport = () => {
 
 
       <Text style={styles.title}>
-        Weather Type : <Text style={{ color: 'blue', fontWeight: 'bold' }}>Mostly Cloudy  </Text>
+        Weather Type : <Text style={{ color: 'blue', fontWeight: 'bold' , textTransform:'capitalize'}}>{weatherData.weather[0].description}  </Text>
       </Text>
 
       <Text style={{ fontSize: 10 }}> Now </Text>

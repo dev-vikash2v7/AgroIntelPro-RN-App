@@ -63,7 +63,7 @@ export default function AppNavigator() {
  
        <Stack.Screen 
        name='DiseasePredScreen' 
-       component={DiseasePredResult} 
+       component={DiseasePredScreen} 
        options={{
         headerTitle : 'Crop Disease Prediction'
        }}
