@@ -3,17 +3,17 @@ import { View, Text, Button, Image, StyleSheet, TouchableOpacity , Alert , Scrol
 import * as ImagePicker from 'expo-image-picker';
 import {COLORS} from '../../../../constants/theme';
 import { useNavigation } from '@react-navigation/native';
-import AxiosInstance from '../../../../AxiosInstance';
 import { FontAwesome } from '@expo/vector-icons';
-import DropDownPicker from 'react-native-dropdown-picker';
 import SelectionDropdown from '../../Components/SelectionDropdown';
-// import axios from 'axios';
+import axios from 'axios';
+import ErrorPopup from '../../Components/ErrorPopup'
 
 const CropDiseasePredictionScreen = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCrop, setSelectedCrop] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   
   const cropsData =  [
     {label : 'Rice' ,value: 'rice',},
@@ -93,7 +93,7 @@ const handleSubmit = async () =>{
 
   const url = 'https://204a-152-58-59-195.ngrok-free.app'
 
- await AxiosInstance.post( url + '/api/disease_predict' , formData , {
+ await axios.post( url + '/api/disease_predict' , formData , {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Accept' :'application/json'
@@ -106,16 +106,15 @@ const handleSubmit = async () =>{
 
     if(diseaseName.includes("Healthy")) {
       setIsLoading(false)
-      // Alert('No Disese Detected')
+      setErrorMessage('Network Error ! Please Try Again')
       return ;
     }
-
     navigation.navigate('DiseasePredResult' , {cropName : selectedCrop ,  'diseaseName' : diseaseName}  )
   })
   .catch((e)=>{
   setIsLoading(false)
     console.log('eee ' , e);
-    Alert('Error in Detecting' )
+    setErrorMessage('Network Error ! Please Try Again')
   })
   setIsLoading(false)
 }
@@ -214,6 +213,9 @@ const handleSubmit = async () =>{
         onPress={ handleSubmit}
          disabled={!selectedImage || !selectedCrop} />
 }
+{errorMessage &&
+              <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
+            }
 </ScrollView>
 
 

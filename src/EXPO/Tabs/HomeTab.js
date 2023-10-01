@@ -7,7 +7,6 @@ import icons from '../../../constants/icons'
 
 const Home = () => {
   const navigation = useNavigation()
-  // const dispatch = useDispatch();
 
   const data = [
     {
@@ -52,12 +51,11 @@ const Home = () => {
     },
   ]
 
-  
 
   return (
     <View style={styles.container}>
 
-    <WeatherReport/>
+    {/* <WeatherReport/> */}
 
     <View style = {styles.funtionsTab}>
 
@@ -67,19 +65,25 @@ const Home = () => {
     numColumns={ 3}
     keyExtractor={(item) => item.id}
     renderItem={ ({item}) =>
+
     <View style = {styles.component}  key={item.id}>
 
     <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.imgBox}>
       <Image 
-      resizeMode="contain"
+          resizeMode="contain"
           source={  item.loc } 
           style = {styles.img}/>
     </TouchableOpacity>
 
-    <Text style={styles.title} numberOfLines={2}>{item.name} </Text>
+    <View style={styles.titleContainer}>
+    <Text style={styles.title} numberOfLines={ 2} >{item.name} </Text>
+    </View>
+
     </View>
      }
   />
+
+
 
 
   </View>
@@ -94,29 +98,37 @@ const styles = StyleSheet.create({
     flex:1
   },
   funtionsTab:{
-    marginTop : 20 , 
-    justifyContent : 'space-between',
-    alignItems:'center',
+    marginTop : 15 , 
+    paddingRight : 15,
   },
 
 
   component : {
-    width : 100 ,
-     height : 140 ,
+    flex : 1 ,
+    width : 90 ,
+     height : 130 ,
 justifyContent : 'center',
 alignContent : 'center',
-marginHorizontal: 10 ,  
-marginBottom : 20 ,
+marginHorizontal: 15 ,  
+marginBottom : 10 ,
+
+  
   },
 
   imgBox : {
 backgroundColor : COLORS.primary , 
 width : 100 ,
-height :100 ,
-borderRadius : 4 ,
-borderWidth: 1,
-    borderColor: 'black',
-    padding : 5 
+height :90 ,
+borderWidth: 0.4,
+    borderColor: 'orange',
+    padding : 5  ,
+
+    borderRadius: 10,
+    elevation: 3, // Box shadow (for Android)
+    shadowColor: 'rgba(0, 0, 0, 0.1)', // Box shadow (for iOS)
+    shadowOffset: { width: 0, height: 2 }, // Box shadow (for iOS)
+    shadowOpacity: 1, // Box shadow (for iOS)
+    shadowRadius: 4, // Box shadow (for iOS)
   },
 
   img : {
@@ -124,14 +136,16 @@ borderWidth: 1,
     width: undefined, // Let the width adjust to the parent (box)
     height: undefined,
   },
+  titleContainer: {
+    width: 100, // Adjust the width as needed
+  },
 
   title : {
-    fontSize : 14,
-    maxWidth: '100%', // Set the maximum width for the text
-    overflow: 'hidden',
+    flexWrap:'nowrap',
+    fontSize : 12,
     textAlign : 'center',
     fontWeight : "500", 
-    marginTop : 5
+    marginTop : 5,
   }
   
     

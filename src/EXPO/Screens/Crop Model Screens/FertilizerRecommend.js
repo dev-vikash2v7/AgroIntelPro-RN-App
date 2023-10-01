@@ -5,6 +5,8 @@ import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import {COLORS} from '../../../../constants/theme';
 import fertilizers_data from '../../../../constants/fertilizers_data';
 import SelectionDropdown from '../../Components/SelectionDropdown';
+import { useNavigation } from '@react-navigation/native';
+import ErrorPopup from '../../Components/ErrorPopup'
 
  export default FertilizerRecommendScreen = () => {
 
@@ -17,10 +19,14 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
     const [selectedSoil, setSelectedSoil] = useState('');
     const [selectedCrop, setSelectedCrop] = useState('');
 
-    const [fertilizerData, setFertilizerData] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const [errorMessage, setErrorMessage] = useState('');
+
+
+  const nav = useNavigation()
+  
 
     const soilTypeData  = [
       {label : 'Sandy' ,value: 'Sandy', },
@@ -56,7 +62,7 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
         selectedSoil.trim() !== '' 
         ) {
         setIsFormValid(true);
-      } else {
+      } else {  
         setIsFormValid(false);
       }
     };
@@ -84,20 +90,20 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
 
         fertilizers_data.forEach((ferti_obj)=>{
           if(ferti_obj.name.toLowerCase() == 'Urea'.toLowerCase()) {
-            setFertilizerData(ferti_obj);
+            nav.navigate('FertilizerResult' , ferti_obj)
             return;
           }
         })
       })
       .catch((e)=>{
-        // Alert('error')
+        setErrorMessage('Network Error ! Please Try Again')
         setIsLoading(false)
         console.log("eeeeeeeeeeeeeee" , e)
       })
       setIsLoading(false)
     }
     else{
-      Alert('Please fill in all required fields.')
+      setErrorMessage('Please fill all required fields.')
     }
 
   }
@@ -206,21 +212,10 @@ import SelectionDropdown from '../../Components/SelectionDropdown';
               isLoading &&
               <ActivityIndicator size="large" color="#007BFF"  style={{marginTop : 5}}/>
             }
-            {fertilizerData && (
-              <View style = {styles.resultView}>
-
-                  <Text style={styles.text}>Recommended fertilizer : {fertilizerData.name}</Text>
-
-                  <Image source={ fertilizerData.image  } style ={ styles.result_img} resizeMode = 'cover'/>
-                  
-                  <View style ={{}}>
-                  <Text style={styles.describe}> Description : {fertilizerData.describe} </Text>
-                  <Text style={styles.describe}> Best Weather and Soil : {fertilizerData.condition} </Text>
-                </View>
-
-              </View>
-
-            ) }
+          
+            {errorMessage &&
+              <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
+            }
     
     </ScrollView>
     )

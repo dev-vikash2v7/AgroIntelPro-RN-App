@@ -1,6 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 
+// ['rice', 'maize', 'chickpea', 'kidneybeans', 'pigeonpeas',
+//        'mothbeans', 'mungbean', 'blackgram', 'lentil', 'pomegranate',
+//        'banana', 'mango', 'grapes', 'watermelon', 'muskmelon', 'apple',
+//        'orange', 'papaya', 'coconut', 'cotton', 'jute', 'coffee']
 
 const FarmStore = () => {
 

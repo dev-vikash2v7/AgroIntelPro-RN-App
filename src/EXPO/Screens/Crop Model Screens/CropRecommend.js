@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image, ActivityIndic
 import AxiosInstance from '../../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import {COLORS} from '../../../../constants/theme';
+import ErrorPopup from '../../Components/ErrorPopup'
 
 import CropDataArr from '../../../../constants/crop_data';
 
@@ -17,11 +18,10 @@ import CropDataArr from '../../../../constants/crop_data';
     const [ph, setPh] = useState('');
     const [rainfall, setRainfall] = useState('');
     
-    const [cropData, setCropData] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     
-
 
     const checkFormValidity = () => {
       if (
@@ -55,35 +55,28 @@ import CropDataArr from '../../../../constants/crop_data';
          'rainfall' : parseFloat(rainfall),
       }
 
-      // CropDataArr.forEach((crop_obj)=>{
-      //       if(crop_obj.name == 'rice'){
-      //         setCropData(crop_obj);
-      //         return;
-      //       }
-      //     })
-
-
     await  AxiosInstance.post('/api/crop_recommend' , data)
       .then((res)=>{
         console.log('resss , ' , res.data)
 
-        CropDataArr.forEach((crop_obj)=>{
-          if(crop_obj.name == 'rice'){
-            setCropData(crop_obj);
-            return;
+        CropDataArr.forEach((cropData)=>{
+          if(cropData.name.toLowerCase() == 'rice'.toLowerCase()){
+            setIsLoading(false)
+            nav.navigate('RecommendCropResult' , {cropData})
           }
         })
       })
       .catch((e)=>{
-        Alert('error')
+        setErrorMessage('Network Error ! Please Try Again')
         console.log("eeeeeeeeeeeeeee" , e)
+      setIsLoading(false)
       })
 
       setIsLoading(false)
 
     }
     else{
-      Alert('Please fill in all required fields.')
+      setErrorMessage('Please fill in all required fields.')
     }
     }
 
@@ -212,22 +205,11 @@ style = {{marginTop : 20}}
         isLoading &&
         <ActivityIndicator size="large" color="#007BFF" />
       }
-      {cropData && (
-        <View style = {styles.cropView}>
 
-            <Text style={styles.crop_text}>Recommended Crop: {cropData.name}</Text>
-
-            <Image source={ cropData.crop_img  } style ={ styles.crop_img} resizeMode = 'cover'/>
-            
-            <View style ={{}}>
-            <Text style={styles.crop_describe}> Description : {cropData.describe} </Text>
-            <Text style={styles.crop_describe}> Best Weather and Soil : {cropData.condition} </Text>
-            <Text style={styles.crop_describe}> Harvesting Cycle : {cropData.duration} </Text>
-          </View>
-
-        </View>
-
-      ) }
+      {errorMessage &&
+              <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
+            }
+      
 </ScrollView>
 
 

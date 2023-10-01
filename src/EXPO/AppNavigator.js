@@ -26,6 +26,8 @@ import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
 import WelcomeScreen from './Screens/App Screens/WelcomeScreen';
 
 import {COLORS} from '../../constants/theme';
+import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
+import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
 
 
 export default function AppNavigator() {
@@ -78,7 +80,7 @@ export default function AppNavigator() {
  
        <Stack.Screen 
        name='FertilizerRecScreen' 
-       component={FertilizerRecommendation} 
+       component={FertilizerResult} 
        options={{
         headerTitle : 'Best Fertilizer Recommendation',
        }}/>
@@ -132,6 +134,7 @@ export default function AppNavigator() {
        }}
 
         />
+
         <Stack.Screen 
        name='WelcomeScreen' 
        component={!user ? WelcomeScreen : Home} 
@@ -140,6 +143,21 @@ export default function AppNavigator() {
        }}
         />
 
+        <Stack.Screen 
+       name='FertilizerResult' 
+       component={FertilizerResult} 
+       options={{
+        headerTitle : 'Recommend Fertilizer Result ',
+       }}
+        />
+
+        <Stack.Screen 
+       name='RecommendCropResult' 
+       component={RecommendCropResult} 
+       options={{
+        headerTitle : 'Recommend Crop To Use ',
+       }}
+        />
 
        
     </Stack.Navigator>
