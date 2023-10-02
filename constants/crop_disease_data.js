@@ -5,7 +5,7 @@ export default  data = {
     "Potato___Early_Blight" :{
         name: 'Early Blight Disease',
 
-        image : require('./crop_img/rice.jpg'),
+        image : require('./disease_img/Potato___Early_Blight.jpg'),
 
         description : 'Early blight is primarily a disease of stressed or senescing plants. Symptoms appear first on the oldest foliage. Affected leaves develop circular to angular dark brown lesions 0.12 to 0.16 inch (3–4 mm) in diameter. Concentric rings often form in lesions to produce characteristic target-board effect',
 
@@ -17,7 +17,7 @@ export default  data = {
     
     "Potato___Late_Blight" : {
         name: 'Late Blight Disease',
-        image : require('./crop_img/rice.jpg'),
+        image : require('./disease_img/Potato___Late_Blight.jpg'),
         
         description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
 
@@ -39,7 +39,7 @@ export default  data = {
     "corn" : {
         "Corn___Common_Rust": {
             name: 'Commong Rust',
-            image : require('./crop_img/rice.jpg'),
+            image : require('./disease_img/Corn___Common_Rust.jpg'),
             
             description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
@@ -57,7 +57,7 @@ export default  data = {
         } ,
         "Corn___Gray_Leaf_Spot":{
             name: 'Gray Leaf Spot',
-            image : require('./crop_img/rice.jpg'),
+            image : require('./disease_img/Corn___Gray_Leaf_Spot.jpg'),
             
             description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
@@ -76,7 +76,7 @@ export default  data = {
        
         "Corn___Northern_Leaf_Blight":{
             name: 'northern leaf blight',
-            image : require('./crop_img/rice.jpg'),
+            image : require('./disease_img/Corn___Northern_Leaf_Blight.jpg'),
             
             description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
@@ -91,6 +91,100 @@ export default  data = {
             fertilizerRecommendation :` Nitrogen (N): Potatoes require a significant amount of nitrogen for growth, but excessive nitrogen can make plants more susceptible to late blight. Opt for balanced nitrogen application.
             Phosphorus (P) and Potassium (K): Adequate levels of phosphorus and potassium are essential for healthy plant growth and disease resistance. Soil tests can help determine the appropriate levels.
             Calcium (Ca): Adequate calcium can help reduce the severity of late blight. Consider adding calcium-containing fertilizers.`
+        },
+        rice : {
+            'Rice___Brown_Spot':{
+                name: 'Rice___Brown_Spot',
+                image : require('./disease_img/Rice___Brown_Spot.jpg'),
+                
+                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+        
+                cure : ` 
+                Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
+                Resistant Varieties: Planting potato varieties that are resistant to late blight can help reduce the risk of infection.
+                Crop Rotation: Avoid planting potatoes or other susceptible crops in the same area for multiple seasons.
+                Sanitation: Remove and destroy infected plant material to reduce the spread of the disease.
+                Proper Watering: Avoid overhead watering to reduce humidity around plants.
+                Monitoring: Regularly inspect plants for symptoms to detect and address the disease early.'`,
+        
+                fertilizerRecommendation :` Nitrogen (N): Potatoes require a significant amount of nitrogen for growth, but excessive nitrogen can make plants more susceptible to late blight. Opt for balanced nitrogen application.
+                Phosphorus (P) and Potassium (K): Adequate levels of phosphorus and potassium are essential for healthy plant growth and disease resistance. Soil tests can help determine the appropriate levels.
+                Calcium (Ca): Adequate calcium can help reduce the severity of late blight. Consider adding calcium-containing fertilizers.`
+            } ,
+            'Rice___Leaf_Blast' : {
+                name: 'Rice___Leaf_Blast',
+                image : require('./disease_img/Rice___Leaf_Blast.jpg'),
+                
+                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+        
+                cure : ` 
+                Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
+                Resistant Varieties: Planting potato varieties that are resistant to late blight can help reduce the risk of infection.
+                Crop Rotation: Avoid planting potatoes or other susceptible crops in the same area for multiple seasons.
+                Sanitation: Remove and destroy infected plant material to reduce the spread of the disease.
+                Proper Watering: Avoid overhead watering to reduce humidity around plants.
+                Monitoring: Regularly inspect plants for symptoms to detect and address the disease early.'`,
+        
+                fertilizerRecommendation :` Nitrogen (N): Potatoes require a significant amount of nitrogen for growth, but excessive nitrogen can make plants more susceptible to late blight. Opt for balanced nitrogen application.
+                Phosphorus (P) and Potassium (K): Adequate levels of phosphorus and potassium are essential for healthy plant growth and disease resistance. Soil tests can help determine the appropriate levels.
+                Calcium (Ca): Adequate calcium can help reduce the severity of late blight. Consider adding calcium-containing fertilizers.`
+            },
+            'Rice___Neck_Blast' :{
+                name: 'Rice___Neck_Blast',
+                image : require('./disease_img/Rice___Neck_Blast.jpg'),
+                
+                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+        
+                cure : ` 
+                Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
+                Resistant Varieties: Planting potato varieties that are resistant to late blight can help reduce the risk of infection.
+                Crop Rotation: Avoid planting potatoes or other susceptible crops in the same area for multiple seasons.
+                Sanitation: Remove and destroy infected plant material to reduce the spread of the disease.
+                Proper Watering: Avoid overhead watering to reduce humidity around plants.
+                Monitoring: Regularly inspect plants for symptoms to detect and address the disease early.'`,
+        
+                fertilizerRecommendation :` Nitrogen (N): Potatoes require a significant amount of nitrogen for growth, but excessive nitrogen can make plants more susceptible to late blight. Opt for balanced nitrogen application.
+                Phosphorus (P) and Potassium (K): Adequate levels of phosphorus and potassium are essential for healthy plant growth and disease resistance. Soil tests can help determine the appropriate levels.
+                Calcium (Ca): Adequate calcium can help reduce the severity of late blight. Consider adding calcium-containing fertilizers.`
+            }
+        },
+        wheat : {
+            'Wheat___Brown_Rust':{
+                name: 'Wheat___Brown_Rust',
+                image : require('./disease_img/Wheat___Brown_Rust.jpg'),
+                
+                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+        
+                cure : ` 
+                Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
+                Resistant Varieties: Planting potato varieties that are resistant to late blight can help reduce the risk of infection.
+                Crop Rotation: Avoid planting potatoes or other susceptible crops in the same area for multiple seasons.
+                Sanitation: Remove and destroy infected plant material to reduce the spread of the disease.
+                Proper Watering: Avoid overhead watering to reduce humidity around plants.
+                Monitoring: Regularly inspect plants for symptoms to detect and address the disease early.'`,
+        
+                fertilizerRecommendation :` Nitrogen (N): Potatoes require a significant amount of nitrogen for growth, but excessive nitrogen can make plants more susceptible to late blight. Opt for balanced nitrogen application.
+                Phosphorus (P) and Potassium (K): Adequate levels of phosphorus and potassium are essential for healthy plant growth and disease resistance. Soil tests can help determine the appropriate levels.
+                Calcium (Ca): Adequate calcium can help reduce the severity of late blight. Consider adding calcium-containing fertilizers.`
+            },
+            'Wheat___Yellow_Rust':{
+                name: 'Wheat___Yellow_Rust',
+                image : require('./disease_img/Wheat___Yellow_Rust.jpg'),
+                
+                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+        
+                cure : ` 
+                Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
+                Resistant Varieties: Planting potato varieties that are resistant to late blight can help reduce the risk of infection.
+                Crop Rotation: Avoid planting potatoes or other susceptible crops in the same area for multiple seasons.
+                Sanitation: Remove and destroy infected plant material to reduce the spread of the disease.
+                Proper Watering: Avoid overhead watering to reduce humidity around plants.
+                Monitoring: Regularly inspect plants for symptoms to detect and address the disease early.'`,
+        
+                fertilizerRecommendation :` Nitrogen (N): Potatoes require a significant amount of nitrogen for growth, but excessive nitrogen can make plants more susceptible to late blight. Opt for balanced nitrogen application.
+                Phosphorus (P) and Potassium (K): Adequate levels of phosphorus and potassium are essential for healthy plant growth and disease resistance. Soil tests can help determine the appropriate levels.
+                Calcium (Ca): Adequate calcium can help reduce the severity of late blight. Consider adding calcium-containing fertilizers.`
+            }
         }
 },
 

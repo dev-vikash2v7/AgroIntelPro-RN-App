@@ -1,0 +1,61 @@
+Total number of classes = 14
+Total number of images = 13,024 
+
+Class Labels: Corn___Common_Rust, Corn___Gray_Leaf_Spot, Corn___Healthy, Corn___Northern_Leaf_Blight, Potato___Early_Blight, Potato___Healthy, Potato___Late_Blight, Rice___Brown_Spot, Rice___Healthy, Rice___Leaf_Blast, Rice___Neck_Blast, Wheat___Brown_Rust, Wheat___Healthy, Wheat___Yellow_Rust.
+
+Corn Plant Species:
+
+1. Common Rust (1192 images)
+2. Gray Leaf Spot (513 images)
+3. Healthy (1162 images)
+4. Northern Leaf Blight (985 images)
+
+Total images: 3852 images    
+52,229,657 bytes
+All the images of the Corn species has been collected from the PlantVillage dataset [1]. PlantVillage is a standard and most popular leaf image dataset for plant disease detection.
+
+Potato Plant Species:
+
+1. Early Blight (1000 images)
+2. Healthy (152 images)
+3. Late Blight (1000 images)
+
+Total images: 2152 images    
+39,441,201 bytes
+All the images of the Potato species has been collected from the PlantVillage dataset [1].
+
+Rice Plant Species:
+
+1. Brown Spot (613 images)
+2. Healthy (1488 images)
+3. Leaf Blast (977 images)
+4. Neck Blast (1000 images)
+
+Total images: 4078 images
+2,105,364,423 bytes
+
+Rice images were collected from the datasets:
+1. Dhan-Shomadhan: A Dataset of Rice Leaf Disease Classification for Bangladeshi Local Rice [2]. 
+The images from the Leaf background images of the classes Brown Spot and Rice Blast was added to the classes Rice___Brown_Spot and Rice___Leaf_Blast to increase the number of training samples. This dataset has the license CC BY 4.0 [3]. The images were not changed or edited.
+2. "Rice Leafs" dataset from Kaggle [4]. 
+The images of this dataset was added to the classes Rice___Brown_Spot, Rice___Healthy, and Rice___Leaf_Blast.
+
+Wheat Plant Species:
+
+1. Brown Rust (902 images)
+2. Healthy (1116 images)
+3. Yellow Rust (924 images)
+
+Total images: 2942 images
+405,695,274 bytes
+
+Wheat images were collected from the datasets:
+"Wheat Disease Detection" dataset from Kaggle [5].
+
+
+References:
+[1] D. P. Hughes and M. Salathe, “An open access repository of images on plant health to enable the development of mobile disease diagnostics,” 2015, [Online]. Available: http://arxiv.org/abs/1511.08060.
+[2] Hossain, Md Fahad; Abujar , Sheikh ; Noori, Sheak Rashed Haider ; Hossain, Syed Akhter  (2021), “Dhan-Shomadhan: A Dataset of Rice Leaf Disease Classification for Bangladeshi Local Rice”, Mendeley Data, V1, doi: 10.17632/znsxdctwtt.1
+[3] "Creative Commons — Attribution 4.0 International — CC BY 4.0", Creativecommons.org, 2022. [Online]. Available: https://creativecommons.org/licenses/by/4.0/. [Accessed: 11- Jun- 2022]
+[4] S. RIYAZ, "Rice Leafs", Kaggle.com, 2022. [Online]. Available: https://www.kaggle.com/datasets/shayanriyaz/riceleafs. [Accessed: 11- Jun- 2022]
+[5] S. DUNK, "Wheat Disease Detection", Kaggle.com, 2022. [Online]. Available: https://www.kaggle.com/datasets/sinadunk23/behzad-safari-jalal. [Accessed: 11- Jun- 2022]

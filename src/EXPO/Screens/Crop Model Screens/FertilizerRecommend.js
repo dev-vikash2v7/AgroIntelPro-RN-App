@@ -7,6 +7,7 @@ import fertilizers_data from '../../../../constants/fertilizers_data';
 import SelectionDropdown from '../../Components/SelectionDropdown';
 import { useNavigation } from '@react-navigation/native';
 import ErrorPopup from '../../Components/ErrorPopup'
+import axios from 'axios';
 
  export default FertilizerRecommendScreen = () => {
 
@@ -83,9 +84,9 @@ import ErrorPopup from '../../Components/ErrorPopup'
          'crop_type' : selectedCrop,
       }
 
-     await AxiosInstance.post('/api/fertilizer_recommend' , data)
+    await  AxiosInstance.post('/api/fertilizer_recommend' , data  )
       .then((res)=>{
-        console.log('resss ::::: ' , res.data)
+        console.log('resss ::::: ' , res.data) 
 
         fertilizers_data.forEach((ferti_obj)=>{
           if(ferti_obj.name.toLowerCase() == res.data.fertilizer_name.toLowerCase()) {
@@ -95,9 +96,9 @@ import ErrorPopup from '../../Components/ErrorPopup'
         })
       })
       .catch((e)=>{
-        setErrorMessage('Network Error ! Please Try Again')
         setIsLoading(false)
         console.log("eeeeeeeeeeeeeee" , e)
+        setErrorMessage('Network Error ! Please Try Again')
       })
       setIsLoading(false)
     }
@@ -116,7 +117,36 @@ import ErrorPopup from '../../Components/ErrorPopup'
     <ScrollView style={styles.container}>
 
 
-    <Text style={styles.heading}>Enter Deatils To Suggest Best Fertilizer :</Text>
+    <Text style={styles.heading}>Enter Details To Suggest Best Fertilizer :</Text>
+
+    <View style = {styles.featuresBox}>
+
+<Text style = {styles.featureText}>
+
+<Text style = {styles.feature}>
+ NPK(Nitrogen, Phosphorus, Potassium) :
+ </Text> 
+ Represent the concentration of these nutrients in soil. 
+</Text>
+
+<Text style = {styles.featureText}>
+<Text style = {styles.feature}>Humidity : </Text> 
+Humidity refers to the amount of moisture or water vapor present in the air. 
+</Text>
+
+<Text style = {styles.featureText}>
+<Text style = {styles.feature}>Temperature : </Text> 
+Temperature indicates the degree of heat in the environment
+</Text>
+
+<Text style = {styles.featureText}>
+<Text style = {styles.feature}>Moisture : </Text> 
+Soil moisture is a measure of soil health, the water content present in a certain area of the ground.
+</Text>
+
+
+</View>
+
 
 
         <View style = {styles.input_form}>
@@ -132,12 +162,14 @@ import ErrorPopup from '../../Components/ErrorPopup'
         </View>
 
         <View style={styles.dropdown}>
+
         <SelectionDropdown 
         data = {soilTypeData} 
         value={ selectedSoil}  
         setValue={ setSelectedSoil}
         placeholder ='Select Soil Type'
         searchText = 'search soil type..'/>
+
         </View>
 
         <FloatInputWithRange
@@ -198,23 +230,24 @@ import ErrorPopup from '../../Components/ErrorPopup'
 
 
 
-      </View>
-        
-
         <Button 
-        title="Submit Deatils" 
+        title="Predict Fertilizer" 
         onPress={handleSubmit} 
         disabled={!isFormValid}
+        style = {{marginTop : 10}}
         />
-
             {
               isLoading &&
-              <ActivityIndicator size="large" color="#007BFF"  style={{marginTop : 5}}/>
+              <ActivityIndicator size="large" color="#007BFF"  style={{marginTop : 5, alignSelf :'center' , justifyContent :'center'}}/>
             }
           
             {errorMessage &&
               <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
             }
+      </View>
+        
+
+
     
     </ScrollView>
     )
@@ -229,14 +262,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingBottom  : 40,
   },
   featuresBox :{
     borderWidth : 1 , 
     borderRadius : 10 ,
     height : 'max-content',
-    marginTop:-10 ,
+    marginTop: 10 ,
     padding : 5,
-    marginBottom : 7 
   },
   feature:{
     fontWeight: '600',
@@ -248,7 +281,8 @@ const styles = StyleSheet.create({
     marginVertical : 1
   },
   input_form : {
-marginBottom : 30
+marginBottom : 30,
+paddingBottom : 20
   },
   heading: {
     fontSize: 15,
@@ -262,31 +296,6 @@ marginBottom : 30
     fontWeight: 'bold',
   },
 
-resultView : {
-  justifyContent :'center' ,
-  alignItems :'center',
-  marginTop : 8
-},
-text:{
-  textAlign:'center',
-  fontSize:14 ,
-  fontWeight : '600',
-  paddingBottom : 6 ,
-  textTransform:'capitalize'
-}
-  ,
-  result_img:{
-    width:250,
-    height : 200 ,
-    borderRadius :10,
-    marginBottom : 10
-  }
-  ,
-  describe:{
-    fontSize : 12 , 
-    fontWeight : '500' ,
-    padding:2
-  },
 
 
   dropdown: {

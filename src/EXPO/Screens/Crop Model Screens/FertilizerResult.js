@@ -14,7 +14,7 @@ const FertilizerResult = ({route}) => {
 
   return (
     <ScrollView  style={styles.container}>
-    <View style = {{ marginBottom : 30}}>
+    <View style = {{ paddingBottom : 30}}>
 
     <Image source={image } style={styles.image} />
     <Text style={styles.name}>{name}</Text>

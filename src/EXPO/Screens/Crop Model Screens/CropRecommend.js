@@ -90,9 +90,9 @@ import CropDataArr from '../../../../constants/crop_data';
   return (
     <View style={styles.container}>
 
-      <Text style={styles.heading}>Enter Deatils To Suggest Best Crop :</Text>
+      <Text style={styles.heading}>Enter Details To Suggest Best Crop :</Text>
 
-      {/* <View style = {styles.featuresBox}>
+      <View style = {styles.featuresBox}>
 
         <Text style = {styles.featureText}>
        <Text style = {styles.feature}>
@@ -120,7 +120,9 @@ import CropDataArr from '../../../../constants/crop_data';
        <Text style = {styles.feature}>Rainfall: </Text> 
        Rainfall is the amount of precipitation (rain) that occurs in a given area and time.
        </Text>
-      </View> */}
+      </View>
+
+
 
     <ScrollView>
 
@@ -227,12 +229,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingBottom : 20,
+
   },
   featuresBox :{
     borderWidth : 1 , 
     borderRadius : 10 ,
     height : 'max-content',
-    marginTop:-10 ,
+    marginTop:10 ,
     padding : 5,
     marginBottom : 7 
   },
@@ -254,37 +258,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textDecorationLine : 'underline'
   },
-  result: {
-    marginTop: 20,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
 
-cropView : {
-  justifyContent :'center' ,
-  alignItems :'center',
-  marginTop : 8
-},
-crop_text:{
-  textAlign:'center',
-  fontSize:14 ,
-  fontWeight : '600',
-  paddingBottom : 6 ,
-  textTransform:'capitalize'
-}
-  ,
-  crop_img:{
-    width:300,
-    height : 200 ,
-    borderRadius :10,
-    marginBottom : 10
-  }
-  ,
-  crop_describe:{
-    fontSize : 12 , 
-    fontWeight : '500' ,
-    padding:2
-  }
 })
 
 
