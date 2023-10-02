@@ -48,13 +48,13 @@ const SignUpScreen = () => {
  const  registerUser = async ( data  )=>{
      try{
      const docRef =  await addDoc(collection(db, "Users"), data);
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
       dispatch(setUser(data))
       showToast('success' , 'Welcome to AgroIntel Pro' , 'Grow More Worry Less')
       navigation.navigate('LogIn');
     }
     catch (e) {
-        console.error("Error adding document: ", e);
+        // console.error("Error adding document: ", e);
       showToast('failure' , 'Signup Failed' , 'Enter valid details')
         setErrorMessage('Please check your credentials and try again.');
       }

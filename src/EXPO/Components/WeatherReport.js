@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import * as Location from 'expo-location';
 import axios from 'axios';
 import { COLORS } from '../../../constants/theme';
@@ -46,7 +46,8 @@ const WeatherReport = () => {
         getForcastData(locationData.coords.latitude, locationData.coords.longitude);
       }
     } catch (error) {
-      console.error('Error getting location:', error);
+      Alert('Error getting location:');
+      
     }
   };
 
@@ -60,7 +61,7 @@ const WeatherReport = () => {
       setWeatherData(response.data);
       // console.log("response : " , response.data)
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      // console.error('Error fetching weather data:', error);
     }
   };
 
@@ -71,7 +72,7 @@ const WeatherReport = () => {
       const response = await axios.get(apiUrl);
       setForcastData(response.data.list.splice(0, 5));
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      // console.error('Error fetching weather data:', error);
     }
   };
 

@@ -41,7 +41,7 @@ export default  data = {
             name: 'Commong Rust',
             image : require('./disease_img/Corn___Common_Rust.jpg'),
             
-            description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+            description : 'Corn___Common_Rust, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
             cure : ` 
             Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -59,7 +59,7 @@ export default  data = {
             name: 'Gray Leaf Spot',
             image : require('./disease_img/Corn___Gray_Leaf_Spot.jpg'),
             
-            description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+            description : 'Corn___Gray_Leaf_Spot, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
             cure : ` 
             Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -78,7 +78,7 @@ export default  data = {
             name: 'northern leaf blight',
             image : require('./disease_img/Corn___Northern_Leaf_Blight.jpg'),
             
-            description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+            description : 'Corn___Northern_Leaf_Blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
     
             cure : ` 
             Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -97,7 +97,7 @@ export default  data = {
                 name: 'Rice___Brown_Spot',
                 image : require('./disease_img/Rice___Brown_Spot.jpg'),
                 
-                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+                description : 'Rice___Brown_Spot, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
         
                 cure : ` 
                 Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -115,7 +115,7 @@ export default  data = {
                 name: 'Rice___Leaf_Blast',
                 image : require('./disease_img/Rice___Leaf_Blast.jpg'),
                 
-                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+                description : 'Rice___Leaf_Blast, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
         
                 cure : ` 
                 Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -133,7 +133,7 @@ export default  data = {
                 name: 'Rice___Neck_Blast',
                 image : require('./disease_img/Rice___Neck_Blast.jpg'),
                 
-                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+                description : 'Rice___Neck_Blast, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
         
                 cure : ` 
                 Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -153,7 +153,7 @@ export default  data = {
                 name: 'Wheat___Brown_Rust',
                 image : require('./disease_img/Wheat___Brown_Rust.jpg'),
                 
-                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+                description : 'Wheat___Brown_Rust, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
         
                 cure : ` 
                 Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.
@@ -171,7 +171,7 @@ export default  data = {
                 name: 'Wheat___Yellow_Rust',
                 image : require('./disease_img/Wheat___Yellow_Rust.jpg'),
                 
-                description : 'Potato late blight, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
+                description : 'Wheat___Yellow_Rust, caused by the pathogen Phytophthora infestans, is a devastating fungal disease that primarily affects potato plants. It can also affect other members of the Solanaceae family, such as tomatoes. Late blight is characterized by the appearance of water-soaked lesions on leaves, stems, and tubers. These lesions typically start as small, dark spots and rapidly expand, turning brown and becoming covered with a white, fuzzy growth (sporangia) on the lower leaf surface in humid conditions. The disease can quickly lead to defoliation, reduced yield, and rotting of tubers.',
         
                 cure : ` 
                 Fungicides: Chemical fungicides are often used to control late blight. They should be applied preventatively or at the first signs of the disease.

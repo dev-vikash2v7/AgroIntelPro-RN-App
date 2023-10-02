@@ -86,7 +86,6 @@ import axios from 'axios';
 
     await  AxiosInstance.post('/api/fertilizer_recommend' , data  )
       .then((res)=>{
-        console.log('resss ::::: ' , res.data) 
 
         fertilizers_data.forEach((ferti_obj)=>{
           if(ferti_obj.name.toLowerCase() == res.data.fertilizer_name.toLowerCase()) {
@@ -97,7 +96,6 @@ import axios from 'axios';
       })
       .catch((e)=>{
         setIsLoading(false)
-        console.log("eeeeeeeeeeeeeee" , e)
         setErrorMessage('Network Error ! Please Try Again')
       })
       setIsLoading(false)

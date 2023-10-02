@@ -21,7 +21,6 @@ const CropDiseasePredictionScreen = () => {
   const cropsData =  [
     {label : 'Rice' ,value: 'rice',},
     { label : 'Wheat' ,value: 'wheat' },
-    { label : 'Maize' ,value: 'maize' },
     { label : 'Potato' , value: 'potato' },
     { label : 'Corn' , value: 'corn' },
   ]

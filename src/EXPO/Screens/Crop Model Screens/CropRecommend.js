@@ -59,7 +59,6 @@ import CropDataArr from '../../../../constants/crop_data';
 
     await  AxiosInstance.post('/api/crop_recommend' , data)
       .then((res)=>{
-        console.log('resss , ' , res.data)
 
         CropDataArr.forEach((cropData)=>{
           if(cropData.name.toLowerCase() == res.data.crop_name.toLowerCase()){
@@ -70,7 +69,7 @@ import CropDataArr from '../../../../constants/crop_data';
       })
       .catch((e)=>{
         setErrorMessage('Network Error ! Please Try Again')
-        console.log("error : " , e)
+        // console.log("error : " , e)
       setIsLoading(false)
       })
 
