@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBs6wrl0ZW9jxsWEy6E4T0GJaZvA_OH9HQ",
   authDomain: "agroaid-3e2b7.firebaseapp.com",

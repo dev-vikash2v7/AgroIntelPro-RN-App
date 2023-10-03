@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
   StyleSheet,  
   Image,
   Dimensions,
@@ -19,8 +18,7 @@ import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import CustomButton from '../../Components/CustomButton';
 
 import Toast from 'react-native-toast-message';
-import icons from '../../../../constants/icons';
-
+import images from '../../../../constants/images';
 
 const SignUpScreen = () => {
 
@@ -80,9 +78,8 @@ const SignUpScreen = () => {
    
   return (
       <ImageBackground  
-      source={ icons.bg} 
+      source={ images.bg} 
       style = { styles.bgImage}>
-
     
 
       <Image source={icons.logo} style = {styles.logo}/>
@@ -178,13 +175,15 @@ marginTop : 15 ,
   input: {
     width : '100%',
     height: 50,
-    borderColor: 'gray',
+    borderColor: 'green',
     borderWidth: 0.5,
     borderRadius: 10,
     marginTop: 10,
     paddingLeft: 20,
     alignSelf:'center',
-    color : '#000'
+    color : '#000',
+    fontWeight : '500',
+    fontSize : 16
   },
   errorMessage: {
     marginTop : 5 ,

@@ -3,9 +3,9 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
+
   StyleSheet,
-  Alert,
+  
   Dimensions,
   ImageBackground,
   Image
@@ -18,6 +18,7 @@ import { db } from '../../../../firebase_config';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import CustomButton from '../../Components/CustomButton';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
+import images from '../../../../constants/images';
 
 
 const LogInScreen = () => {
@@ -62,7 +63,7 @@ const LogInScreen = () => {
 
   return (
     <ImageBackground  
-    source={ icons.bg} 
+    source={ images.bg} 
     style = { styles.bgImage}>
 
   
@@ -152,13 +153,15 @@ marginTop : 15 ,
   input: {
     width : '100%',
     height: 50,
-    borderColor: 'gray',
+    borderColor: 'green',
     borderWidth: 0.5,
     borderRadius: 10,
     marginTop: 10,
     paddingLeft: 20,
     alignSelf:'center',
-    color : '#000'
+    color : '#000',
+    fontWeight : '500',
+    fontSize : 16
   },
   errorMessage: {
     marginTop : 5 ,

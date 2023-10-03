@@ -28,6 +28,8 @@ import WelcomeScreen from './Screens/App Screens/WelcomeScreen';
 import {COLORS} from '../../constants/theme';
 import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
 import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 export default function AppNavigator() {
@@ -35,6 +37,11 @@ export default function AppNavigator() {
   const user = useSelector(state => state.auth.user)
   const Stack = createNativeStackNavigator()
   const Tab = createBottomTabNavigator();
+  const [isUser , setIsUser] = useState(false)
+
+  useEffect(()=>{
+      setIsUser( user ? true : false)
+  }, [user])
 
 
   function StackNavigator() {
@@ -88,7 +95,7 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='MyFarm' 
-       component={MyFarm} 
+       component={isUser ?  MyFarm : WelcomeScreen} 
        options={{
         headerTitle : 'Your Farm',
        }}/>
@@ -96,7 +103,7 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='FarmStore' 
-       component={FarmStore} 
+       component={ FarmStore} 
        options={{
         headerTitle : 'Farmers Store',
        }}/>
@@ -104,7 +111,7 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='FarmCommunity' 
-       component={FarmCommunity} 
+       component={isUser ? FarmCommunity : WelcomeScreen} 
        options={{
         headerTitle : 'Community of Farmers',
        }}/>
@@ -120,7 +127,7 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='SignUp' 
-       component={!user ? SignUpScreen : Home} 
+       component={!isUser ? SignUpScreen : Home} 
        options={{
         headerTitle : 'Create Account',
        }}
@@ -128,7 +135,7 @@ export default function AppNavigator() {
      
         <Stack.Screen 
        name='LogIn' 
-       component={!user ? LogInScreen : Home} 
+       component={!isUser ? LogInScreen : Home} 
        options={{
         headerTitle : 'Login To Your Account',
        }}
@@ -137,10 +144,8 @@ export default function AppNavigator() {
 
         <Stack.Screen 
        name='WelcomeScreen' 
-       component={!user ? WelcomeScreen : Home} 
-       options={{
-        headerTitle : 'Welcome',
-       }}
+       component={!isUser ? WelcomeScreen : Home} 
+       options={{  header : () => null }}
         />
 
         <Stack.Screen 
@@ -159,7 +164,6 @@ export default function AppNavigator() {
        }}
         />
 
-       
     </Stack.Navigator>
  
     );

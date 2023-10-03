@@ -5,8 +5,8 @@ import CropDiseaseData from '../../../../constants/crop_disease_data';
 export default  DiseasePredResult = ({route}) => {
   // Sample data for a crop disease
 
-  // const { diseaseData } = route.params 
-  const diseaseData = CropDiseaseData['potato']['Potato___Early_Blight']
+  const { diseaseData } = route.params 
+  // const diseaseData = CropDiseaseData['potato']['Potato___Early_Blight']
 
  
   return (

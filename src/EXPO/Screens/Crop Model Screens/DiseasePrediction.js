@@ -92,6 +92,7 @@ const handleSubmit = async () =>{
   formData.append('image', { uri,  type: 'image/jpeg',  name }  );
   formData.append('crop_name',selectedCrop);
 
+  
  await axios.post( TF_SERVER_URL + '/api/disease_predict' , formData , {
     headers: {
       'Content-Type': 'multipart/form-data',

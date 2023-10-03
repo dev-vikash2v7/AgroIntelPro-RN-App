@@ -227,16 +227,16 @@ Soil moisture is a measure of soil health, the water content present in a certai
         />
 
 
-
+            {
+              isLoading ?
+              <ActivityIndicator size="large" color="#007BFF"  style={{marginTop : 5, alignSelf :'center' , justifyContent :'center'}}/>
+              :     
         <Button 
         title="Predict Fertilizer" 
         onPress={handleSubmit} 
         disabled={!isFormValid}
         style = {{marginTop : 10}}
         />
-            {
-              isLoading &&
-              <ActivityIndicator size="large" color="#007BFF"  style={{marginTop : 5, alignSelf :'center' , justifyContent :'center'}}/>
             }
           
             {errorMessage &&

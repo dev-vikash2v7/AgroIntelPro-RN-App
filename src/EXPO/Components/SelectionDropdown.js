@@ -42,10 +42,13 @@ dropdown: {
     marginRight: 5,
   },
   placeholderStyle: {
-    fontSize: 16,
+    fontSize: 14,
+
   },
   selectedTextStyle: {
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight : 500
+
   },
   iconStyle: {
     width: 20,

@@ -58,6 +58,7 @@ import CropDataArr from '../../../../constants/crop_data';
       }
 
     await  AxiosInstance.post('/api/crop_recommend' , data)
+
       .then((res)=>{
 
         CropDataArr.forEach((cropData)=>{
@@ -68,12 +69,10 @@ import CropDataArr from '../../../../constants/crop_data';
         })
       })
       .catch((e)=>{
+        setIsLoading(false)
         setErrorMessage('Network Error ! Please Try Again')
         // console.log("error : " , e)
-      setIsLoading(false)
       })
-
-      setIsLoading(false)
 
     }
     else{
@@ -87,7 +86,7 @@ import CropDataArr from '../../../../constants/crop_data';
   
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 
       <Text style={styles.heading}>Enter Details To Suggest Best Crop :</Text>
 
@@ -121,9 +120,6 @@ import CropDataArr from '../../../../constants/crop_data';
        </Text>
       </View>
 
-
-
-    <ScrollView>
 
     <View style = {styles.input_form}>
 
@@ -192,31 +188,28 @@ import CropDataArr from '../../../../constants/crop_data';
         minValue={10}
         maxValue={350}
         onChange={(newValue) => setRainfall(newValue)}
-
       />
 
-      </View>
 
+      {
+        isLoading ?
+        <ActivityIndicator size="large" color="#007BFF" />
+        :
       <Button 
       title="Predict Crop" 
       onPress={handleSubmit} 
       disabled={!isFormValid}
-style = {{marginTop : 20}}      
+style = {{marginTop : 10}}      
       />
-
-      {
-        isLoading &&
-        <ActivityIndicator size="large" color="#007BFF" />
       }
 
       {errorMessage &&
               <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
             }
+      </View>
+
       
 </ScrollView>
-
-
-    </View>
   )
 }
 
@@ -228,7 +221,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingBottom : 20,
+    paddingBottom  : 40,
+
 
   },
   featuresBox :{
@@ -249,7 +243,8 @@ const styles = StyleSheet.create({
     marginVertical : 1
   },
   input_form : {
-    marginBottom : 30
+    marginBottom : 30,
+paddingBottom : 20
       },
   heading: {
     fontSize: 15,
