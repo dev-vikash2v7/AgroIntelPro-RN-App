@@ -17,13 +17,15 @@ export default function Header() {
 
       <View style = {{flexDirection:'row' , alignItems :'center' , justifyContent:'center'}}>
 
+<View style = {{width : 60 , height : 60 , backgroundColor : COLORS.lightWhite , borderRadius : 50 , marginRight : 10}}>
            <Image
         source={icons.logo} 
         style={styles.logo}
         size={ 50}
       />
+      </View>
 
-      <Text style={styles.title}>AgroIntel Pro</Text>
+      <Text style={styles.title} >AgroIntel Pro</Text>
 
       </View>
 
@@ -60,8 +62,8 @@ container :{
   },
 
   title: {
-    fontSize: 20,
-    fontWeight : '500' ,
+    fontSize: 25,
+    fontWeight : '600' ,
     color: COLORS.text, 
   },
   

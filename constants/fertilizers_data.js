@@ -53,7 +53,7 @@ export default fertilizer_data = [
 
     "name": "28-28",
 
-    "image" : require('./fertilizer_img/28-28.png'),
+    "image" : require('./fertilizer_img/2828.jpg'),
 
     "description" : "It provides the immediate nutrition to the crop during the peak growth period. It is virtually free from detrimental elements like Chloride and Sodium.",
 
@@ -69,7 +69,7 @@ export default fertilizer_data = [
 
     "name": "17-17-17",
 
-    "image" : require('./fertilizer_img/17-17-17.png'),
+    "image" : require('./fertilizer_img/171717.jpg'),
 
     "description" : "NPK 17:17:17 is a field grade fertilizer composed of Nitrogen, Phosphorous, and potassium in balanced proportions suitable for improved production of most crops.",
 
