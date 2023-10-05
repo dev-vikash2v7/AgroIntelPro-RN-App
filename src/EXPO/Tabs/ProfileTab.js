@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector , useDispatch} from 'react-redux'
 import {COLORS} from '../../../constants/theme';
 import { removeUser } from '../../../Redux/Slices/AuthSlice'
-import WelcomeScreen from '../Screens/App Screens/WelcomeScreen';
+import WelcomeScreen from '../Screens/Auth Screens/WelcomeScreen';
 import { Avatar} from 'react-native-paper';
 
 export default function Profile(){
@@ -134,15 +134,14 @@ const tabData  = [
 
 const styles = StyleSheet.create({
   container : {
-    flex:1,
-    marginBottom : 20,
-    paddingHorizontal : 10 
+    backgroundColor :COLORS.background
   },
   userView : {
 marginTop : 20 , 
 justifyContent : 'center' ,
 alignItems : 'center',
 marginBottom : 30 ,
+elevation : 4
   },
   name: {
     marginTop: 10,

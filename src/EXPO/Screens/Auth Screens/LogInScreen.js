@@ -19,6 +19,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import CustomButton from '../../Components/CustomButton';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import images from '../../../../constants/images';
+import { useSafeAreaFrame } from 'react-native-safe-area-context';
+import { ActivityIndicator } from 'react-native-paper';
 
 
 const LogInScreen = () => {
@@ -28,8 +30,11 @@ const LogInScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [isSubmit , setIsSubmit] = useState(false)
   
   const checkCredentials =async  (user)=>{
+    setIsSubmit(true)
     const q = query(collection(db, "Users"), where("email", "==", user.email));
 
     const querySnapshot = await getDocs(q);
@@ -46,6 +51,8 @@ const LogInScreen = () => {
         return
     });
     setErrorMessage('Email not found');
+    setIsSubmit(false)
+
 
 };
 
@@ -102,14 +109,16 @@ const LogInScreen = () => {
 
     </View>
 
-
+{isSubmit ? 
+ <ActivityIndicator size={30} color='blue' style ={{marginTop : 10}}/>
+:
     <CustomButton
      bg = {'orange'} 
      title = {'LogIn'}
       onClick = {handleLogin}
        color = {'#fff'} 
        />
-
+}
 
 {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
 

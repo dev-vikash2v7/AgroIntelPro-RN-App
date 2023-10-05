@@ -7,41 +7,54 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Header from './Components/Header';
 import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
-import CropRecommendation from './Screens/Crop Model Screens/CropRecommend';
-import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import {COLORS} from '../../constants/theme';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import icons from '../../constants/icons';
 
+
+import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
 import LogInScreen from './Screens/Auth Screens/LogInScreen';
 import SignUpScreen from './Screens/Auth Screens/SignUpScreen';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import CropRecommendation from './Screens/Crop Model Screens/CropRecommend';
 import Home from './Tabs/HomeTab';
 import ProfileScreen from './Tabs/ProfileTab';
 import NewsScreen from './Tabs/NewsTab';
 import CustomTabIcon from './Components/CustomTabIcon';
-import icons from '../../constants/icons';
 import MyFarm from './Screens/Crop Model Screens/MyFarm';
 import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
 import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
-import WelcomeScreen from './Screens/App Screens/WelcomeScreen';
-
-import {COLORS} from '../../constants/theme';
+import WelcomeScreen from './Screens/Auth Screens/WelcomeScreen';
 import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
 import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
-import { useEffect } from 'react';
-import { useState } from 'react';
+
+
+const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator();
 
 
 export default function AppNavigator() {
   
   const user = useSelector(state => state.auth.user)
-  const Stack = createNativeStackNavigator()
-  const Tab = createBottomTabNavigator();
   const [isUser , setIsUser] = useState(false)
 
   useEffect(()=>{
       setIsUser( user ? true : false)
   }, [user])
+
+  const DrawerNavigator = () => {
+    return (
+      <Drawer.Navigator>
+        <Drawer.Screen name="HomeMenu" component={Home} />
+        <Drawer.Screen name="NewsMenu" component={NewsScreen} />
+      </Drawer.Navigator>
+    );
+  };
+  
 
 
   function StackNavigator() {
@@ -49,6 +62,8 @@ export default function AppNavigator() {
       <Stack.Navigator     
         initialRouteName='HomeScreen'
         screenOptions={ {
+          headerStyle: {
+  },
           headerTitleStyle: {
               fontSize: 15, 
     fontWeight: 'bold', 
@@ -58,7 +73,7 @@ export default function AppNavigator() {
               elevation: 0,
               marginTop: 20,     
             },
-          
+            
         }}
         > 
 
@@ -240,6 +255,7 @@ export default function AppNavigator() {
 
 <NavigationContainer>
 <TabNavigator/>
+{/* <DrawerNavigator/> */}
 </NavigationContainer>
 
   );

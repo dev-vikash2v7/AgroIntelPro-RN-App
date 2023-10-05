@@ -96,27 +96,27 @@ import CropDataArr from '../../../../constants/crop_data';
        <Text style = {styles.feature}>
          NPK(Nitrogen, Phosphorus, Potassium) :
          </Text> 
-         Represent the concentration of these nutrients in soil. 
+         Concentration of these nutrients in soil. 
        </Text>
 
         <Text style = {styles.featureText}>
        <Text style = {styles.feature}>Humidity : </Text> 
-       Humidity refers to the amount of moisture or water vapor present in the air. 
+       Amount of moisture or water vapor present in the air. 
        </Text>
 
        <Text style = {styles.featureText}>
        <Text style = {styles.feature}>Temperature : </Text> 
-       Temperature indicates the degree of heat in the environment
+       Degree of heat in the environment.
        </Text>
 
        <Text style = {styles.featureText}>
        <Text style = {styles.feature}>PH Level : </Text> 
-       PH measures the acidity or alkalinity of soil or water.
+       Acidity or alkalinity of soil or water.
        </Text>
 
        <Text style = {styles.featureText}>
        <Text style = {styles.feature}>Rainfall: </Text> 
-       Rainfall is the amount of precipitation (rain) that occurs in a given area and time.
+       Rain that occurs in a given area and time.
        </Text>
       </View>
 
@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingBottom  : 40,
+    backgroundColor :COLORS.background
 
 
   },
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
     height : 'max-content',
     marginTop:10 ,
     padding : 5,
-    marginBottom : 7 
+    marginBottom : 7 ,
   },
   feature:{
     fontWeight: '600',

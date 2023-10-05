@@ -64,8 +64,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal : 5,
     justifyContent: 'center',
-    // alignItems: 'center',
     paddingVertical : 10,
+    backgroundColor :COLORS.background
+
   },
   heading: {
     fontSize : 20 , 
@@ -85,7 +86,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flexDirection:'row',
     width : Dimensions.get('screen').width - 5,
-    height : 250
+    height : 250,
+    elevation : 5
   },
   img:{
 width:120,

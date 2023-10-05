@@ -1,17 +1,18 @@
-// export default colors  = {
-//     primary : '#4CAF50',
-//     secondary: '#FFD700',
-//     background: '#FFFFFF',
-//     text: '#333333',
-//     accent: '#9C27B0',
-//     highlight : '#FF5722',
-//     success : '#4CAF50',
-//     error : '#FF5252',
-//     light_green:'#90EE90'
-// }
+import { useFonts, Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
+
+const fonts = () => {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_600SemiBold,
+  });
+
+  if (!fontsLoaded) {
+    return null; // You can render a loading screen here while fonts are loading
+  }
+}
+
 
 const COLORS = {
-    // primary: "#312651",
     primary : '#4CAF50',
 
     secondary: "#444262",
@@ -29,14 +30,15 @@ const COLORS = {
     highlight : '#FF5722',
     success : '#4CAF50',
     error : '#FF5252',
-    light_green:'#90EE90'
+    light_green:'#90EE90',
   };
   
   const FONT = {
-    regular: "DMRegular",
-    medium: "DMMedium",
-    bold: "DMBold",
+    regular: "Inter_400Regular",
+    bold: "Inter_600SemiBold",
   };
+
+
   
   const SIZES = {
     xSmall: 10,

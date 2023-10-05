@@ -132,13 +132,16 @@ const SignUpScreen = () => {
 
       </View>
 
-
-      <CustomButton
-       bg = {'orange'} 
-       title = {'Sign Up'}
-        onClick = {handleSignup}
-         color = {'#fff'} 
-         />
+      {isSubmit ? 
+ <ActivityIndicator size={30} color='blue' style ={{marginTop : 10}}/>
+:
+    <CustomButton
+     bg = {'orange'} 
+     title = {'Create Account'}
+      onClick = {handleSignup}
+       color = {'#fff'} 
+       />
+}
 
 {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
 

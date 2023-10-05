@@ -227,7 +227,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: COLORS.lightWhite,
-    paddingVertical: 5
+    paddingVertical: 5,
+    elevation:4
   },
   tab: {
     fontSize: 14,

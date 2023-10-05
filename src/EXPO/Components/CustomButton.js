@@ -32,5 +32,6 @@ import {
       alignSelf: 'center',
       marginTop: 10,
       borderRadius: 10,
+      elevation:4
     },
   });

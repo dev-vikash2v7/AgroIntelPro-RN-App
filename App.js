@@ -43,7 +43,7 @@ const App = () => {
   
   return (
     <Provider store={ReduxStore}>
-      <SafeAreaView style = {{flex : 1 , backgroundColor : COLORS.lightWhite}} > 
+      <SafeAreaView style = {{flex : 1 }} > 
 <AppNavigator/>    
   
 </SafeAreaView>

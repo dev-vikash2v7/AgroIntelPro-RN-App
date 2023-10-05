@@ -1,5 +1,5 @@
 import  React,{useEffect, useState }  from 'react'
-import { View  , StyleSheet   , TouchableOpacity, Image , Text , FlatList} from 'react-native'
+import { View  , StyleSheet   , TouchableOpacity, Image , Text , FlatList , ScrollView, Dimensions, Platform} from 'react-native'
 import WeatherReport from '../Components/WeatherReport'
 import {  useNavigation} from '@react-navigation/native'
 import {COLORS} from '../../../constants/theme'
@@ -20,14 +20,14 @@ const Home = () => {
 
       id : 2 ,
 
-      name : 'Crop Recommendation',
+      name : 'Crop Recommend',
       loc : icons.plant,
       link : 'CropRecScreen'
 
     },
     {
       id : 3 ,
-      name : 'Fertilizer Recommendation',
+      name : 'Fertilizer Recommend',
       loc : icons.fertilizer,
       link : 'FertilizerRecScreen'
     },
@@ -53,82 +53,118 @@ const Home = () => {
 
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 
     <WeatherReport/>
 
     <View style = {styles.funtionsTab}>
 
 
-  <FlatList  
-    data={data}
-    numColumns={ 3}
-    keyExtractor={(item) => item.id}
-    renderItem={ ({item}) =>
+<View style = {styles.row}>
+  {data.slice(0,3).map( (item) => (
 
-    <View style = {styles.component}  key={item.id}>
+    <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.component} id={item.id}>
 
-    <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.imgBox}>
+    <View   style={styles.imgBox}>
+
       <Image 
           resizeMode="contain"
           source={  item.loc } 
           style = {styles.img}/>
-    </TouchableOpacity>
+
+     </View>
 
     <View style={styles.titleContainer}>
+
     <Text style={styles.title} numberOfLines={ 2} >{item.name} </Text>
     </View>
 
-    </View>
+    </TouchableOpacity>
+  )  )  
      }
-  />
+     </View>
 
 
+     <View style = {styles.row}>
+     {data.slice(3,6).map( (item) => (
+
+      <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.component} id={item.id}>
+
+<View   style={styles.imgBox}>
+
+  <Image 
+      resizeMode="contain"
+      source={  item.loc } 
+      style = {styles.img}/>
+
+ </View>
+
+<View style={styles.titleContainer}>
+
+<Text style={styles.title} numberOfLines={ 2} >{item.name} </Text>
+</View>
+
+</TouchableOpacity>
+)  )  
+ }
+ </View>
 
 
   </View>
 
-    </View>
+    </ScrollView>
   )
 }
 
 
 const styles = StyleSheet.create({
   container : {
-    flex:1
+    backgroundColor :COLORS.background
   },
   funtionsTab:{
-    marginTop : 15 , 
-    paddingRight : 15,
+    marginTop : 30 , 
   },
+  row : {
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent :'space-between',
+    marginBottom : 26 , 
+    paddingHorizontal: 15,
 
+  }, 
 
   component : {
-    flex : 1 ,
-    width : 90 ,
-     height : 130 ,
-justifyContent : 'center',
-alignContent : 'center',
-marginHorizontal: 15 ,  
-marginBottom : 10 ,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 100,
+    borderRadius: 16,
+    overflow: 'hidden',
+    
 
-  
-  },
+    ...Platform.select({
+      ios: {
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+        shadowOffset: { width: 1, height: 2 },            
+      },
+  })},
 
   imgBox : {
 backgroundColor : COLORS.primary , 
-width : 100 ,
-height :90 ,
+width : 50 ,
+height :50 ,
 borderWidth: 0.4,
     borderColor: 'orange',
     padding : 5  ,
+    borderRadius: 50,
+        elevation: 4,
 
-    borderRadius: 10,
-    elevation: 3, // Box shadow (for Android)
-    shadowColor: 'rgba(0, 0, 0, 0.1)', // Box shadow (for iOS)
-    shadowOffset: { width: 0, height: 2 }, // Box shadow (for iOS)
-    shadowOpacity: 1, // Box shadow (for iOS)
-    shadowRadius: 4, // Box shadow (for iOS)
   },
 
   img : {
@@ -137,7 +173,8 @@ borderWidth: 0.4,
     height: undefined,
   },
   titleContainer: {
-    width: 100, // Adjust the width as needed
+    width: 100, // Adjust the width as needed,
+    paddingHorizontal : 3
   },
 
   title : {
