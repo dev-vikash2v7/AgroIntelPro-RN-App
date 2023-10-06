@@ -2,7 +2,7 @@ import  React,{useEffect, useState }  from 'react'
 import { View  , StyleSheet   , TouchableOpacity, Image , Text , FlatList , ScrollView, Dimensions, Platform} from 'react-native'
 import WeatherReport from '../Components/WeatherReport'
 import {  useNavigation} from '@react-navigation/native'
-import {COLORS} from '../../../constants/theme'
+import {COLORS, SIZES} from '../../../constants/theme'
 import icons from '../../../constants/icons'
 
 const Home = () => {
@@ -19,7 +19,6 @@ const Home = () => {
 
 
       id : 2 ,
-
       name : 'Crop Recommend',
       loc : icons.plant,
       link : 'CropRecScreen'
@@ -179,10 +178,12 @@ borderWidth: 0.4,
 
   title : {
     flexWrap:'nowrap',
-    fontSize : 12,
+    fontSize : SIZES.xSmall,
     textAlign : 'center',
     fontWeight : "500", 
     marginTop : 5,
+    fontFamily : 'pt_serif'
+
   }
   
     

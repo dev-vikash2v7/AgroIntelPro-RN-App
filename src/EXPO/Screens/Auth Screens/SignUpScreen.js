@@ -27,53 +27,47 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmit , setIsSubmit] = useState(false)
 
   const navigation = useNavigation();
   const dispatch = useDispatch()
 
 
-
-  const showToast = (type , text1 , text2) => {
-    Toast.show({
-      type ,
-       text1 ,
-        text2
-    });
-  }
-
-
-
  const  registerUser = async ( data  )=>{
+  setIsSubmit(true)
+
      try{
      const docRef =  await addDoc(collection(db, "Users"), data);
       // console.log("Document written with ID: ", docRef.id);
       dispatch(setUser(data))
-      showToast('success' , 'Welcome to AgroIntel Pro' , 'Grow More Worry Less')
-      navigation.navigate('LogIn');
+      navigation.navigate('HomeScreen');
     }
     catch (e) {
         // console.error("Error adding document: ", e);
-      showToast('failure' , 'Signup Failed' , 'Enter valid details')
+        Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter valid details' , position :'top' , visibilityTime : 4000})
         setErrorMessage('Please check your credentials and try again.');
       }
+    setIsSubmit(false)
 }
 
 
   const handleSignup = () => {
     if (!name || !email || !password || !confirmPassword) {
+      Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter valid details'})
+
       setErrorMessage('Please fill in all fields');
       return;
     }
 
-
     if (password !== confirmPassword) {
+      Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter valid details'})
       setErrorMessage('Passwords do not match');
       return;
     }
-
     registerUser({name, email, password})
   };
 
+  
 
    
   return (
@@ -143,7 +137,6 @@ const SignUpScreen = () => {
        />
 }
 
-{/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
 
          <Text style={styles.loginText}>
          Already have an Account ?

@@ -1,15 +1,3 @@
-import { useFonts, Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
-
-const fonts = () => {
-  const [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_600SemiBold,
-  });
-
-  if (!fontsLoaded) {
-    return null; // You can render a loading screen here while fonts are loading
-  }
-}
 
 
 const COLORS = {
@@ -33,12 +21,7 @@ const COLORS = {
     light_green:'#90EE90',
   };
   
-  const FONT = {
-    regular: "Inter_400Regular",
-    bold: "Inter_600SemiBold",
-  };
-
-
+  
   
   const SIZES = {
     xSmall: 10,
@@ -72,4 +55,4 @@ const COLORS = {
     },
   };
   
-  export { COLORS, FONT, SIZES, SHADOWS };
+  export { COLORS, SIZES, SHADOWS };

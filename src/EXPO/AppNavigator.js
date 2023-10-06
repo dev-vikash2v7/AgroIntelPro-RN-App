@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Text , StyleSheet} from 'react-native';
+import { Text ,View, StyleSheet} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -30,7 +30,9 @@ import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
 import WelcomeScreen from './Screens/Auth Screens/WelcomeScreen';
 import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
 import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
-
+import EditProfileScreen from './Screens/ProfileScreens/EditProfileScreen';
+import PrivacySecurityScreen from './Screens/ProfileScreens/PrivacyScreen';
+import Toast from 'react-native-toast-message';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator()
@@ -41,6 +43,20 @@ export default function AppNavigator() {
   
   const user = useSelector(state => state.auth.user)
   const [isUser , setIsUser] = useState(false)
+
+  const toastConfig = {
+    success: ({ text1, ...rest }) => (
+      <View style={styles.toast}>
+        <Text style={styles.toastText}>{text1}</Text>
+      </View>
+    ),
+    failure: ({ text1, ...rest }) => (
+      <View style={styles.toast }>
+        <Text style={styles.toastText}>{text1}</Text>
+      </View>
+    ),
+  };
+
 
   useEffect(()=>{
       setIsUser( user ? true : false)
@@ -179,6 +195,22 @@ export default function AppNavigator() {
        }}
         />
 
+      <Stack.Screen 
+      name="EditProfile" 
+      component={EditProfileScreen} 
+      options={{
+        headerTitle : 'Edit Profile',
+       }}
+      />
+
+      <Stack.Screen 
+      name="Privacy" 
+      component={PrivacySecurityScreen} 
+      options={{
+        headerTitle : 'Privacy & Security',
+       }}
+      />
+
     </Stack.Navigator>
  
     );
@@ -256,6 +288,8 @@ export default function AppNavigator() {
 <NavigationContainer>
 <TabNavigator/>
 {/* <DrawerNavigator/> */}
+<Toast config={toastConfig} />
+
 </NavigationContainer>
 
   );
@@ -271,4 +305,17 @@ const styles = StyleSheet.create({
   tabLabelFocused: {
     color: COLORS.primary, // Set the text color for the focused tab
   },
+  toast:{
+ justifyContent :'center' ,
+ alignItems:'center' ,
+ width:  100 ,
+ height : 80 ,
+ padding: 1,
+ backgroundColor : 'lightgreen',
+ alignSelf:'center'
+  },
+  toastText : {
+    fontSize : 24 , 
+    fontWeight:'bold'
+  }
 });
