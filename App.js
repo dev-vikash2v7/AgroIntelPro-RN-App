@@ -12,8 +12,8 @@ import * as Font from 'expo-font';
 const App = () => {
 
 
-  SplashScreen.preventAutoHideAsync()
 
+  SplashScreen.preventAutoHideAsync()
 
   async function preloadImagesAsync() {
     const imagePromises = [
@@ -29,15 +29,24 @@ const App = () => {
   }
 
   
+
+  
   useEffect(() => {
+
     preloadImagesAsync().then( async() => {
 
-      await Font.loadAsync({
-        "lora": require('./assets/fonts/Lora/Lora-VariableFont_wght.ttf')  ,
+       Font.loadAsync({
+        "lora_bold": require('./assets/fonts/Lora/static/Lora-Bold.ttf')  ,
         "pt_serif" : require('./assets/fonts/PT_Serif/PTSerif-Regular.ttf' ),
         "young_serif" : require('./assets/fonts/Young_Serif/YoungSerif-Regular.ttf')
-      });
-      SplashScreen.hideAsync();
+      }).then( () =>{
+
+       
+
+
+
+        SplashScreen.hideAsync();
+      })
   }) } , [] );
 
 

@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet ,Button, TouchableOpacity ,ImageBackgroun
 import { useNavigation } from '@react-navigation/native';
 import CustomButton from '../../Components/CustomButton';
 import images from '../../../../constants/images';
+import { COLORS } from '../../../../constants/theme';
 // import { Avatar } from 'react-native-paper';
 
 const WelcomeScreen = () => {
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor : '#ffffff'
+    backgroundColor : COLORS.background
   },
   logo: {
     width: 200,

@@ -61,8 +61,7 @@ const Home = () => {
 
 <View style = {styles.row}>
   {data.slice(0,3).map( (item) => (
-
-    <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.component} id={item.id}>
+    <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.component}  key={item.id}>
 
     <View   style={styles.imgBox}>
 
@@ -87,7 +86,7 @@ const Home = () => {
      <View style = {styles.row}>
      {data.slice(3,6).map( (item) => (
 
-      <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.component} id={item.id}>
+      <TouchableOpacity   onPress={ () =>navigation.navigate(item.link)} style = {styles.component} key={item.id}>
 
 <View   style={styles.imgBox}>
 
@@ -140,7 +139,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     
-
     ...Platform.select({
       ios: {
         shadowColor: 'black',
@@ -149,15 +147,19 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
       },
       android: {
-        elevation: 4,
-        shadowOffset: { width: 1, height: 2 },            
+        elevation: 5,
+        shadowOffset: { width: 1, height: 2 },
+        shadowRadius: 4,
+        shadowColor : 'blue',
+
+
       },
   })},
 
   imgBox : {
 backgroundColor : COLORS.primary , 
-width : 50 ,
-height :50 ,
+width : 55 ,
+height :55 ,
 borderWidth: 0.4,
     borderColor: 'orange',
     padding : 5  ,
@@ -173,17 +175,16 @@ borderWidth: 0.4,
   },
   titleContainer: {
     width: 100, // Adjust the width as needed,
-    paddingHorizontal : 3
+    paddingHorizontal : 5
   },
 
   title : {
     flexWrap:'nowrap',
-    fontSize : SIZES.xSmall,
+    fontSize : SIZES.small,
     textAlign : 'center',
     fontWeight : "500", 
     marginTop : 5,
-    fontFamily : 'pt_serif'
-
+    fontFamily : 'young_serif'
   }
   
     

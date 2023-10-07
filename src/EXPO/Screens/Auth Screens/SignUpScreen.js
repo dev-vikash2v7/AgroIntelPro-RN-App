@@ -6,8 +6,10 @@ import {
   StyleSheet,  
   Image,
   Dimensions,
-  ImageBackground
+  ImageBackground,
+  ScrollView
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { useNavigation } from '@react-navigation/native';
 import {useDispatch }  from 'react-redux'
@@ -17,8 +19,8 @@ import { db } from '../../../../firebase_config';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import CustomButton from '../../Components/CustomButton';
 
-import Toast from 'react-native-toast-message';
 import images from '../../../../constants/images';
+import showToast from '../../Components/showToast';
 
 const SignUpScreen = () => {
 
@@ -40,12 +42,11 @@ const SignUpScreen = () => {
      const docRef =  await addDoc(collection(db, "Users"), data);
       // console.log("Document written with ID: ", docRef.id);
       dispatch(setUser(data))
+      AsyncStorage.setItem('user', JSON.stringify(data));
       navigation.navigate('HomeScreen');
     }
     catch (e) {
-        // console.error("Error adding document: ", e);
-        Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter valid details' , position :'top' , visibilityTime : 4000})
-        setErrorMessage('Please check your credentials and try again.');
+        Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Please check your credentials and try again.' })
       }
     setIsSubmit(false)
 }
@@ -53,14 +54,13 @@ const SignUpScreen = () => {
 
   const handleSignup = () => {
     if (!name || !email || !password || !confirmPassword) {
-      Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter valid details'})
-
+      Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter  all details'})
       setErrorMessage('Please fill in all fields');
       return;
     }
 
     if (password !== confirmPassword) {
-      Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter valid details'})
+      Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Password do not match.'})
       setErrorMessage('Passwords do not match');
       return;
     }
@@ -71,6 +71,7 @@ const SignUpScreen = () => {
 
    
   return (
+    <ScrollView>
       <ImageBackground  
       source={ images.bg} 
       style = { styles.bgImage}>
@@ -144,6 +145,7 @@ const SignUpScreen = () => {
           </Text>
 
     </ImageBackground>
+    </ScrollView>
   );
 };
 
@@ -154,7 +156,8 @@ const styles = StyleSheet.create({
  width : Dimensions.get('screen').width ,
  height:Dimensions.get('screen').height,
  flex: 1,
-    resizeMode: 'cover'
+    resizeMode: 'cover',
+    
 },
 logo:{
 width : 60 ,

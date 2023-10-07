@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   View,
   Text,
@@ -6,12 +8,8 @@ import {
 
   StyleSheet,
   
-  Dimensions,
-  ImageBackground,
   Image
 } from 'react-native';
-
-
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../../../../firebase_config'; 
@@ -19,9 +17,9 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import CustomButton from '../../Components/CustomButton';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import images from '../../../../constants/images';
-import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import { ActivityIndicator } from 'react-native-paper';
-
+import Toast from 'react-native-toast-message';
+import { COLORS } from '../../../../constants/theme';
 
 const LogInScreen = () => {
   const navigation = useNavigation()
@@ -44,16 +42,18 @@ const LogInScreen = () => {
       const userData = doc.data();
 
       if(userData.password == user.password){
+        Toast.show({type : 'success' ,text1 : 'Login Scessfully !' , text2 : 'Yours Welcome'} )
         dispatch(setUser(userData))
+        AsyncStorage.setItem('user', JSON.stringify(userData));
         navigation.navigate('HomeScreen')
       }
-        setErrorMessage('Password is Incorrect ')
+        setErrorMessage('Password is Incorrect')
+        Toast.show({type : 'error' ,text1 :'Password is Incorrect' ,text2: 'Failed To Login' })
         return
     });
     setErrorMessage('Email not found');
+    Toast.show({type : 'error' ,text1 : 'Email not Found' ,text2 : 'Failed To Login'} )
     setIsSubmit(false)
-
-
 };
 
   const handleLogin = () => {
@@ -69,9 +69,7 @@ const LogInScreen = () => {
 
 
   return (
-    <ImageBackground  
-    source={ images.bg} 
-    style = { styles.bgImage}>
+    <View   style = { styles.container}>
 
   
 
@@ -102,6 +100,7 @@ const LogInScreen = () => {
   placeholderTextColor =  'gray'
     />
 
+
   
     {errorMessage &&
       <Text style={styles.errorMessage}>{errorMessage}</Text>
@@ -110,7 +109,7 @@ const LogInScreen = () => {
     </View>
 
 {isSubmit ? 
- <ActivityIndicator size={30} color='blue' style ={{marginTop : 10}}/>
+ <ActivityIndicator size={30} color='orange' style ={{marginTop : 10}}/>
 :
     <CustomButton
      bg = {'orange'} 
@@ -127,7 +126,7 @@ const LogInScreen = () => {
         <Text style={styles.loginLink} onPress={()=>navigation.navigate('SignUp')}>Create Here</Text>
         </Text>
 
-  </ImageBackground>
+  </View>
 
 
   )
@@ -139,13 +138,11 @@ const LogInScreen = () => {
 
 
 const styles = StyleSheet.create({
-  bgImage:{
+  container:{
     flex: 1,
     alignItems: 'center',
- width : Dimensions.get('screen').width ,
- height:Dimensions.get('screen').height,
- flex: 1,
-    resizeMode: 'cover'
+    padding : 20,
+    backgroundColor : COLORS.background
 },
 logo:{
 width : 60 ,

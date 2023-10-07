@@ -7,7 +7,6 @@ import fertilizers_data from '../../../../constants/fertilizers_data';
 import SelectionDropdown from '../../Components/SelectionDropdown';
 import { useNavigation } from '@react-navigation/native';
 import ErrorPopup from '../../Components/ErrorPopup'
-import axios from 'axios';
 
  export default FertilizerRecommendScreen = () => {
 
@@ -261,6 +260,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingBottom  : 40,
+   backgroundColor :  COLORS.background
   },
   featuresBox :{
     borderWidth : 1 , 

@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <View style = {styles.container}> 
 
-    <View style = {styles.header}>
+    {/* <View style = {styles.header}> */}
 
 
       <View style = { styles.logoBox}>
@@ -23,11 +23,11 @@ export default function Header() {
 
       <Text style={styles.title} >AgroIntel Pro</Text>
 
-    </View>
+    {/* </View> */}
 
-<TouchableOpacity onPress={ () => {}}>
+{/* <TouchableOpacity onPress={ () => {}}>
     <Ionicons/>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
 
 
     </View>
@@ -36,40 +36,39 @@ export default function Header() {
 
 const styles = StyleSheet.create({
 container :{
-  display:'flex'
+  backgroundColor:COLORS.primary , 
+  flexDirection: 'row',
+  alignItems: 'center',
+  paddingHorizontal: 16,
+  paddingVertical : 10,
+  elevation: 4,
+  shadowColor : 'blue'
 },
-  header : {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: '',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    backgroundColor:COLORS.primary , 
-    // elevation: 4,
-  },
 
   logoBox : {
     width : 55 ,
-     height : 55 , 
-    backgroundColor : COLORS.lightWhite ,
+    height :55 ,
+    backgroundColor : 'white' ,
      borderRadius : 50 ,
      marginRight : 10 ,
-    elevation : 4 },
+    elevation : 4 ,
+    marginRight: 10,
+  shadowColor : 'black'
+
+  },
 
   logo: {
-    resizeMode :'cover' ,
+    resizeMode :'contain' ,
     width: 50,
-    height: 50,
-    marginRight: 10,
+    height : 50 ,
     justifyContent :'center',
-    alignItems:'center'
+    alignItems:'center',
   },
 
   title: {
     fontSize: SIZES.large,
     color: COLORS.text, 
-    fontFamily : 'young_serif',
-    fontWeight : 'bold'
+    fontFamily : 'lora_bold',
   },
   
 })

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity , TextInput } from 'react-native';
+import { COLORS } from '../../../../constants/theme';
 
 const AddPost = () => {
   const [postText, setPostText] = useState('');
@@ -76,7 +77,6 @@ const FarmersCommunity = () => {
       ))}
 </View>
 
-      
 <AddPost/>
 
 
@@ -88,6 +88,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor : COLORS.background
+
   },
   title: {
     fontSize: 24,

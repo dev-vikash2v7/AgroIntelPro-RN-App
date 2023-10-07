@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import agricultureProducts from '../../../../constants/agriculture_products'
-
+import { COLORS } from '../../../../constants/theme';
 const FarmStore = () => {
 
   return (
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor : COLORS.background
   },
   product:{
     padding : 5 , 

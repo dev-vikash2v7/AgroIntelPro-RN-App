@@ -7,6 +7,7 @@ import {COLORS} from '../../../constants/theme';
 import { removeUser } from '../../../Redux/Slices/AuthSlice'
 import WelcomeScreen from '../Screens/Auth Screens/WelcomeScreen';
 import { Avatar} from 'react-native-paper';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Profile(){
 
@@ -62,7 +63,8 @@ const tabData  = [
   icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="red" />,
   onClick : ()=>{
     dispatch(removeUser());
-    nav.navigate('WelcomeScreen')
+    AsyncStorage.clear()
+    nav.navigate('LogIn')
   }
 },
 

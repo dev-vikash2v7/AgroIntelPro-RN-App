@@ -4,6 +4,7 @@ import * as Location from 'expo-location';
 import axios from 'axios';
 import { COLORS } from '../../../constants/theme';
 import { WEATHER_API } from '../../../env';
+import Toast from 'react-native-toast-message';
 
 const WeatherReport = () => {
 
@@ -31,7 +32,6 @@ const WeatherReport = () => {
 
 
   useEffect(() => {
-    getNext7Days();
     getLocation();
   }, []);
 
@@ -42,12 +42,19 @@ const WeatherReport = () => {
       if (status === 'granted') {
 
         const locationData = await Location.getCurrentPositionAsync({});
+
+        getNext7Days();
         getWeatherData(locationData.coords.latitude, locationData.coords.longitude);
         getForcastData(locationData.coords.latitude, locationData.coords.longitude);
       }
     } catch (error) {
-      Alert('Error getting location:');
-      
+      Toast.show({
+        type: 'error',
+        text1: 'Failed To access Location ! ',
+        text2: 'Weather Report Can"t Access !',
+        visibilityTime : 5000 ,
+        
+      });
     }
   };
 
@@ -79,7 +86,7 @@ const WeatherReport = () => {
 
 
   if (!forecastData || !weatherData) {
-    return <Text style={{ paddingTop: 10, textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>Loading Live Weather Report...</Text>;
+    return <Text style={{ paddingTop: 10, textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>Weather Report...</Text>;
   }
   return (
     <View style={styles.container}>

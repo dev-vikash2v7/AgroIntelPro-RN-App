@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
+import {COLORS} from '../../../../constants/theme'
+
 
 const MyFarm = () => {
   const [farmName, setFarmName] = useState('');
@@ -55,6 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor : COLORS.background
   },
   title: {
     fontSize: 24,

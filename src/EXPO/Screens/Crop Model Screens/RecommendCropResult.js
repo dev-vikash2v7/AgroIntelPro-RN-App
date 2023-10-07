@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native';
 
+import {COLORS} from '../../../../constants/theme'
+
 const RecommendCropResult = ({ route }) => {
   const { cropData }  = route.params;
 
@@ -38,7 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 20,
-    paddingHorizontal:10
+    paddingHorizontal:10,
+    backgroundColor : COLORS.background
   },
   image: {
     width: 200,

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Text ,View, StyleSheet} from 'react-native';
+import { Text ,View, StyleSheet ,Keyboard, KeyboardAvoidingView, Platform} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -13,6 +13,8 @@ import {COLORS} from '../../constants/theme';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import icons from '../../constants/icons';
+import Toast from 'react-native-toast-message';
+import { useDispatch } from 'react-redux';
 
 
 import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
@@ -32,7 +34,9 @@ import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
 import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
 import EditProfileScreen from './Screens/ProfileScreens/EditProfileScreen';
 import PrivacySecurityScreen from './Screens/ProfileScreens/PrivacyScreen';
-import Toast from 'react-native-toast-message';
+import SplashScreen from './Screens/SplashScreen';
+import { setUser } from '../../Redux/Slices/AuthSlice';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator()
@@ -43,67 +47,89 @@ export default function AppNavigator() {
   
   const user = useSelector(state => state.auth.user)
   const [isUser , setIsUser] = useState(false)
+  const [navigation , setNavigation] = useState('HomeScreen')
+  const dispatch = useDispatch()  
+  
 
-  const toastConfig = {
-    success: ({ text1, ...rest }) => (
-      <View style={styles.toast}>
-        <Text style={styles.toastText}>{text1}</Text>
-      </View>
-    ),
-    failure: ({ text1, ...rest }) => (
-      <View style={styles.toast }>
-        <Text style={styles.toastText}>{text1}</Text>
-      </View>
-    ),
-  };
+  // const toastConfig = {
+  //   success: ({type ,  text1, text2 ,  ...rest }) => (
 
+  //     <View style={styles.toast}>
+  //               {console.log( "ssssssssssssss : " , text1 , '------------ ' , rest)}
+
+
+  //       <Text style={styles.toastText}>{text1}</Text>
+  //     </View>
+  //   ),
+
+  //   failure: ({ text1, ...rest }) => (
+  //     <View style={styles.toast }>
+  //       {console.log(text1 , rest)}
+  //       <Text style={styles.toastText}>{text1}</Text>
+  //     </View>
+  //   ),
+
+  //   error: ({ text1, ...rest }) => (
+  //     <View style={styles.toast }>
+  //       {console.log( "errorroror " , text1 , '------------ ' , rest)}
+  //       <Text style={styles.toastText}>{text1}</Text>
+  //     </View>
+  //   ),
+  // };
+
+  
 
   useEffect(()=>{
       setIsUser( user ? true : false)
   }, [user])
 
-  const DrawerNavigator = () => {
-    return (
-      <Drawer.Navigator>
-        <Drawer.Screen name="HomeMenu" component={Home} />
-        <Drawer.Screen name="NewsMenu" component={NewsScreen} />
-      </Drawer.Navigator>
-    );
-  };
-  
+ 
+  useEffect(() => {
+    
+      AsyncStorage.getItem('user').then((user) =>
+      {
+        console.log(user);
+        if(user) {
+            dispatch(setUser(JSON.parse(user)))
+        }
+        setNavigation(user === null ? 'WelcomeScreen' : 'HomeScreen' )
+      }
+      );
+  }, []);
+
 
 
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName='HomeScreen'
+        initialRouteName={navigation}
         screenOptions={ {
-          headerStyle: {
-  },
-          headerTitleStyle: {
-              fontSize: 15, 
-    fontWeight: 'bold', 
+            headerStyle: {
+              backgroundColor: '#307ecc', //Set Header color
             },
-            headerStyle : {
-              backgroundColor: COLORS.lightWhite,
-              elevation: 0,
-              marginTop: 20,     
+            headerTintColor: '#fff', //Set Header text color
+
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+              fontSize: 15, 
             },
             
         }}
         > 
 
+     
+
       <Stack.Screen 
        name='HomeScreen' 
        component={Home} 
-       options={{  header : () => null }}
+       options={{  headerShown : false}}
          />
  
        <Stack.Screen 
        name='DiseasePredScreen' 
        component={DiseasePredScreen} 
        options={{
-        headerTitle : 'Crop Disease Prediction'
+        title : 'Crop Disease Prediction'
        }}
         />
       
@@ -112,7 +138,7 @@ export default function AppNavigator() {
        name='CropRecScreen' 
        component={CropRecommendation} 
        options={{
-        headerTitle : 'Best Crop Recommendation'
+        title : 'Best Crop Recommendation'
        }}
         />
  
@@ -120,7 +146,7 @@ export default function AppNavigator() {
        name='FertilizerRecScreen' 
        component={FertilizerRecommendation} 
        options={{
-        headerTitle : 'Best Fertilizer Recommendation',
+        title : 'Best Fertilizer Recommendation',
        }}/>
 
 
@@ -128,7 +154,7 @@ export default function AppNavigator() {
        name='MyFarm' 
        component={isUser ?  MyFarm : WelcomeScreen} 
        options={{
-        headerTitle : 'Your Farm',
+        title : 'Your Farm',
        }}/>
 
 
@@ -136,7 +162,7 @@ export default function AppNavigator() {
        name='FarmStore' 
        component={ FarmStore} 
        options={{
-        headerTitle : 'Farmers Store',
+        title : 'Farmers Store',
        }}/>
 
 
@@ -144,7 +170,7 @@ export default function AppNavigator() {
        name='FarmCommunity' 
        component={isUser ? FarmCommunity : WelcomeScreen} 
        options={{
-        headerTitle : 'Community of Farmers',
+        title : 'Community of Farmers',
        }}/>
 
 
@@ -152,38 +178,35 @@ export default function AppNavigator() {
        name='DiseasePredResult'  
        component={DiseasePredResult} 
        options={{
-        headerTitle : 'Disease Details',
+        title : 'Disease Details',
        }}/>
  
 
        <Stack.Screen 
        name='SignUp' 
-       component={!isUser ? SignUpScreen : Home} 
+       component={SignUpScreen } 
        options={{
-        headerTitle : 'Create Account',
-       }}
+        title: 'Register', //Set Header Title
+      }}
      />
      
         <Stack.Screen 
        name='LogIn' 
-       component={!isUser ? LogInScreen : Home} 
-       options={{
-        headerTitle : 'Login To Your Account',
-       }}
-
+       component={LogInScreen } 
+       options={{headerShown: false}}
         />
 
         <Stack.Screen 
        name='WelcomeScreen' 
-       component={!isUser ? WelcomeScreen : Home} 
-       options={{  header : () => null }}
+       component={WelcomeScreen } 
+       options={{headerShown: false}}
         />
 
         <Stack.Screen 
        name='FertilizerResult' 
        component={FertilizerResult} 
        options={{
-        headerTitle : 'Recommend Fertilizer Result ',
+        title : 'Best Fertlizer ',
        }}
         />
 
@@ -191,7 +214,7 @@ export default function AppNavigator() {
        name='RecommendCropResult' 
        component={RecommendCropResult} 
        options={{
-        headerTitle : 'Recommend Crop To Use ',
+        title : 'Recommend Crop To Use ',
        }}
         />
 
@@ -199,7 +222,7 @@ export default function AppNavigator() {
       name="EditProfile" 
       component={EditProfileScreen} 
       options={{
-        headerTitle : 'Edit Profile',
+        title : 'Edit Profile',
        }}
       />
 
@@ -207,7 +230,7 @@ export default function AppNavigator() {
       name="Privacy" 
       component={PrivacySecurityScreen} 
       options={{
-        headerTitle : 'Privacy & Security',
+        title : 'Privacy & Security',
        }}
       />
 
@@ -218,22 +241,25 @@ export default function AppNavigator() {
 
 
   function TabNavigator() {
+   
+  
     return (
+      
       <Tab.Navigator 
       screenOptions={{
-            header: () => <Header />,
+        tabBarHideOnKeyboard:true,
+        header: () => <Header />,
+        
+        tabBarStyle:  
+        {
+          "display": "flex",
+          "height" : 80 ,
+          "alignItems" : 'center',
+          "marginBottom" : 4,
+        },
+      }}>
 
-          tabBarStyle:  
-            {
-              "display": "flex",
-              "height" : 80 ,
-              "alignItems" : 'center',
-              "marginBottom" : 4,
-            },
-
-            
-        }}>
-
+    
       <Tab.Screen
         name="Home"
         component={StackNavigator}
@@ -276,8 +302,8 @@ export default function AppNavigator() {
           ),
         }}
       />
-    </Tab.Navigator>
-
+    
+    </Tab.Navigator>  
     );
   }
 
@@ -287,8 +313,7 @@ export default function AppNavigator() {
 
 <NavigationContainer>
 <TabNavigator/>
-{/* <DrawerNavigator/> */}
-<Toast config={toastConfig} />
+<Toast />
 
 </NavigationContainer>
 
@@ -315,7 +340,7 @@ const styles = StyleSheet.create({
  alignSelf:'center'
   },
   toastText : {
-    fontSize : 24 , 
-    fontWeight:'bold'
+    fontSize : 16 , 
+    // fontWeight:'bold'
   }
 });

@@ -1,6 +1,7 @@
 import React,{useEffect , useState} from 'react';
 import { View, Text, Image, ScrollView, StyleSheet  } from 'react-native';
 import CropDiseaseData from '../../../../constants/crop_disease_data';
+import { COLORS } from '../../../../constants/theme';
 
 export default  DiseasePredResult = ({route}) => {
   // Sample data for a crop disease
@@ -39,7 +40,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingVertical:8,
-    paddingBottom:20
+    paddingBottom:20,
+    backgroundColor : COLORS.background
   },
   image: {
     width: '100%',
