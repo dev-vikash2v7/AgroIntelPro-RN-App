@@ -2,18 +2,15 @@ import React,{useState} from 'react'
 import { View, Text  , StyleSheet , TouchableOpacity  ,FlatList, ScrollView } from 'react-native'
 import {FontAwesome, MaterialIcons ,MaterialCommunityIcons , Entypo} from  '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
-import { useSelector , useDispatch} from 'react-redux'
+import {   useDispatch} from 'react-redux'
 import {COLORS} from '../../../constants/theme';
-import { removeUser } from '../../../Redux/Slices/AuthSlice'
-import WelcomeScreen from '../Screens/Auth Screens/WelcomeScreen';
 import { Avatar} from 'react-native-paper';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Profile(){
 
-  const user = useSelector(state => state.auth.user)
-  const dispatch = useDispatch()
   const nav = useNavigation();
+  const dispatch = useDispatch();
 
 const tabData  = [
 {
@@ -62,7 +59,6 @@ const tabData  = [
   describe : '',
   icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="red" />,
   onClick : ()=>{
-    dispatch(removeUser());
     AsyncStorage.clear()
     nav.navigate('LogIn')
   }
@@ -71,7 +67,6 @@ const tabData  = [
 ]
 
   return (
-    user ? 
     <View style={styles.container}>
 
     <View style = {styles.userView}>
@@ -126,11 +121,7 @@ const tabData  = [
     </View>
     
     </View>
-    :
-    // <AuthPrompt onClose = {'WelcomeScreen'} />
-    // nav.navigate('WelcomeScreen')
-
-    <WelcomeScreen/>
+   
   )
 }
 

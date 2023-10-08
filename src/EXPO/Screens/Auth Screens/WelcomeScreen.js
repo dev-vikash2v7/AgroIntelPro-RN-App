@@ -5,11 +5,28 @@ import CustomButton from '../../Components/CustomButton';
 import images from '../../../../constants/images';
 import { COLORS } from '../../../../constants/theme';
 // import { Avatar } from 'react-native-paper';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../../Redux/Slices/AuthSlice';
 
 const WelcomeScreen = () => {
 
+const dispatch = useDispatch()
+const navigation = useNavigation();
 
-  const navigation = useNavigation()
+      useEffect(()=> {
+      AsyncStorage.getItem('user').then((user) =>
+      {
+        if(user) {
+          console.log(JSON.parse(user));
+            // dispatch(setUser(JSON.parse(user)))
+            navigation.navigate( 'HomeScreen' )
+        }
+      }
+      );
+  }, [dispatch]);
+
+
 
 
   return (

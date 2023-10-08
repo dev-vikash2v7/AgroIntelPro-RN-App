@@ -10,7 +10,6 @@ const NewsList = () => {
 
  
   useEffect(()=>{
-    console.log(process.env)
    const base_url = 'https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=' + NEWS_API
     axios.get(base_url )
     .then(res=>{

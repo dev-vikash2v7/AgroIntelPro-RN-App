@@ -11,7 +11,7 @@ import * as Font from 'expo-font';
 
 const App = () => {
 
-
+  const [fontLoaded, setFontLoaded] = React.useState(false)
 
   SplashScreen.preventAutoHideAsync()
 
@@ -36,28 +36,25 @@ const App = () => {
     preloadImagesAsync().then( async() => {
 
        Font.loadAsync({
-        "lora_bold": require('./assets/fonts/Lora/static/Lora-Bold.ttf')  ,
-        "pt_serif" : require('./assets/fonts/PT_Serif/PTSerif-Regular.ttf' ),
-        "young_serif" : require('./assets/fonts/Young_Serif/YoungSerif-Regular.ttf')
+         "pt_serif" : require('./assets/fonts/PT_Serif/PTSerif-Regular.ttf' ),
+         "young_serif" : require('./assets/fonts/Young_Serif/YoungSerif-Regular.ttf'),
+         "lora_bold": require('./assets/fonts/Lora/static/Lora-Bold.ttf')  ,
       }).then( () =>{
-
-       
-
-
-
-        SplashScreen.hideAsync();
+        setFontLoaded(true);
+          SplashScreen.hideAsync();
       })
   }) } , [] );
 
 
   
   return (
-      <SafeAreaView style = {{flex : 1 }} > 
+    fontLoaded &&
+      (<SafeAreaView style = {{flex : 1 }} > 
     <Provider store={ReduxStore}>
 <AppNavigator/>    
   
 </Provider>
-</SafeAreaView>
+</SafeAreaView>)
   )
 }
 

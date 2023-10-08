@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <ScrollView style={styles.container}>
 
-    <WeatherReport/>
+    {/* <WeatherReport/> */}
 
     <View style = {styles.funtionsTab}>
 

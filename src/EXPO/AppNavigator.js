@@ -1,5 +1,6 @@
+import { useState , useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Text ,View, StyleSheet ,Keyboard, KeyboardAvoidingView, Platform} from 'react-native';
+import { Text ,View, StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,10 +11,9 @@ import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {COLORS} from '../../constants/theme';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import icons from '../../constants/icons';
 import Toast from 'react-native-toast-message';
+
 import { useDispatch } from 'react-redux';
 
 
@@ -34,8 +34,6 @@ import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
 import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
 import EditProfileScreen from './Screens/ProfileScreens/EditProfileScreen';
 import PrivacySecurityScreen from './Screens/ProfileScreens/PrivacyScreen';
-import SplashScreen from './Screens/SplashScreen';
-import { setUser } from '../../Redux/Slices/AuthSlice';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Drawer = createDrawerNavigator();
@@ -45,7 +43,6 @@ const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
   
-  const user = useSelector(state => state.auth.user)
   const [isUser , setIsUser] = useState(false)
   const [navigation , setNavigation] = useState('HomeScreen')
   const dispatch = useDispatch()  
@@ -80,29 +77,22 @@ export default function AppNavigator() {
   
 
   useEffect(()=>{
-      setIsUser( user ? true : false)
-  }, [user])
+  AsyncStorage.getItem('user')
+  .then(user =>{
+    console.log('ddfdf' , user)
+    setIsUser(true);
+  })
+      setIsUser( false)
+  }, [])
+
 
  
-  useEffect(() => {
-    
-      AsyncStorage.getItem('user').then((user) =>
-      {
-        console.log(user);
-        if(user) {
-            dispatch(setUser(JSON.parse(user)))
-        }
-        setNavigation(user === null ? 'WelcomeScreen' : 'HomeScreen' )
-      }
-      );
-  }, []);
-
 
 
   function StackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName={navigation}
+        initialRouteName={'WelcomeScreen'}
         screenOptions={ {
             headerStyle: {
               backgroundColor: '#307ecc', //Set Header color
@@ -290,7 +280,7 @@ export default function AppNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={isUser ? ProfileScreen : WelcomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon iconName={icons.user} focused={focused} />

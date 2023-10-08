@@ -43,7 +43,7 @@ const LogInScreen = () => {
 
       if(userData.password == user.password){
         Toast.show({type : 'success' ,text1 : 'Login Scessfully !' , text2 : 'Yours Welcome'} )
-        dispatch(setUser(userData))
+        // dispatch(setUser(userData))
         AsyncStorage.setItem('user', JSON.stringify(userData));
         navigation.navigate('HomeScreen')
       }
