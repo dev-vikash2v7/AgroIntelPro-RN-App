@@ -1,5 +1,4 @@
 import { useState , useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Text ,View, StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Components/Header';
 import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 import {COLORS} from '../../constants/theme';
 import icons from '../../constants/icons';
 import Toast from 'react-native-toast-message';
@@ -17,12 +16,13 @@ import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
 
 
+import ProfileScreen from './Tabs/f';
+
 import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
 import LogInScreen from './Screens/Auth Screens/LogInScreen';
 import SignUpScreen from './Screens/Auth Screens/SignUpScreen';
 import CropRecommendation from './Screens/Crop Model Screens/CropRecommend';
 import Home from './Tabs/HomeTab';
-import ProfileScreen from './Tabs/ProfileTab';
 import NewsScreen from './Tabs/NewsTab';
 import CustomTabIcon from './Components/CustomTabIcon';
 import MyFarm from './Screens/Crop Model Screens/MyFarm';
@@ -39,7 +39,6 @@ import { setUser } from '../../Redux/Slices/AuthSlice';
 import WelcomeScreen from './Screens/Auth Screens/WelcomeScreen';
 import ForgotPwdScreen from './Screens/Auth Screens/ForgotPwdScreen';
 
-const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator();
 
@@ -224,7 +223,7 @@ export default function AppNavigator() {
 
         <Stack.Screen 
        name='LogIn' 
-       component={LogInScreen } 
+       component={ LogInScreen } 
        options={{headerShown: false}}
         />
         </Stack.Navigator>
@@ -343,9 +342,6 @@ export default function AppNavigator() {
 <NavigationContainer >
 
 <Stack.Navigator  initialRouteName={ isUser ? 'MainTabs' : 'Auth' }>
-
-    
-
 
       <Stack.Screen
         name="Auth"

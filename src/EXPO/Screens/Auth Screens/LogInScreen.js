@@ -22,7 +22,7 @@ import { COLORS } from '../../../../constants/theme';
 // import images from '../../../../constants/images';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import { Ionicons } from '@expo/vector-icons';
-import Button from '../components/Button';
+import Button from '../../Components/Button';
 
 
 export default LogInScreen = () => {
@@ -42,24 +42,39 @@ export default LogInScreen = () => {
 
     const querySnapshot = await getDocs(q);
 
+    let email_found = false ;
+
     querySnapshot.forEach((doc) => {
 
+        console.log('ddd' ,user ,'ssss' , userData)
       const userData = doc.data();
 
-      if(userData.password == user.password){
-        dispatch(setUser(userData))
-  
-        Toast.show({type : 'success' ,text1 : 'Login Scessfully !' , text2 : 'Yours Welcome'} )
-        AsyncStorage.setItem('user', JSON.stringify(userData));
+      email_found = true
 
-        navigation.navigate('HomeScreen')
+
+      if(userData.password == user.password){
+
+          AsyncStorage.setItem('user', JSON.stringify(userData));
+        dispatch(setUser(userData))
+        // Toast.show({type : 'success' ,text1 : 'Login Scessfully !' , text2 : 'Yours Welcome'} )
+        setEmail('')
+        setPassword('')
+        setIsSubmit(false)
+
+        navigation.navigate('MainTabs')
       }
-        setErrorMessage('Password is Incorrect')
-        Toast.show({type : 'error' ,text1 :'Password is Incorrect' ,text2: 'Failed To Login' })
-        return
+      else{
+          setErrorMessage('Password is Incorrect')
+          Toast.show({type : 'error' ,text1 :'Password is Incorrect' ,text2: 'Failed To Login' })
+      }
+
     });
-    setErrorMessage('Email not found');
-    Toast.show({type : 'error' ,text1 : 'Email not Found' ,text2 : 'Failed To Login'} )
+
+    if(!email_found){
+console.log(email_found , 'ddddddddd')
+        setErrorMessage('Email not found');
+        // Toast.show({type : 'error' ,text1 : 'Email not Found' ,text2 : 'Failed To Login'} )
+    }
     setIsSubmit(false)
 };
 
@@ -78,6 +93,7 @@ export default LogInScreen = () => {
             <View style={{ flex: 1, marginHorizontal: 22 }}>
 
                 <View style={{ marginVertical: 22 }}>
+
                     <Text style={{ 
                         fontSize: 22,
                         fontWeight: 'bold',
@@ -85,12 +101,16 @@ export default LogInScreen = () => {
                         color: COLORS.black
                     }}>
                         Hi Welcome Back ! 👋
-                    </Text>
+
+                  
+                        </Text>
 
                     <Text style={{
                         fontSize: 16,
                         color: COLORS.black
-                    }}>Hello again you have been missed!</Text>
+                    }}>Hello again you have been missed!
+                    
+                    </Text>
                 </View>
 
                 
@@ -184,7 +204,7 @@ export default LogInScreen = () => {
                         style={{ marginRight: 8 }}
                         value={isChecked}
                         onValueChange={setIsChecked}
-                        color={isChecked ? COLORS.primary : undefined}
+                        color={isChecked ? COLORS.secondary : undefined}
                     />
 
                     <Text>Remenber Me</Text>
@@ -196,7 +216,7 @@ export default LogInScreen = () => {
                     
 
                 {isSubmit ? 
- <ActivityIndicator size={30} color='orange' style ={{marginTop : 10}}/>
+ <ActivityIndicator size={30} color={COLORS.secondary} style ={{marginTop : 10}}/>
 :
                 <Button
                     title="Login"
@@ -290,7 +310,8 @@ export default LogInScreen = () => {
 
 
 
-                <View style={{
+                <View style = {{justifyContent:'center' , alignItems:'center'}}>
+                    <View style={{
                     flexDirection: "row",
                     justifyContent: "center",
                     marginVertical: 22
@@ -302,13 +323,19 @@ export default LogInScreen = () => {
                     >
                         <Text style={{
                             fontSize: 16,
-                            color: COLORS.primary,
+                            color: COLORS.secondary,
                             fontWeight: "bold",
                             marginLeft: 6
                         }}>Register</Text>
                     </Pressable>
+                    </View>
+
+                < TouchableOpacity  onPress={()=>navigation.navigate('MainTabs')}>
+                        <Text style={{color:COLORS.secondary, fontWeight : 'bold' , textDecorationLine:'underline' }} >{'Continue as a Guest->'}</Text>
+                        </TouchableOpacity>
                 </View>
                
+
 
 
             </View> 

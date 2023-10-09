@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import CustomButton from '../../Components/CustomButton';
 import images from '../../../../constants/images';
 import { COLORS } from '../../../../constants/theme';
+import icons from '../../../../constants/icons';
 // import { Avatar } from 'react-native-paper';
 
 const WelcomeScreen = () => {
@@ -16,17 +17,17 @@ const navigation = useNavigation();
     <View style={styles.container}>
       
       <Image
-        source={images.splash}
+        source={icons.logo}
         style={styles.logo}
       /> 
-{/* 
+
       <Text style={styles.appName}>AgroIntel Pro</Text>
 
       <Text style={styles.slogan}>Grow More , Worry Less !</Text>
 
       {/* Authentication Buttons */}
 
-      <View style = {{width : '100%' ,  borderBottomWidth : 0.5 , borderBottomColor : 'gray' , paddingBottom : 10 , alignItems :'center',justifyContent :'center'}}>
+      <View style = {{width : '100%' , alignItems :'center',justifyContent :'center'}}>
     
       <CustomButton 
       bg = 'blue' 
@@ -45,7 +46,7 @@ const navigation = useNavigation();
 
 
 <CustomButton 
-      bg = 'gray' 
+      bg = {COLORS.secondary} 
       color  = 'white'
         title="Register"
         onClick={()=> navigation.navigate('SignUp')}
@@ -54,14 +55,7 @@ const navigation = useNavigation();
 
 </View>
 
-<TouchableOpacity onPress={ ()=>navigation.navigate('HomeScreen')}>
-        <Text
-      style=  {{marginTop : 5 , fontSize : 16, color : 'red' , textDecorationLine :'underline', fontWeight : '500'}}
-        > 
-        Continue as Guest
-         </Text>
-         </TouchableOpacity>
-    
+
     </View>
   );
 };
@@ -69,7 +63,6 @@ const navigation = useNavigation();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
     backgroundColor : COLORS.background
@@ -77,18 +70,20 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    marginBottom: 20,
     resizeMode :'cover'
   },
   appName: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 40,
+    // fontWeight: 'bold',
     marginBottom: 10,
+    fontFamily:'lora_bold'
   },
 
   slogan: {
     fontSize: 16,
     marginBottom: 30,
+    fontFamily:'lora_bold'
+
   },
 
 

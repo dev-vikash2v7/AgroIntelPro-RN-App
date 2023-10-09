@@ -1,10 +1,9 @@
 import { View, Text, Pressable, Image } from 'react-native'
 import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
-import COLORS from '../constants/colors';
-import Button from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
-
+import { COLORS } from '../../../../constants/theme';
+import Button from '../../Components/Button';
 
 const Welcome = () => {
 
@@ -16,17 +15,34 @@ const Welcome = () => {
                 flex: 1,
                 paddingVertical : 10
             }}
-            colors={[COLORS.secondary, COLORS.primary]}
+            colors={[COLORS.secondary, COLORS.secondary1]}
         >
             <View style={{ flex: 1 }}>
 
-            <View> 
-                <Text> Welcome To</Text>
-                  <Text>AgroInte Pro</Text>
-                  <Text> Grow More ! Worry Less  </Text>
+            <View style={{justifyContent:'center' , alignItems:'center'}}> 
+
+                <Text   style= {{fontSize: 25,
+                        fontWeight: 600,
+                        color: COLORS.white}} > Welcome To</Text>
+
+                  <Text style= {{
+                    fontSize: 35,
+                        fontWeight: 800,
+                        color: COLORS.lightWhite,
+                        fontFamily :'lora_bold'
+                        }}>AgroIntel Pro</Text>
+
+                  <Text style= {{
+                        fontSize: 15,
+                        fontWeight: 400,
+                        color: COLORS.black,
+                        fontFamily :'lora_bold',
+                
+                        }}> Grow More ! Worry Less  </Text>
             </View>
 
-                <View>
+                <View style = {{ position: "absolute",
+                            top: 60}}>
                     <Image
                         source={require("../assets/hero1.jpg")}
                         style={{
@@ -50,8 +66,8 @@ const Welcome = () => {
                             width: 100,
                             borderRadius: 20,
                             position: "absolute",
-                            top: -30,
-                            left: 100,
+                            top: 10,
+                            left: 130,
                             transform: [
                                 { translateX: 50 },
                                 { translateY: 50 },
@@ -68,7 +84,7 @@ const Welcome = () => {
                             borderRadius: 20,
                             position: "absolute",
                             top: 130,
-                            left: -50,
+                            left: -30,
                             transform: [
                                 { translateX: 50 },
                                 { translateY: 50 },
@@ -80,12 +96,12 @@ const Welcome = () => {
                     <Image
                         source={require("../assets/hero2.jpg")}
                         style={{
-                            height: 150,
-                            width: 150,
+                            height: 120,
+                            width: 120,
                             borderRadius: 20,
                             position: "absolute",
-                            top: 110,
-                            left: 100,
+                            top: 120,
+                            left: 130,
                             transform: [
                                 { translateX: 50 },
                                 { translateY: 50 },

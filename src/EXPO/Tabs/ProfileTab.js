@@ -8,6 +8,7 @@ import { Avatar, Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-community/async-storage';
 import { removeUser } from '../../../Redux/Slices/AuthSlice';
 import WelcomeScreen from '../Screens/Auth Screens/AuthView';
+import CustomButton from '../Components/CustomButton';
 
 export default function Profile(){
 
@@ -24,8 +25,6 @@ const tabData  = [
   icon :()=> <MaterialCommunityIcons name="account-edit-outline" size={30} color="green" />,
   onClick : ()=>{}
 },
-
-
 {
   id : 2 ,
   title : 'Saved Address' ,
@@ -33,23 +32,20 @@ const tabData  = [
   icon :()=>  <MaterialIcons name="edit-location" size={30} color="brown" />,
   onClick : ()=>{}
 },
-
-
-
-{
-  id : 3 ,
-  title : 'Security & Privacy' ,
-  describe : 'Change account password , payment method',
-  icon : ()=><MaterialIcons name="security" size={30} color="orange" />,
-  onClick : ()=>{}
-},
-{
-  id : 4 ,
-  title : 'Manage Notifications' ,
-  describe : 'Manage how you want to receive important updates',
-  icon : ()=><MaterialIcons name="notifications-none" size={30} color="pink" />,
-  onClick : ()=>{}
-},
+// {
+//   id : 3 ,
+//   title : 'Security & Privacy' ,
+//   describe : 'Change account password , payment method',
+//   icon : ()=><MaterialIcons name="security" size={30} color="orange" />,
+//   onClick : ()=>{}
+// },
+// {
+//   id : 4 ,
+//   title : 'Manage Notifications' ,
+//   describe : 'Manage how you want to receive important updates',
+//   icon : ()=><MaterialIcons name="notifications-none" size={30} color="pink" />,
+//   onClick : ()=>{}
+// },
 // {
 //   id : 5 ,
 //   title : 'Change Language' ,
@@ -113,35 +109,18 @@ const tabData  = [
      }
   />
 
-{/* 
-{
-  id : 6 ,
-  title : 'Logout' ,
-  describe : '',
-  icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="red" />,
-  onClick : ()=>{
-    AsyncStorage.clear()
-    nav.navigate('LogIn')
-  }
-}, */}
 
-<TouchableOpacity style={styles.tab} onPress={() => {
+
+<CustomButton 
+title={'Logout'}
+style={styles.tab} 
+onClick={() => {
     AsyncStorage.clear();
     dispatch(removeUser());
-    nav.navigate('HomeScreen');
-  }}>
+    nav.navigate('LogIn');
+  }} 
+  />
 
-<View style = {{flexDirection:'row'}}>
-  <View style ={styles.titleView} >
-  <Text style={styles.title}>Logout</Text>
-  </View>
-</View>
-
-
-<MaterialIcons name="navigate-next" size={34} color="black" />
-
-    </TouchableOpacity>
-      
     </View>
     
     </View>

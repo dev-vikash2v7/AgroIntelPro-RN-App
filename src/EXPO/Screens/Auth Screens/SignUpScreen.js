@@ -4,7 +4,7 @@ import { COLORS } from '../../../../constants/theme';
 
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
-import Button from '../components/Button';
+import Button from '../../Components/Button';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { useNavigation } from '@react-navigation/native';
@@ -39,7 +39,7 @@ const Signup = ({navigation}) => {
             // console.log("Document written with ID: ", docRef.id);
             dispatch(setUser(data))
             AsyncStorage.setItem('user', JSON.stringify(data));
-            navigation.navigate('HomeScreen');
+            navigation.navigate('MainTabs');
           }
           catch (e) {
               Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Please check your credentials and try again.' })
@@ -72,7 +72,11 @@ const Signup = ({navigation}) => {
             <View style={{ flex: 1, marginHorizontal: 22 }}>
 
                 <View style={  { marginTop: 5 , marginBottom : 10 }}>
+
+                    <View style = {{alignItems:'center' , flexDirection:'row',justifyContent :'space-between'}}>
+
                     <Text style={{
+
                         fontSize: 22,
                         fontWeight: 'bold',
                         marginVertical: 12,
@@ -80,6 +84,13 @@ const Signup = ({navigation}) => {
                     }}>
                         Create Account
                     </Text>
+
+                    < TouchableOpacity style= {{marginLeft : 10 ,position :'relative' , right : 0}} onPress={()=>navigation.navigate('MainTabs')}>
+                        <Text style={{color:COLORS.secondary, fontWeight : 'bold' , textDecorationLine:'underline' }} >{'Continue as a Guest->'}</Text>
+                        </TouchableOpacity>
+
+
+                    </View>
 
                     <Text style={{
                         fontSize: 16,
@@ -89,7 +100,7 @@ const Signup = ({navigation}) => {
 
 
                       {/* Name Input */}
-                <View style={ { marginBottom: 8 }}>
+                <View style={ styles.inputBox}>
 
                     <Text style={styles.label_text}>Your Name</Text>
 
@@ -107,7 +118,7 @@ const Signup = ({navigation}) => {
                 </View>
 
 
-                <View style={{ marginBottom: 8 }}>
+                <View style={ styles.inputBox}>
                     <Text style={styles.label_text}>Email address</Text>
 
                     <View style={styles.input_view}>
@@ -126,7 +137,7 @@ const Signup = ({navigation}) => {
 
                 
 
-                <View style={{ marginBottom: 8 }}>
+                <View style={ styles.inputBox}>
                     <Text style={styles.label_text}>Password</Text>
 
                     <View style={styles.input_view}>
@@ -160,7 +171,7 @@ const Signup = ({navigation}) => {
                     </View>
                   </View>
 
-                <View style={{ marginBottom: 8 }}>
+                <View style={styles.inputBox}>
                     <Text style={styles.label_text}>Confirm Password</Text>
 
                     <View style={styles.input_view}>
@@ -203,7 +214,7 @@ const Signup = ({navigation}) => {
                         style={{ marginRight: 8 }}
                         value={isChecked}
                         onValueChange={setIsChecked}
-                        color={isChecked ? COLORS.primary : undefined}
+                        color={isChecked ? COLORS.secondary : undefined}
                     />
 
                     <Text>I aggree to the terms and conditions</Text>
@@ -216,7 +227,7 @@ const Signup = ({navigation}) => {
       </View>
 
       {isSubmit ? 
- <ActivityIndicator size={30} color='blue' style ={{marginTop : 10}}/>
+ <ActivityIndicator size={30} color={COLORS.secondary} style ={{marginTop : 10}}/>
 :
 
                 <Button
@@ -321,7 +332,7 @@ const Signup = ({navigation}) => {
                     >
                         <Text style={{
                             fontSize: 16,
-                            color: COLORS.primary,
+                            color: COLORS.secondary,
                             fontWeight: "bold",
                             marginLeft: 6
                         }}>Login</Text>
@@ -344,7 +355,7 @@ const styles = StyleSheet.create({
 label_text:{
   fontSize: 16,
   fontWeight: '400',
-  marginVertical: 8
+  marginVertical: 5
 }
     ,
 
@@ -356,22 +367,9 @@ marginTop : 15 ,
     resizeMode: 'cover',
 },
 
- inputView : {
-  width: '90%',
- },
 
-  input: {
-    width : '100%',
-    height: 50,
-    borderColor: 'green',
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 10,
-    paddingLeft: 20,
-    alignSelf:'center',
-    color : '#000',
-    fontWeight : '500',
-    fontSize : 16
+  inputBox: {
+     marginBottom: 8 
   },
   errorMessage: {
     marginTop : 5 ,
