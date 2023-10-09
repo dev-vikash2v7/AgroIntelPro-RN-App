@@ -29,12 +29,15 @@ import MyFarm from './Screens/Crop Model Screens/MyFarm';
 import FarmStore from './Screens/Crop Model Screens/FarmStore';
 import FarmCommunity from './Screens/Crop Model Screens/FarmCommunity';
 import DiseasePredResult from './Screens/Crop Model Screens/DiseasePredResult';
-import WelcomeScreen from './Screens/Auth Screens/WelcomeScreen';
 import FertilizerResult from './Screens/Crop Model Screens/FertilizerResult';
 import RecommendCropResult from './Screens/Crop Model Screens/RecommendCropResult';
 import EditProfileScreen from './Screens/ProfileScreens/EditProfileScreen';
 import PrivacySecurityScreen from './Screens/ProfileScreens/PrivacyScreen';
 import AsyncStorage from '@react-native-community/async-storage';
+import { setUser } from '../../Redux/Slices/AuthSlice';
+
+import WelcomeScreen from './Screens/Auth Screens/WelcomeScreen';
+import ForgotPwdScreen from './Screens/Auth Screens/ForgotPwdScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator()
@@ -44,7 +47,6 @@ const Tab = createBottomTabNavigator();
 export default function AppNavigator() {
   
   const [isUser , setIsUser] = useState(false)
-  const [navigation , setNavigation] = useState('HomeScreen')
   const dispatch = useDispatch()  
   
 
@@ -74,13 +76,14 @@ export default function AppNavigator() {
   //   ),
   // };
 
-  
+
 
   useEffect(()=>{
   AsyncStorage.getItem('user')
   .then(user =>{
-    console.log('ddfdf' , user)
-    setIsUser(true);
+            setIsUser(true);
+            // console.log('App Navigator user : ' , user)
+            dispatch(setUser(JSON.parse(user)))
   })
       setIsUser( false)
   }, [])
@@ -89,10 +92,9 @@ export default function AppNavigator() {
  
 
 
-  function StackNavigator() {
+  function HomeStackNavigator() {
     return (
       <Stack.Navigator     
-        initialRouteName={'WelcomeScreen'}
         screenOptions={ {
             headerStyle: {
               backgroundColor: '#307ecc', //Set Header color
@@ -103,11 +105,9 @@ export default function AppNavigator() {
               fontWeight: 'bold', //Set Header text style
               fontSize: 15, 
             },
-            
         }}
         > 
 
-     
 
       <Stack.Screen 
        name='HomeScreen' 
@@ -172,25 +172,7 @@ export default function AppNavigator() {
        }}/>
  
 
-       <Stack.Screen 
-       name='SignUp' 
-       component={SignUpScreen } 
-       options={{
-        title: 'Register', //Set Header Title
-      }}
-     />
-     
-        <Stack.Screen 
-       name='LogIn' 
-       component={LogInScreen } 
-       options={{headerShown: false}}
-        />
-
-        <Stack.Screen 
-       name='WelcomeScreen' 
-       component={WelcomeScreen } 
-       options={{headerShown: false}}
-        />
+      
 
         <Stack.Screen 
        name='FertilizerResult' 
@@ -208,7 +190,60 @@ export default function AppNavigator() {
        }}
         />
 
+      
+
+    </Stack.Navigator>
+ 
+    );
+  }
+
+
+  function AuthStack() {
+    return (
+      <Stack.Navigator  initialRouteName='Welcome'> 
+
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{headerShown:false}} 
+      />
+      
       <Stack.Screen 
+       name='SignUp' 
+       component={SignUpScreen } 
+       options={{headerShown:false}} 
+
+     />
+     
+      <Stack.Screen 
+      name = 'ForgotPwdScreen'
+       component={ForgotPwdScreen} 
+       options={{headerShown:false}} 
+
+       />
+
+        <Stack.Screen 
+       name='LogIn' 
+       component={LogInScreen } 
+       options={{headerShown: false}}
+        />
+        </Stack.Navigator>
+        )
+    }
+
+  function ProfileStack() {
+    return (
+      <Stack.Navigator initialRouteName='ProfileScreen'>
+
+        <Stack.Screen 
+       name='ProfileScreen' 
+       component={ProfileScreen } 
+       options={{headerShown :false}}
+     />
+
+       
+
+        <Stack.Screen 
       name="EditProfile" 
       component={EditProfileScreen} 
       options={{
@@ -223,11 +258,11 @@ export default function AppNavigator() {
         title : 'Privacy & Security',
        }}
       />
-
-    </Stack.Navigator>
- 
+      </Stack.Navigator>
     );
   }
+
+  
 
 
   function TabNavigator() {
@@ -252,7 +287,7 @@ export default function AppNavigator() {
     
       <Tab.Screen
         name="Home"
-        component={StackNavigator}
+        component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon iconName={icons.home}  focused={focused} />
@@ -264,6 +299,8 @@ export default function AppNavigator() {
           ),
         }}
       />
+
+
       <Tab.Screen
         name="News"
         component={NewsScreen}
@@ -280,7 +317,7 @@ export default function AppNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={isUser ? ProfileScreen : WelcomeScreen}
+        component={ ProfileStack }
         options={{
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon iconName={icons.user} focused={focused} />
@@ -297,12 +334,31 @@ export default function AppNavigator() {
     );
   }
 
+  
+
 
 
   return (
 
-<NavigationContainer>
-<TabNavigator/>
+<NavigationContainer >
+
+<Stack.Navigator  initialRouteName={ isUser ? 'MainTabs' : 'Auth' }>
+
+    
+
+
+      <Stack.Screen
+        name="Auth"
+        component={AuthStack}
+        options={{ headerShown: false }} // Hide the header for the TabNavigator
+      />
+
+      <Stack.Screen
+        name="MainTabs"
+        component={TabNavigator}
+        options={{ headerShown: false }} // Hide the header for the TabNavigator
+      />
+    </Stack.Navigator>
 <Toast />
 
 </NavigationContainer>

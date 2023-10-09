@@ -8,8 +8,7 @@ export default CustomTabIcon = ({ focused, iconName }) => {
       <View style ={{
         width : 55 ,
         height : 50 , 
-backgroundColor : focused ? COLORS.light_green : '#fff',
-opcaity : 0.5,
+backgroundColor : focused ? COLORS.primary : '#fff',
 borderRadius : 20 , 
 alignItems:'center',
 justifyContent:'center', 

@@ -1,7 +1,7 @@
-import { View, Text, Image, Pressable, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, Image, Pressable, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { COLORS } from '../../../../constants/theme';
-
+import { SafeAreaView } from "react-native-safe-area-context";
+import COLORS from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
@@ -13,12 +13,12 @@ import { collection,addDoc} from "firebase/firestore";
 
 import { db } from '../../../../firebase_config'; 
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
+import Button from '../components/Button';
 import images from '../../../../constants/images';
-import Toast from 'react-native-toast-message';
-import { ActivityIndicator } from 'react-native-paper';
+import showToast from '../../Components/showToast';
 
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [name, setName] = useState('');
@@ -28,7 +28,7 @@ const Signup = ({navigation}) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [isSubmit , setIsSubmit] = useState(false)
 
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
     const dispatch = useDispatch();
 
     const  registerUser = async ( data  )=>{
@@ -50,13 +50,13 @@ const Signup = ({navigation}) => {
       
         const handleSignup = () => {
           if (!name || !email || !password || !confirmPassword) {
-            Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Enter  all details'})
+            Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Enter  all details'})
             setErrorMessage('Please fill in all fields');
             return;
           }
       
           if (password !== confirmPassword) {
-            Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Password do not match.'})
+            Toast.show({ type : 'failure' , text1 : 'Signup Failed' ,text2 :  'Password do not match.'})
             setErrorMessage('Passwords do not match');
             return;
           }
@@ -67,11 +67,9 @@ const Signup = ({navigation}) => {
       
   
     return (
-        <ScrollView style={styles.container}>
-
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
-
-                <View style={  { marginTop: 5 , marginBottom : 10 }}>
+                <View style={{ marginVertical: 22 }}>
                     <Text style={{
                         fontSize: 22,
                         fontWeight: 'bold',
@@ -87,13 +85,23 @@ const Signup = ({navigation}) => {
                     }}>Connect with your friend today!</Text>
                 </View>
 
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Your Name</Text>
 
-                      {/* Name Input */}
-                <View style={ { marginBottom: 8 }}>
-
-                    <Text style={styles.label_text}>Your Name</Text>
-
-                    <View style={styles.input_view}>
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
                         <TextInput
                             placeholder='Enter your name.'
                             placeholderTextColor={COLORS.black}
@@ -107,10 +115,23 @@ const Signup = ({navigation}) => {
                 </View>
 
 
-                <View style={{ marginBottom: 8 }}>
-                    <Text style={styles.label_text}>Email address</Text>
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Email address</Text>
 
-                    <View style={styles.input_view}>
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
                         <TextInput
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
@@ -124,12 +145,64 @@ const Signup = ({navigation}) => {
                     </View>
                 </View>
 
-                
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Mobile Number</Text>
 
-                <View style={{ marginBottom: 8 }}>
-                    <Text style={styles.label_text}>Password</Text>
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        paddingLeft: 22
+                    }}>
+                        <TextInput
+                            placeholder='+91'
+                            placeholderTextColor={COLORS.black}
+                            keyboardType='numeric'
+                            style={{
+                                width: "12%",
+                                borderRightWidth: 1,
+                                borderLeftColor: COLORS.grey,
+                                height: "100%"
+                            }}
+                        />
 
-                    <View style={styles.input_view}>
+                        <TextInput
+                            placeholder='Enter your phone number'
+                            placeholderTextColor={COLORS.black}
+                            keyboardType='numeric'
+                            style={{
+                                width: "80%"
+                            }}
+                        />
+                    </View>
+                </View>
+
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Password</Text>
+
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
@@ -158,12 +231,24 @@ const Signup = ({navigation}) => {
 
                         </TouchableOpacity>
                     </View>
-                  </View>
 
-                <View style={{ marginBottom: 8 }}>
-                    <Text style={styles.label_text}>Confirm Password</Text>
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Confirm Password</Text>
 
-                    <View style={styles.input_view}>
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
@@ -194,6 +279,7 @@ const Signup = ({navigation}) => {
                     </View>
                 </View>
 
+</View>
 
                 <View style={{
                     flexDirection: 'row',
@@ -225,7 +311,6 @@ const Signup = ({navigation}) => {
                     style={{
                         marginTop: 18,
                         marginBottom: 4,
-                        marginHorizontal : 20
                     }}
                     onPress = {handleSignup}
                 />
@@ -317,7 +402,7 @@ const Signup = ({navigation}) => {
                 }}>
                     <Text style={{ fontSize: 16, color: COLORS.black }}>Already have an account</Text>
                     <Pressable
-                        onPress={() => navigation.navigate("LogIn")}
+                        onPress={() => navigation.navigate("Login")}
                     >
                         <Text style={{
                             fontSize: 16,
@@ -327,80 +412,9 @@ const Signup = ({navigation}) => {
                         }}>Login</Text>
                     </Pressable>
             </View>
-            
-        </ScrollView>
+
+        </SafeAreaView>
     )
 }
 
-export default Signup;
-
-
-
-const styles = StyleSheet.create({
-  container:{
-      flex: 1,
-       backgroundColor: COLORS.white 
-    },
-label_text:{
-  fontSize: 16,
-  fontWeight: '400',
-  marginVertical: 8
-}
-    ,
-
-logo:{
-width : 60 ,
-height : 60 ,
-alignItems : 'center',
-marginTop : 15 ,
-    resizeMode: 'cover',
-},
-
- inputView : {
-  width: '90%',
- },
-
-  input: {
-    width : '100%',
-    height: 50,
-    borderColor: 'green',
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 10,
-    paddingLeft: 20,
-    alignSelf:'center',
-    color : '#000',
-    fontWeight : '500',
-    fontSize : 16
-  },
-  errorMessage: {
-    marginTop : 5 ,
-    color: 'red',
-    marginBottom: 7,
-    fontWeight : 'bold'
-  },
-  loginText :{
-    fontSize : 15,
-    alignSelf : 'center',
-    marginTop:15,
-    color  :  '#000',
-    fontWeight : '500'
-
-  },
-  loginLink:{
-    marginLeft : 4,
-    textDecorationLine:'underline',
-    color : 'blue',
-  },
-  input_view :{
-    width: "100%",
-    height: 48,
-    borderColor: COLORS.black,
-    borderWidth: 1,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingLeft: 22
-}
-});
-
+export default Signup

@@ -2,14 +2,16 @@
 
 const COLORS = {
     primary : '#4CAF50',
+    white: "#FFFFFF",
+    black: "#222222",
 
-    secondary: "#444262",
+    primary: "#007260",
+    secondary: "#39B68D",
+    grey: "#CCCCCC",
+
+    secondary: "#4CAF50",
     tertiary: "#FF7754",
   
-    gray: "#83829A",
-    gray2: "#C1C0C8",
-  
-    white: "#F3F4F8",
     lightWhite: "#FAFAFC",
 
     background: '#FFFFFF',
@@ -18,7 +20,7 @@ const COLORS = {
     highlight : '#FF5722',
     success : '#4CAF50',
     error : '#FF5252',
-    light_green:'#90EE90',
+
   };
   
   

@@ -1,116 +1,168 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet ,Button, TouchableOpacity ,ImageBackground, Dimensions  } from 'react-native';
+import { View, Text, Pressable, Image } from 'react-native'
+import React from 'react'
+import { LinearGradient } from "expo-linear-gradient";
+import COLORS from '../constants/colors';
+import Button from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
-import CustomButton from '../../Components/CustomButton';
-import images from '../../../../constants/images';
-import { COLORS } from '../../../../constants/theme';
-// import { Avatar } from 'react-native-paper';
-import AsyncStorage from '@react-native-community/async-storage';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../../../Redux/Slices/AuthSlice';
-
-const WelcomeScreen = () => {
-
-const dispatch = useDispatch()
-const navigation = useNavigation();
-
-      useEffect(()=> {
-      AsyncStorage.getItem('user').then((user) =>
-      {
-        if(user) {
-          console.log(JSON.parse(user));
-            // dispatch(setUser(JSON.parse(user)))
-            navigation.navigate( 'HomeScreen' )
-        }
-      }
-      );
-  }, [dispatch]);
 
 
+const Welcome = () => {
 
-
-  return (
-   
-    <View style={styles.container}>
-      
-      <Image
-        source={images.splash}
-        style={styles.logo}
-      /> 
-{/* 
-      <Text style={styles.appName}>AgroIntel Pro</Text>
-
-      <Text style={styles.slogan}>Grow More , Worry Less !</Text>
-
-      {/* Authentication Buttons */}
-
-      <View style = {{width : '100%' ,  borderBottomWidth : 0.5 , borderBottomColor : 'gray' , paddingBottom : 10 , alignItems :'center',justifyContent :'center'}}>
+    const navigation = useNavigation()
     
-      <CustomButton 
-      bg = 'blue' 
-      color  = 'white'
-        title="Login"
-        onClick={()=> navigation.navigate('LogIn')}
-        style={styles.button}
-      />
+    return (
+        <LinearGradient
+            style={{
+                flex: 1,
+                paddingVertical : 10
+            }}
+            colors={[COLORS.secondary, COLORS.primary]}
+        >
+            <View style={{ flex: 1 }}>
 
-      <Text style = 
-      {{fontWeight : '600' , 
-      fontSize : 16 , 
-      textAlign : 'center' ,
-       marginVertical : 6
-       }}> OR </Text>
+            <View> 
+                <Text> Welcome To</Text>
+                  <Text>AgroInte Pro</Text>
+                  <Text> Grow More ! Worry Less  </Text>
+            </View>
 
+                <View>
+                    <Image
+                        source={require("../assets/hero1.jpg")}
+                        style={{
+                            height: 100,
+                            width: 100,
+                            borderRadius: 20,
+                            position: "absolute",
+                            top: 10,
+                            transform: [
+                                { translateX: 20 },
+                                { translateY: 50 },
+                                { rotate: "-15deg" }
+                            ]
+                        }}
+                    />
 
-<CustomButton 
-      bg = 'gray' 
-      color  = 'white'
-        title="Register"
-        onClick={()=> navigation.navigate('SignUp')}
-        style={styles.button}
-      />
+                    <Image
+                        source={require("../assets/hero3.jpg")}
+                        style={{
+                            height: 100,
+                            width: 100,
+                            borderRadius: 20,
+                            position: "absolute",
+                            top: -30,
+                            left: 100,
+                            transform: [
+                                { translateX: 50 },
+                                { translateY: 50 },
+                                { rotate: "-5deg" }
+                            ]
+                        }}
+                    />
 
-</View>
+                    <Image
+                        source={require("../assets/hero3.jpg")}
+                        style={{
+                            width: 100,
+                            height: 100,
+                            borderRadius: 20,
+                            position: "absolute",
+                            top: 130,
+                            left: -50,
+                            transform: [
+                                { translateX: 50 },
+                                { translateY: 50 },
+                                { rotate: "15deg" }
+                            ]
+                        }}
+                    />
 
-<TouchableOpacity onPress={ ()=>navigation.navigate('HomeScreen')}>
-        <Text
-      style=  {{marginTop : 5 , fontSize : 16, color : 'red' , textDecorationLine :'underline', fontWeight : '500'}}
-        > 
-        Continue as Guest
-         </Text>
-         </TouchableOpacity>
-    
-    </View>
-  );
-};
+                    <Image
+                        source={require("../assets/hero2.jpg")}
+                        style={{
+                            height: 150,
+                            width: 150,
+                            borderRadius: 20,
+                            position: "absolute",
+                            top: 110,
+                            left: 100,
+                            transform: [
+                                { translateX: 50 },
+                                { translateY: 50 },
+                                { rotate: "-15deg" }
+                            ]
+                        }}
+                    />
+                </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor : COLORS.background
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
-    resizeMode :'cover'
-  },
-  appName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
+                {/* content  */}
 
-  slogan: {
-    fontSize: 16,
-    marginBottom: 30,
-  },
+                <View style={{
+                    paddingHorizontal: 22,
+                    position: "absolute",
+                    top: 350,
+                    width: "100%"
+                }}>
+                    <Text style={{
+                        fontSize: 50,
+                        fontWeight: 800,
+                        color: COLORS.white
+                    }}>Let's Get</Text>
 
+                    <Text style={{
+                        fontSize: 46,
+                        fontWeight: 800,
+                        color: COLORS.white
+                    }}>Started</Text>
 
+                    <View style={{ marginVertical: 22 }}>
 
-});
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.white,
+                            marginVertical: 4
+                        }}>Get an AI Assistent Support for your farm.</Text>
 
-export default WelcomeScreen;
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.white,
+                        }}>Predict Disease , Best Crop and Fertilizers for your crop and</Text>
+                    </View>
+
+                    <Button
+                        title="Join Now"
+                        onPress={() => navigation.navigate("SignUp")}
+                        style={{
+                            marginTop: 22,
+                            width: "100%"
+                        }}
+                    />
+
+                    <View style={{
+                        flexDirection: "row",
+                        marginTop: 12,
+                        justifyContent: "center"
+                    }}>
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.white
+                        }}>Already have an account ?</Text>
+                        <Pressable
+                            onPress={() => navigation.navigate("LogIn")}
+                        >
+                            <Text style={{
+                                fontSize: 16,
+                                color: COLORS.white,
+                                fontWeight: "bold",
+                                marginLeft: 4
+                            }}>Login</Text>
+                        </Pressable>
+
+                    </View>
+                </View>
+            </View>
+        </LinearGradient>
+    )
+}
+
+export default Welcome

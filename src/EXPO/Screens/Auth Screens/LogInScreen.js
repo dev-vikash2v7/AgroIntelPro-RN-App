@@ -1,34 +1,39 @@
-import React, { useState } from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
-
+import React, { useState    } from 'react';
 import {
   View,
   Text,
   TextInput,
-
   StyleSheet,
-  
-  Image
+  Image,
+  TouchableOpacity,Pressable
 } from 'react-native';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
+import Checkbox from "expo-checkbox"
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../../../../firebase_config'; 
 import { collection, query, where, getDocs } from "firebase/firestore";
-import CustomButton from '../../Components/CustomButton';
-import { setUser } from '../../../../Redux/Slices/AuthSlice';
-import images from '../../../../constants/images';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper'; 
 import Toast from 'react-native-toast-message';
 import { COLORS } from '../../../../constants/theme';
 
-const LogInScreen = () => {
+// import images from '../../../../constants/images';
+import { setUser } from '../../../../Redux/Slices/AuthSlice';
+import { Ionicons } from '@expo/vector-icons';
+import Button from '../components/Button';
+
+
+export default LogInScreen = () => {
   const navigation = useNavigation()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [isChecked, setIsChecked] = useState(false); 
   const [isSubmit , setIsSubmit] = useState(false)
   
   const checkCredentials =async  (user)=>{
@@ -42,9 +47,11 @@ const LogInScreen = () => {
       const userData = doc.data();
 
       if(userData.password == user.password){
+        dispatch(setUser(userData))
+  
         Toast.show({type : 'success' ,text1 : 'Login Scessfully !' , text2 : 'Yours Welcome'} )
-        // dispatch(setUser(userData))
         AsyncStorage.setItem('user', JSON.stringify(userData));
+
         navigation.navigate('HomeScreen')
       }
         setErrorMessage('Password is Incorrect')
@@ -66,67 +73,248 @@ const LogInScreen = () => {
 
 
 
-
-
   return (
-    <View   style = { styles.container}>
+    <View style={{ flex: 1, backgroundColor: COLORS.white }}>
+            <View style={{ flex: 1, marginHorizontal: 22 }}>
+
+                <View style={{ marginVertical: 22 }}>
+                    <Text style={{ 
+                        fontSize: 22,
+                        fontWeight: 'bold',
+                        marginVertical: 12,
+                        color: COLORS.black
+                    }}>
+                        Hi Welcome Back ! 👋
+                    </Text>
+
+                    <Text style={{
+                        fontSize: 16,
+                        color: COLORS.black
+                    }}>Hello again you have been missed!</Text>
+                </View>
+
+                
+
+               <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Email address</Text>
+
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
+                        <TextInput
+                            placeholder='Enter your email address'
+                            placeholderTextColor={COLORS.black}
+                            keyboardType='email-address'
+                            style={{
+                                width: "100%"
+                            }}
+                            onChangeText={text => setEmail(text)}
+                            value={email}
+                            autoCapitalize="none"
+                        />
+                    </View>
+                </View>
+
+                <View style={{ marginBottom: 12 }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 400,
+                        marginVertical: 8
+                    }}>Password</Text>
+
+                    <View style={{
+                        width: "100%",
+                        height: 48,
+                        borderColor: COLORS.black,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        paddingLeft: 22
+                    }}>
+                        <TextInput
+                            placeholder='Enter your password'
+                            placeholderTextColor={COLORS.black}
+                            secureTextEntry={isPasswordShown}
+                            style={{
+                                width: "100%"
+                            }}
+                            onChangeText={text => setPassword(text)}
+                            value={password}
+                        />
+
+                       <TouchableOpacity
+                            onPress={() => setIsPasswordShown(!isPasswordShown)}
+                            style={{
+                                position: "absolute",
+                                right: 12
+                            }}
+                        >
+                            {
+                                isPasswordShown == true ? (
+                                    <Ionicons name="eye-off" size={24} color={COLORS.black} />
+                                ) : (
+                                    <Ionicons name="eye" size={24} color={COLORS.black} />
+                                )
+                            }
+                        </TouchableOpacity> 
+
+
+                    </View>
+                </View>
 
   
 
-    <Image source={icons.logo} style = {styles.logo}/>
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 6
+                }}>
+                    <Checkbox
+                        style={{ marginRight: 8 }}
+                        value={isChecked}
+                        onValueChange={setIsChecked}
+                        color={isChecked ? COLORS.primary : undefined}
+                    />
 
+                    <Text>Remenber Me</Text>
+                </View>
 
+                 {errorMessage &&
+                        <Text style={styles.errorMessage}>{errorMessage}</Text>
+                }
+                    
 
-    <View style ={styles.inputView}>
-
-
-
-    <TextInput
-      style={styles.input}
-      placeholder="Email"
-      onChangeText={text => setEmail(text)}
-      value={email}
-      keyboardType="email-address"
-      autoCapitalize="none"
-  placeholderTextColor =  'gray'
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Password"
-      onChangeText={text => setPassword(text)}
-      value={password}
-      secureTextEntry
-      autoCapitalize="none"
-  placeholderTextColor =  'gray'
-    />
-
-
-  
-    {errorMessage &&
-      <Text style={styles.errorMessage}>{errorMessage}</Text>
-     }
-
-    </View>
-
-{isSubmit ? 
+                {isSubmit ? 
  <ActivityIndicator size={30} color='orange' style ={{marginTop : 10}}/>
 :
-    <CustomButton
-     bg = {'orange'} 
-     title = {'LogIn'}
-      onClick = {handleLogin}
-       color = {'#fff'} 
-       />
-}
+                <Button
+                    title="Login"
+                    filled
+                    style={{ 
+                        marginTop: 18,
+                        marginBottom: 4,
+                    }}
+                    onPress = {handleLogin}
+                />
+                }
 
-{/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
+                    <View
+                        style={{
+                            flex: 1,
+                            height: 1,
+                            backgroundColor: COLORS.grey,
+                            marginHorizontal: 10
+                        }}
+                    />
+                    <Text style={{ fontSize: 14 }}>Or Login with</Text>
+                    <View
+                        style={{
+                            flex: 1,
+                            height: 1,
+                            backgroundColor: COLORS.grey,
+                            marginHorizontal: 10
+                        }}
+                    />
+                </View>
 
-       <Text style={styles.loginText}>
-       Dont't Have an Account ?
-        <Text style={styles.loginLink} onPress={()=>navigation.navigate('SignUp')}>Create Here</Text>
-        </Text>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center'
+                }}>
+                    <TouchableOpacity
+                        onPress={() => console.log("Pressed")}
+                        style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            height: 52,
+                            borderWidth: 1,
+                            borderColor: COLORS.grey,
+                            marginRight: 4,
+                            borderRadius: 10
+                        }}
+                    >
+                        <Image
+                            source={require("../assets/facebook.png")}
+                            style={{
+                                height: 36,
+                                width: 36,
+                                marginRight: 8
+                            }}
+                            resizeMode='contain'
+                        />
 
-  </View>
+                        <Text>Facebook</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => console.log("Pressed")}
+                        style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            height: 52,
+                            borderWidth: 1,
+                            borderColor: COLORS.grey,
+                            marginRight: 4,
+                            borderRadius: 10
+                        }}
+                    >
+                        <Image
+                            source={require("../assets/google.png")}
+                            style={{
+                                height: 36,
+                                width: 36,
+                                marginRight: 8
+                            }}
+                            resizeMode='contain'
+                        />
+
+                        <Text>Google</Text>
+                    </TouchableOpacity>
+                </View> 
+
+
+
+                <View style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 22
+                }}>
+                    <Text style={{ fontSize: 16, color: COLORS.black }}>Don't have an account ? </Text>
+
+                    <Pressable
+                        onPress={() => navigation.navigate("SignUp")}
+                    >
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.primary,
+                            fontWeight: "bold",
+                            marginLeft: 6
+                        }}>Register</Text>
+                    </Pressable>
+                </View>
+               
+
+
+            </View> 
+
+
+        </View>
 
 
   )
@@ -190,4 +378,3 @@ marginTop : 15 ,
   }
 });
 
-export default LogInScreen;

@@ -2,16 +2,20 @@ import React,{useState} from 'react'
 import { View, Text  , StyleSheet , TouchableOpacity  ,FlatList, ScrollView } from 'react-native'
 import {FontAwesome, MaterialIcons ,MaterialCommunityIcons , Entypo} from  '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native';
-import {   useDispatch} from 'react-redux'
+import {   useDispatch, useSelector} from 'react-redux'
 import {COLORS} from '../../../constants/theme';
-import { Avatar} from 'react-native-paper';
+import { Avatar, Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-community/async-storage';
+import { removeUser } from '../../../Redux/Slices/AuthSlice';
+import WelcomeScreen from '../Screens/Auth Screens/AuthView';
 
 export default function Profile(){
 
   const nav = useNavigation();
-  const dispatch = useDispatch();
-
+  const user= useSelector(state => state.auth.user);
+  const dispatch = useDispatch()  
+  
+  
 const tabData  = [
 {
   id : 1 ,
@@ -46,43 +50,35 @@ const tabData  = [
   icon : ()=><MaterialIcons name="notifications-none" size={30} color="pink" />,
   onClick : ()=>{}
 },
-{
-  id : 5 ,
-  title : 'Change Language' ,
-  describe : 'Change Language of app',
-  icon : ()=><Entypo name="language" size={30} color="blue" />,
-  onClick : ()=>{}
-},
-{
-  id : 6 ,
-  title : 'Logout' ,
-  describe : '',
-  icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="red" />,
-  onClick : ()=>{
-    AsyncStorage.clear()
-    nav.navigate('LogIn')
-  }
-},
-
+// {
+//   id : 5 ,
+//   title : 'Change Language' ,
+//   describe : 'Change Language of app',
+//   icon : ()=><Entypo name="language" size={30} color="blue" />,
+//   onClick : ()=>{}
+// },
 ]
 
   return (
+    !user ? 
+<WelcomeScreen/>
+    :
     <View style={styles.container}>
 
     <View style = {styles.userView}>
 
       {
-      user.image ? 
+      user?.image ? 
     <Avatar.Image
     style={styles.avatar}
-    source={{uri : user.image}}
+    source={{uri : user?.image}}
   />
     :
     <FontAwesome name =  'user-circle-o'   size = {50} color={ 'blue'}/>
     }
 
-    <Text style={styles.name}>{user.name}</Text>
-      <Text style={styles.email}>{user.email} </Text>
+    <Text style={styles.name}>{user?.name}</Text>
+      <Text style={styles.email}>{user?.email} </Text>
     </View>                                                         
 
 
@@ -117,6 +113,34 @@ const tabData  = [
      }
   />
 
+{/* 
+{
+  id : 6 ,
+  title : 'Logout' ,
+  describe : '',
+  icon : ()=> <MaterialCommunityIcons name="logout" size={30} color="red" />,
+  onClick : ()=>{
+    AsyncStorage.clear()
+    nav.navigate('LogIn')
+  }
+}, */}
+
+<TouchableOpacity style={styles.tab} onPress={() => {
+    AsyncStorage.clear();
+    dispatch(removeUser());
+    nav.navigate('HomeScreen');
+  }}>
+
+<View style = {{flexDirection:'row'}}>
+  <View style ={styles.titleView} >
+  <Text style={styles.title}>Logout</Text>
+  </View>
+</View>
+
+
+<MaterialIcons name="navigate-next" size={34} color="black" />
+
+    </TouchableOpacity>
       
     </View>
     
@@ -127,7 +151,8 @@ const tabData  = [
 
 const styles = StyleSheet.create({
   container : {
-    backgroundColor :COLORS.background
+    backgroundColor :COLORS.background,
+    height : '100%'
   },
   userView : {
 marginTop : 20 , 
