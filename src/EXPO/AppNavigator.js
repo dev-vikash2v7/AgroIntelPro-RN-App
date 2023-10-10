@@ -16,7 +16,7 @@ import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
 
 
-import ProfileScreen from './Tabs/f';
+import ProfileScreen from './Tabs/ProfileTab';
 
 import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
 import LogInScreen from './Screens/Auth Screens/LogInScreen';
@@ -49,40 +49,12 @@ export default function AppNavigator() {
   const dispatch = useDispatch()  
   
 
-  // const toastConfig = {
-  //   success: ({type ,  text1, text2 ,  ...rest }) => (
-
-  //     <View style={styles.toast}>
-  //               {console.log( "ssssssssssssss : " , text1 , '------------ ' , rest)}
-
-
-  //       <Text style={styles.toastText}>{text1}</Text>
-  //     </View>
-  //   ),
-
-  //   failure: ({ text1, ...rest }) => (
-  //     <View style={styles.toast }>
-  //       {console.log(text1 , rest)}
-  //       <Text style={styles.toastText}>{text1}</Text>
-  //     </View>
-  //   ),
-
-  //   error: ({ text1, ...rest }) => (
-  //     <View style={styles.toast }>
-  //       {console.log( "errorroror " , text1 , '------------ ' , rest)}
-  //       <Text style={styles.toastText}>{text1}</Text>
-  //     </View>
-  //   ),
-  // };
-
-
-
   useEffect(()=>{
   AsyncStorage.getItem('user')
   .then(user =>{
             setIsUser(true);
-            // console.log('App Navigator user : ' , user)
             dispatch(setUser(JSON.parse(user)))
+            console.log('user yes : ' , user)
   })
       setIsUser( false)
   }, [])
@@ -243,10 +215,10 @@ export default function AppNavigator() {
        
 
         <Stack.Screen 
-      name="EditProfile" 
+      name="EditProfileScreen" 
       component={EditProfileScreen} 
       options={{
-        title : 'Edit Profile',
+        title : 'Edit Account',
        }}
       />
 
@@ -341,18 +313,18 @@ export default function AppNavigator() {
 
 <NavigationContainer >
 
-<Stack.Navigator  initialRouteName={ isUser ? 'MainTabs' : 'Auth' }>
+<Stack.Navigator  initialRouteName={isUser ?  'MainTabs' : 'Auth' }>
 
       <Stack.Screen
         name="Auth"
         component={AuthStack}
-        options={{ headerShown: false }} // Hide the header for the TabNavigator
+        options={{ headerShown: false }} 
       />
 
       <Stack.Screen
         name="MainTabs"
         component={TabNavigator}
-        options={{ headerShown: false }} // Hide the header for the TabNavigator
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
 <Toast />

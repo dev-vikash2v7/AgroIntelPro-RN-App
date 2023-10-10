@@ -7,10 +7,10 @@ import {
   } from 'react-native';
   import React from 'react';
   
-  const CustomButton = ({bg, title, onClick, color}) => {
+  const CustomButton = ({bg, title, onClick, color , marginBottom}) => {
     return (
       <TouchableOpacity
-        style={[styles.btn, {backgroundColor: bg}]}
+        style={[styles.btn, {backgroundColor: bg , marginBottom }]}
         onPress={() => {
           onClick();
         }}>

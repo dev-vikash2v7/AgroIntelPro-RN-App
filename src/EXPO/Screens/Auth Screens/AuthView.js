@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet ,Button, TouchableOpacity ,ImageBackground, Dimensions  } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,StackActions } from '@react-navigation/native';
 import CustomButton from '../../Components/CustomButton';
 import images from '../../../../constants/images';
 import { COLORS } from '../../../../constants/theme';
@@ -33,7 +33,8 @@ const navigation = useNavigation();
       bg = 'blue' 
       color  = 'white'
         title="Login"
-        onClick={()=> navigation.navigate('LogIn')}
+        onClick={()=>navigation.navigate('Auth')
+}
         style={styles.button}
       />
 
@@ -49,7 +50,7 @@ const navigation = useNavigation();
       bg = {COLORS.secondary} 
       color  = 'white'
         title="Register"
-        onClick={()=> navigation.navigate('SignUp')}
+        onClick={()=> navigation.navigate('Auth')}
         style={styles.button}
       />
 

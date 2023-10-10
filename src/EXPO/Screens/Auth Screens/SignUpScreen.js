@@ -2,33 +2,32 @@ import { View, Text, Image, Pressable, TextInput, TouchableOpacity, StyleSheet, 
 import React, { useState } from 'react'
 import { COLORS } from '../../../../constants/theme';
 
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons as Icon  , FontAwesome, Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../../Components/Button';
-import AsyncStorage from '@react-native-community/async-storage';
 
-import { useNavigation } from '@react-navigation/native';
+import { StackActions, useNavigation } from '@react-navigation/native';
 import {useDispatch }  from 'react-redux'
 import { collection,addDoc} from "firebase/firestore";
 
 import { db } from '../../../../firebase_config'; 
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
-import images from '../../../../constants/images';
 import Toast from 'react-native-toast-message';
 import { ActivityIndicator } from 'react-native-paper';
 
 
-const Signup = ({navigation}) => {
+const Signup = () => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [address, setAddress] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [isSubmit , setIsSubmit] = useState(false)
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
     const dispatch = useDispatch();
 
     const  registerUser = async ( data  )=>{
@@ -36,31 +35,31 @@ const Signup = ({navigation}) => {
       
            try{
            const docRef =  await addDoc(collection(db, "Users"), data);
-            // console.log("Document written with ID: ", docRef.id);
-            dispatch(setUser(data))
-            AsyncStorage.setItem('user', JSON.stringify(data));
-            navigation.navigate('MainTabs');
+
+           console.log({...data , id : docRef.id})
+
+            dispatch(setUser({...data , id : docRef.id}))
+            navigation.dispatch(StackActions.replace(('MainTabs')))
           }
           catch (e) {
-              Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Please check your credentials and try again.' })
+            console.log('erere ' , e)
+              Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Please Check Your Internet Connect and Try Again.' })
             }
           setIsSubmit(false)
       }
       
       
         const handleSignup = () => {
-          if (!name || !email || !password || !confirmPassword) {
-            Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Enter  all details'})
+          if (!name || !email || !password || !confirmPassword || !password || !isChecked || !address) {
             setErrorMessage('Please fill in all fields');
             return;
           }
       
           if (password !== confirmPassword) {
-            Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Password do not match.'})
             setErrorMessage('Passwords do not match');
             return;
           }
-          registerUser({name, email, password})
+          registerUser({name,address ,  email, password})
         };
       
         
@@ -85,7 +84,7 @@ const Signup = ({navigation}) => {
                         Create Account
                     </Text>
 
-                    < TouchableOpacity style= {{marginLeft : 10 ,position :'relative' , right : 0}} onPress={()=>navigation.navigate('MainTabs')}>
+                    <TouchableOpacity style= {{marginLeft : 10 ,position :'relative' , right : 0}} onPress={()=>navigation.navigate('MainTabs')}>
                         <Text style={{color:COLORS.secondary, fontWeight : 'bold' , textDecorationLine:'underline' }} >{'Continue as a Guest->'}</Text>
                         </TouchableOpacity>
 
@@ -101,16 +100,15 @@ const Signup = ({navigation}) => {
 
                       {/* Name Input */}
                 <View style={ styles.inputBox}>
-
                     <Text style={styles.label_text}>Your Name</Text>
 
                     <View style={styles.input_view}>
+                       <FontAwesome name="user-o" color={COLORS.black} size={16} />
+
                         <TextInput
                             placeholder='Enter your name.'
                             placeholderTextColor={COLORS.black}
-                            style={{
-                                width: "100%"
-                            }}
+                            style={styles.input}
                             onChangeText={text => setName(text)}
                             value={name}
                         />
@@ -118,19 +116,39 @@ const Signup = ({navigation}) => {
                 </View>
 
 
+{/* Address  */}
+                <View style={ styles.inputBox}>
+                    <Text style={styles.label_text}>Your Address</Text>
+                    <View style={styles.input_view}>
+                         <Icon name="map-marker-outline" color={COLORS.black} size={20} />
+
+                        <TextInput
+                            placeholder='Enter your address.'
+                            placeholderTextColor={COLORS.black}
+                            style={styles.input}
+                            onChangeText={text => setAddress(text)}
+                            value={address}
+                        />
+                    </View>
+                </View>
+
+
+
+{/* Email input */}
                 <View style={ styles.inputBox}>
                     <Text style={styles.label_text}>Email address</Text>
 
                     <View style={styles.input_view}>
+                            <FontAwesome name="envelope-o" color={COLORS.black} size={16} />
+
                         <TextInput
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
                             keyboardType='email-address'
-                            style={{
-                                width: "100%"
-                            }}
+                            style={styles.input}
                             onChangeText={text => setEmail(text)}
                             value={email}
+                            autoCapitalize='none'
                         />
                     </View>
                 </View>
@@ -141,15 +159,16 @@ const Signup = ({navigation}) => {
                     <Text style={styles.label_text}>Password</Text>
 
                     <View style={styles.input_view}>
+
+                        <FontAwesome name='key' size={16} color={COLORS.black}/>
+
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
                             onChangeText={text => setPassword(text)}
                             value={password}
-                            style={{
-                                width: "100%"
-                            }}
+                            style={styles.input}
                         />
 
                         <TouchableOpacity
@@ -175,15 +194,14 @@ const Signup = ({navigation}) => {
                     <Text style={styles.label_text}>Confirm Password</Text>
 
                     <View style={styles.input_view}>
+                    <FontAwesome name='key' size={16} color={COLORS.black}/>
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
                             onChangeText={text => setConfirmPassword(text)}
                             value={confirmPassword}
-                            style={{
-                                width: "100%"
-                            }}
+                            style={styles.input}
                         />
 
                         <TouchableOpacity
@@ -358,14 +376,10 @@ label_text:{
   marginVertical: 5
 }
     ,
-
-logo:{
-width : 60 ,
-height : 60 ,
-alignItems : 'center',
-marginTop : 15 ,
-    resizeMode: 'cover',
-},
+    input: {
+        width : '100%',
+        marginLeft : 5
+      },
 
 
   inputBox: {
@@ -377,19 +391,6 @@ marginTop : 15 ,
     marginBottom: 7,
     fontWeight : 'bold'
   },
-  loginText :{
-    fontSize : 15,
-    alignSelf : 'center',
-    marginTop:15,
-    color  :  '#000',
-    fontWeight : '500'
-
-  },
-  loginLink:{
-    marginLeft : 4,
-    textDecorationLine:'underline',
-    color : 'blue',
-  },
   input_view :{
     width: "100%",
     height: 48,
@@ -398,7 +399,8 @@ marginTop : 15 ,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    paddingLeft: 22
+    paddingLeft: 22,
+    flexDirection:'row'
 }
 });
 

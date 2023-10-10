@@ -8,11 +8,10 @@ import {
   TouchableOpacity,Pressable
 } from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
 
 import Checkbox from "expo-checkbox"
 import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation , StackActions } from '@react-navigation/native';
 import { db } from '../../../../firebase_config'; 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { ActivityIndicator } from 'react-native-paper'; 
@@ -21,7 +20,7 @@ import { COLORS } from '../../../../constants/theme';
 
 // import images from '../../../../constants/images';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Button from '../../Components/Button';
 
 
@@ -37,7 +36,11 @@ export default LogInScreen = () => {
   const [isSubmit , setIsSubmit] = useState(false)
   
   const checkCredentials =async  (user)=>{
+
+    try{
     setIsSubmit(true)
+
+
     const q = query(collection(db, "Users"), where("email", "==", user.email));
 
     const querySnapshot = await getDocs(q);
@@ -46,35 +49,37 @@ export default LogInScreen = () => {
 
     querySnapshot.forEach((doc) => {
 
-        console.log('ddd' ,user ,'ssss' , userData)
-      const userData = doc.data();
+        const userData = doc.data();
+        
+        email_found = true
+        
+        console.log({...userData  , id: doc.id })
 
-      email_found = true
 
 
       if(userData.password == user.password){
 
-          AsyncStorage.setItem('user', JSON.stringify(userData));
-        dispatch(setUser(userData))
-        // Toast.show({type : 'success' ,text1 : 'Login Scessfully !' , text2 : 'Yours Welcome'} )
+        dispatch(setUser({...userData  , id: doc.id }))
         setEmail('')
         setPassword('')
         setIsSubmit(false)
 
-        navigation.navigate('MainTabs')
+        navigation.dispatch(StackActions.replace(('MainTabs')))
+        
       }
       else{
           setErrorMessage('Password is Incorrect')
-          Toast.show({type : 'error' ,text1 :'Password is Incorrect' ,text2: 'Failed To Login' })
       }
 
     });
 
     if(!email_found){
-console.log(email_found , 'ddddddddd')
         setErrorMessage('Email not found');
-        // Toast.show({type : 'error' ,text1 : 'Email not Found' ,text2 : 'Failed To Login'} )
     }
+}
+catch(e){
+    Toast.show({ type : 'error' , text1 : 'Login Failed' ,text2 :  'Please Check Your Internet Connect and Try Again.' })
+}
     setIsSubmit(false)
 };
 
@@ -116,29 +121,16 @@ console.log(email_found , 'ddddddddd')
                 
 
                <View style={{ marginBottom: 12 }}>
-                    <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Email address</Text>
+                    <Text style={styles.text_label}>Email address</Text>
 
-                    <View style={{
-                        width: "100%",
-                        height: 48,
-                        borderColor: COLORS.black,
-                        borderWidth: 1,
-                        borderRadius: 8,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        paddingLeft: 22
-                    }}>
+                    <View style={styles.input_box}>
+          <FontAwesome name="envelope-o" color={COLORS.black} size={16} />
+
                         <TextInput
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
                             keyboardType='email-address'
-                            style={{
-                                width: "100%"
-                            }}
+                            style={styles.input}
                             onChangeText={text => setEmail(text)}
                             value={email}
                             autoCapitalize="none"
@@ -147,29 +139,17 @@ console.log(email_found , 'ddddddddd')
                 </View>
 
                 <View style={{ marginBottom: 12 }}>
-                    <Text style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        marginVertical: 8
-                    }}>Password</Text>
+                    <Text style={styles.text_label}>Password</Text>
 
-                    <View style={{
-                        width: "100%",
-                        height: 48,
-                        borderColor: COLORS.black,
-                        borderWidth: 1,
-                        borderRadius: 8,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        paddingLeft: 22
-                    }}>
+                    <View style={styles.input_box}>
+
+                    <FontAwesome name="key" color={COLORS.black} size={16} />
+
                         <TextInput
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
-                            style={{
-                                width: "100%"
-                            }}
+                            style={styles.input}
                             onChangeText={text => setPassword(text)}
                             value={password}
                         />
@@ -330,7 +310,7 @@ console.log(email_found , 'ddddddddd')
                     </Pressable>
                     </View>
 
-                < TouchableOpacity  onPress={()=>navigation.navigate('MainTabs')}>
+                <TouchableOpacity  onPress={()=>navigation.navigate('MainTabs')}>
                         <Text style={{color:COLORS.secondary, fontWeight : 'bold' , textDecorationLine:'underline' }} >{'Continue as a Guest->'}</Text>
                         </TouchableOpacity>
                 </View>
@@ -359,30 +339,11 @@ const styles = StyleSheet.create({
     padding : 20,
     backgroundColor : COLORS.background
 },
-logo:{
-width : 60 ,
-height : 60 ,
-alignItems : 'center',
-marginTop : 15 ,
-    resizeMode: 'cover',
-},
 
- inputView : {
-  width: '90%',
- },
 
   input: {
     width : '100%',
-    height: 50,
-    borderColor: 'green',
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginTop: 10,
-    paddingLeft: 20,
-    alignSelf:'center',
-    color : '#000',
-    fontWeight : '500',
-    fontSize : 16
+    marginLeft : 5
   },
   errorMessage: {
     marginTop : 5 ,
@@ -402,6 +363,23 @@ marginTop : 15 ,
     marginLeft : 4,
     textDecorationLine:'underline',
     color : 'blue',
-  }
+  },
+  text_label:{
+    fontSize: 16,
+    fontWeight: '400',
+    marginVertical: 8
+},
+input_box:{
+    width: "100%",
+    height: 48,
+    borderColor: COLORS.black,
+    borderWidth: 1,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingLeft: 22,
+    flexDirection:'row'
+}
+
 });
 

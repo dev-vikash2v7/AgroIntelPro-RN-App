@@ -28,14 +28,14 @@ const Welcome = () => {
                   <Text style= {{
                     fontSize: 35,
                         fontWeight: 800,
-                        color: COLORS.lightWhite,
+                        color: COLORS.highlight,
                         fontFamily :'lora_bold'
                         }}>AgroIntel Pro</Text>
 
                   <Text style= {{
                         fontSize: 15,
                         fontWeight: 400,
-                        color: COLORS.black,
+                        color: COLORS.white,
                         fontFamily :'lora_bold',
                 
                         }}> Grow More ! Worry Less  </Text>
@@ -131,7 +131,7 @@ const Welcome = () => {
                         color: COLORS.white
                     }}>Started</Text>
 
-                    <View style={{ marginVertical: 22 }}>
+                    <View style={{ marginVertical: 22   , flexDirection:'column'}}>
 
                         <Text style={{
                             fontSize: 16,
@@ -142,7 +142,7 @@ const Welcome = () => {
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.white,
-                        }}>Predict Disease , Best Crop and Fertilizers for your crop and</Text>
+                        }}>Predict Disease , Best Crop and Fertilizers for your Crop.</Text>
                     </View>
 
                     <Button
@@ -163,14 +163,15 @@ const Welcome = () => {
                             fontSize: 16,
                             color: COLORS.white
                         }}>Already have an account ?</Text>
+
                         <Pressable
                             onPress={() => navigation.navigate("LogIn")}
+                            style = {{backgroundColor : 'white' , borderRadius :20 , marginLeft:4 , width : 50 , justifyContent:'center' , alignItems:'center'}}
                         >
                             <Text style={{
                                 fontSize: 16,
-                                color: COLORS.white,
-                                fontWeight: "bold",
-                                marginLeft: 4
+                                color: COLORS.highlight,
+                                fontWeight: 800,
                             }}>Login</Text>
                         </Pressable>
 
