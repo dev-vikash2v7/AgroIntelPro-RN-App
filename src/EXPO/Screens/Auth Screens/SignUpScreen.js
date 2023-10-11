@@ -379,7 +379,8 @@ label_text:{
     ,
     input: {
         width : '100%',
-        marginLeft : 5
+        marginLeft : 5,
+        fontWeight : '500',
       },
 
 

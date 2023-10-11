@@ -17,6 +17,7 @@ const App = () => {
 
   async function preloadImagesAsync() {
     const imagePromises = [
+      
      icons ,
      images
     ];

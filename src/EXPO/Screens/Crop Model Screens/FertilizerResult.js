@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Linking ,ScrollView  , Button} from 'react-native';
 
-import fertilizers_data from '../../../../constants/fertilizers_data';
+
 import { COLORS } from '../../../../constants/theme';
 
 const FertilizerResult = ({route}) => {

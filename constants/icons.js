@@ -12,7 +12,11 @@ export default icons  = {
 
     camera1 : require('../assets/disease_prediction/camera.png'),
     gallery : require('../assets/disease_prediction/gallery.png'),
+
     farmer : require('../assets/app_icons/farmer.png'),
+    farmer1 : require('../assets/app_icons/farmer1.jpg'),
+    farmer2 : require('../assets/app_icons/farmer2.jpg'),
+    farmer3 : require('../assets/app_icons/farmer3.jpg'),
 
     facebook : require('../assets/app_icons/facebook.png'),
     google : require('../assets/app_icons/google.png'),

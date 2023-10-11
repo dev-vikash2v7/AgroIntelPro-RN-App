@@ -183,23 +183,41 @@ const handleSubmit = async () =>{
         <Text style={ styles.labelText} > Select Diseased {selectedCrop} Image :   </Text>
 
       <View style={styles.imageOptions}>
-       <View style = {{alignItems :'center' }}>
-            <TouchableOpacity onPress={handleCameraPress}>
-                 <Image source={icons.camera1} resizeMode='cover' style={{width:80 ,height:80}} />
-             </TouchableOpacity>
-           <Text style={styles.optionText}>Open Camera</Text>
-       </View> 
 
-         <View style = {{alignItems :'center'}}>
-           <TouchableOpacity onPress={handleGalleryPress}>
-             <Image source={icons.gallery} resizeMode='cover' style={{width:80 ,height:80}} />
 
-           </TouchableOpacity>
-             <Text style={styles.optionText}>Open Gallery</Text>
-         </View>
+    <TouchableOpacity   onPress={ handleCameraPress} style = {styles.component}  >   
+      <View   style={styles.imgBox}>
+        <Image 
+        resizeMode="contain"
+        source={  icons.camera1} 
+        style = {styles.img}/>
       </View>
+      <View style={styles.titleContainer}>
+      <Text style={styles.title} numberOfLines={ 2} >Open Camera </Text>
       </View>
-{/* } */}
+    </TouchableOpacity>
+
+
+    <TouchableOpacity   onPress={ handleGalleryPress} style = {styles.component}  >   
+      <View   style={styles.imgBox}>
+        <Image 
+        resizeMode="contain"
+        source={  icons.gallery} 
+        style = {styles.img}/>
+      </View>
+      <View style={styles.titleContainer}>
+      <Text style={styles.title} numberOfLines={ 2} >Open Gallery </Text>
+      </View>
+    </TouchableOpacity>
+
+     
+
+
+
+      
+      </View>
+
+      </View>
 
 
 
@@ -256,7 +274,8 @@ paddingBottom : 15
   instruction:{
     fontSize: 12,
     fontWeight: '400',
-    marginVertical : 1 
+    marginVertical : 1 ,
+    fontFamily:'young_serif'
   },
 
   labelText : { 
@@ -303,13 +322,7 @@ marginLeft : 5,
       marginBottom: 16,
       marginTop : 18,
     },
-    optionText: {
-      fontSize: 16,
-      color: 'black',
-      textDecorationLine:'underline',
-      fontWeight : 'bold'
-  
-    },
+    
     selectedImage: {
       width: '100%',
       height: 300,
@@ -321,8 +334,56 @@ marginLeft : 5,
       borderColor:'black',
       borderWidth:0.5
     },
-    submitBtn:{
-    
+    component : {
+      backgroundColor: '#fff',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 100,
+      borderRadius: 16,
+      overflow: 'hidden',
+      
+      ...Platform.select({
+        ios: {
+          shadowColor: 'black',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+        },
+        android: {
+          elevation: 5,
+          shadowOffset: { width: 1, height: 2 },
+          shadowRadius: 4,
+          shadowColor : 'blue',
+  
+  
+        },
+    })},
+  
+    imgBox : {
+  backgroundColor : '#fff' , 
+  width : 55 ,
+  height :55 ,
+  borderColor: 'orange',
+  padding : 5  ,  
+    },
+  
+    img : {
+      flex: 1,
+      width: undefined, // Let the width adjust to the parent (box)
+      height: undefined,
+    },
+    titleContainer: {
+      width: 100, // Adjust the width as needed,
+      paddingHorizontal : 5
+    },
+  
+    title : {
+      flexWrap:'nowrap',
+      fontSize : 12,
+      textAlign : 'center',
+      fontWeight : "500", 
+      marginTop : 5,
+      fontFamily : 'young_serif'
     }
 });
 

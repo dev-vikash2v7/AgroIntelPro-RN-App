@@ -43,12 +43,11 @@ dropdown: {
   },
   placeholderStyle: {
     fontSize: 14,
-
+    fontFamily:'lora_bold'
   },
   selectedTextStyle: {
     fontSize: 14,
-    fontWeight : 500
-
+    fontWeight : 500,
   },
   iconStyle: {
     width: 20,

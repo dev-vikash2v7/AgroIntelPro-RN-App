@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     fontSize :12 , 
     color : COLORS.text,
     fontWeight: '400',
-    marginVertical : 1
+    marginVertical : 1,
   },
   input_form : {
     marginBottom : 30,
@@ -249,9 +249,9 @@ paddingBottom : 20
       },
   heading: {
     fontSize: 15,
-    fontWeight: 'bold',
     marginBottom: 5,
-    textDecorationLine : 'underline'
+    textDecorationLine : 'underline',
+    fontFamily : 'lora_bold'
   },
 
 })

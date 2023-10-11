@@ -53,15 +53,15 @@ const Welcome = () => {
                             position: "absolute",
                             top: 10,
                             transform: [
-                                { translateX: 20 },
+                                { translateX: 40 },
                                 { translateY: 50 },
-                                { rotate: "-15deg" }
+                                { rotate: "-10deg" }
                             ]
                         }}
                     />
 
                     <Image
-                        source={icons.farmer}
+                        source={icons.farmer1}
                         style={{
                             height: 100,
                             width: 100,
@@ -70,7 +70,7 @@ const Welcome = () => {
                             top: 10,
                             left: 130,
                             transform: [
-                                { translateX: 50 },
+                                { translateX: 60 },
                                 { translateY: 50 },
                                 { rotate: "-5deg" }
                             ]
@@ -78,10 +78,10 @@ const Welcome = () => {
                     />
 
                     <Image
-                        source={icons.farmer}
+                        source={icons.farmer2}
                         style={{
-                            width: 100,
-                            height: 100,
+                            width: 110,
+                            height: 110,
                             borderRadius: 20,
                             position: "absolute",
                             top: 130,
@@ -89,20 +89,20 @@ const Welcome = () => {
                             transform: [
                                 { translateX: 50 },
                                 { translateY: 50 },
-                                { rotate: "15deg" }
+                                { rotate: "10deg" }
                             ]
                         }}
                     />
 
                     <Image
-                        source={icons.farmer}
+                        source={icons.farmer3}
                         style={{
                             height: 120,
                             width: 120,
                             borderRadius: 20,
                             position: "absolute",
-                            top: 120,
-                            left: 130,
+                            top: 130,
+                            left: 140,
                             transform: [
                                 { translateX: 50 },
                                 { translateY: 50 },
@@ -167,11 +167,11 @@ const Welcome = () => {
 
                         <Pressable
                             onPress={() => navigation.navigate("LogIn")}
-                            style = {{backgroundColor : 'white' , borderRadius :20 , marginLeft:4 , width : 50 , justifyContent:'center' , alignItems:'center'}}
+                            style = {{ borderRadius :20 , marginLeft:4 , width : 50 , justifyContent:'center' , alignItems:'center'}}
                         >
                             <Text style={{
                                 fontSize: 16,
-                                color: COLORS.highlight,
+                                color: COLORS.white,
                                 fontWeight: 800,
                             }}>Login</Text>
                         </Pressable>

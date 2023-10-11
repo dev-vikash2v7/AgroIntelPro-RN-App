@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, Linking } from 'react-native';
 import agricultureProducts from '../../../../constants/agriculture_products'
 import { COLORS } from '../../../../constants/theme';
+import CustomButton from '../../Components/CustomButton';
 const FarmStore = () => {
 
   return (
@@ -17,6 +18,8 @@ const FarmStore = () => {
       <Text style={styles.productDescription}>{item.description}</Text>
       <Text style={styles.productPrice}>Price: {item.price} Rs</Text>
       <Text style={styles.productCategory}>Category: {item.category}</Text>
+
+      <CustomButton onClick={()=>Linking.openURL(item.tobuy)} title={'Buy Here'} bg={COLORS.primary} color={'white'}/>
 </View>
       )}
       />

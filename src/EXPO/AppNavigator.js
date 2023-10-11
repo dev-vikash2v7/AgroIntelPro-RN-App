@@ -54,7 +54,6 @@ export default function AppNavigator() {
   .then(user =>{
             setIsUser(true);
             dispatch(setUser(JSON.parse(user)))
-            console.log('user yes : ' , user)
   })
       setIsUser( false)
   }, [])
@@ -113,7 +112,7 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='MyFarm' 
-       component={isUser ?  MyFarm : WelcomeScreen} 
+       component={ MyFarm } 
        options={{
         title : 'Your Farm',
        }}/>
@@ -129,7 +128,7 @@ export default function AppNavigator() {
 
        <Stack.Screen 
        name='FarmCommunity' 
-       component={isUser ? FarmCommunity : WelcomeScreen} 
+       component={FarmCommunity } 
        options={{
         title : 'Community of Farmers',
        }}/>

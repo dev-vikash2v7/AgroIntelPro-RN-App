@@ -25,7 +25,7 @@ const FloatInputWithRange = ({ placeholder ,  label, value, minValue, maxValue, 
   return (
     <>
     <View style={styles.container}>
-      <Text>{label}:</Text>
+      <Text style = {styles.label}>{label}:</Text>
       <TextInput
         placeholder={placeholder}
         style={ [styles.input ,  isValid ? styles.validInput : styles.invalidInput]}
@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
   container :{
       flexDirection : 'row' ,
       alignItems : 'center',
+  }, 
+  label:{
+    fontFamily:'lora_bold',
+    fontSize:12
   },
 
     input : {
@@ -51,7 +55,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingLeft: 10,
-    marginLeft : 10 
+    marginLeft : 10 ,
+    fontFamily:'lora_bold',
+    fontSize:12,
+    width:'100%'
+
     },
 
   validInput: {

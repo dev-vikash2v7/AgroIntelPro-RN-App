@@ -16,7 +16,7 @@ import { MaterialCommunityIcons as Icon  , FontAwesome } from '@expo/vector-icon
 import { doc, updateDoc , collection } from "firebase/firestore";
 
 import {   useDispatch, useSelector} from 'react-redux'
-import { setUser } from '../../../../Redux/Slices/AuthSlice';
+import { setUser, updateUser } from '../../../../Redux/Slices/AuthSlice';
 import icons from '../../../../constants/icons';
 import { db } from '../../../../firebase_config';
 import { useNavigation } from '@react-navigation/native';
@@ -54,11 +54,11 @@ const EditProfileScreen = () => {
   await  updateDoc(userDocRef, {name,email,address})
   .then(() => {
     console.log('Document updated successfully');
+    dispatch(updateUser( {name,email,address}))
   })
   .catch((error) => {
     console.error('Error updating document: ', error);
     setIsSubmit(false)
-
   });
 
   setIsSubmit(false)

@@ -284,7 +284,7 @@ paddingBottom : 20
   },
   heading: {
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'lora_bold',
     marginBottom: 5,
     textDecorationLine : 'underline'
   },
