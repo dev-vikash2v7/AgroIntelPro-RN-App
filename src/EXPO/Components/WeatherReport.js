@@ -116,9 +116,16 @@ const WeatherReport = () => {
         </View>
 
         <View style={{ marginTop: 0 }}>
-          <Text style={{ fontSize: 15, fontWeight: 400 }}> Pressure : {weatherData.main.pressure} </Text>
-          <Text style={{ fontSize: 15, fontWeight: 400 }}> Humidity : {weatherData.main.humidity} % </Text>
-          <Text style={{ fontSize: 15, fontWeight: 400 }}> Wind :  {weatherData.wind.speed} m/s</Text>
+          <Text style={{ fontSize: 15, fontWeight: 400 }}> Pressure :
+          <Text style = {{fontWeight : 'bold'}}>{weatherData.main.pressure} </Text> 
+           </Text>
+          <Text style={{ fontSize: 15, fontWeight: 400 }}> 
+          Humidity : <Text style = {{fontWeight : 'bold'}}>{weatherData.main.humidity} % </Text>
+          </Text>
+          <Text style={{ fontSize: 15, fontWeight: 400 }}> 
+          
+          Wind :  <Text style = {{fontWeight : 'bold'}}>{weatherData.wind.speed} m/s</Text>
+          </Text>
         </View>
 
       </View>
@@ -147,7 +154,7 @@ const WeatherReport = () => {
 
             forecastData.map((data, index) => (
               <View style={styles.day} key={index}>
-                <Text style={{ fontSize: 10, fontWeight: '600' }}> {days[index]} </Text>
+                <Text style={styles.dayIndex}> {days[index]} </Text>
                 <Text style={{ marginTop: 2, fontWeight: '500', fontSize: 9 }}> {data.weather[0].description} </Text>
                 <View>
                   <Text style={{ fontSize: 9, fontWeight: '400', marginTop: 3 }}>  {data.main.temp_min}°C  / </Text>
@@ -162,7 +169,7 @@ const WeatherReport = () => {
 
               forecastData.map((data, index) => (
                 <View style={styles.day} key={index}>
-                  <Text style={{ fontSize: 10, fontWeight: '600' }}> {days[index]} </Text>
+                  <Text style={styles.dayIndex}> {days[index]} </Text>
 
                   <View style={{ marginTop: 1 }}>
                     <Text style={{ fontSize: 9, fontWeight: '500' }}>speed : {data.wind.speed} </Text>
@@ -176,10 +183,10 @@ const WeatherReport = () => {
               :
 
               forecastData.map((data, index) => (
-                <View style={styles.day} key={index}>
-                  <Text style={{ fontSize: 10, fontWeight: '600' }}> {days[index]} </Text>
+                <View style={[styles.day , ]} key={index}>
+                  <Text style={styles.dayIndex}> {days[index]} </Text>
 
-                  <View style={{ justifyContent :'center' ,alignItems :'center' ,alignSelf :'center' , marginTop : -30 }}>
+                  <View style={{ top:30 , position:'absolute' }}>
                     <Text style={{ fontSize: 14, fontWeight: '500' , textAlign :'center'}}>{data.main.humidity} %</Text>
                   </View>
 
@@ -210,6 +217,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "600",
+    // fontFamily :'pt_serif'
   },
   weatherText: {
     flexDirection: 'row',
@@ -240,7 +248,8 @@ const styles = StyleSheet.create({
   tab: {
     fontSize: 14,
     fontWeight: '400'
-  }
+  },
+  dayIndex:{ fontSize: 12, fontWeight: '600'  , textDecorationLine:'underline'}
 
 
 });

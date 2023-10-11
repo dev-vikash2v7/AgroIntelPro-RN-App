@@ -2,73 +2,72 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import {COLORS} from '../../../../constants/theme'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import WelcomeScreen from '../Auth Screens/AuthView';
+import { addDoc, collection, doc } from 'firebase/firestore';
+import { db } from '../../../../firebase_config';
+import { addFarm } from '../../../../Redux/Slices/AuthSlice';
 
 
 const MyFarm = () => {
-  const [farmName, setFarmName] = useState('');
-  const [cropName, setCropName] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
 
   const [farmDetails, setFarmDetails] = useState(null);
 
   const user = useSelector(state => state.auth.user)
-
-  const handleSubmit = () => {
-    console.log('Farm Name:', farmName);
-    console.log('Crop Name:', cropName);
-    console.log('Location:', location);
-    console.log('Description:', description);
-  };
-
+ 
   useEffect(()=>{
     if(user && user.farmDetails){
       setFarmDetails(user.farmDetails)
     }
-
   }, [])
 
 
   function ShowFarmDetails(){
 
     return(
-
-      <View style={styles.container}>
-      <Image source={farmerData.farmImage} style={styles.farmImage} />
-      <Text style={styles.name}>{farmerData.name}</Text>
-      <Text style={styles.farmName}>{farmerData.farmName}</Text>
-      <Text style={styles.location}>{farmerData.location}</Text>
-      <Text style={styles.crops}>{farmerData.crops}</Text>
-      <Text style={styles.farmSize}>{farmerData.farmSize}</Text>
+      <View style={styles.farmDetailsContainer}>
+      <Text style={styles.farmName}>Farm Name : {farmDetails.farmName}</Text>
+      <Text style={styles.location}>Location : {farmDetails.location}</Text>
+      <Text style={styles.crops}>Crop : {farmDetails.cropName}</Text>
+      <Text style={styles.farmSize}>Size : {farmDetails.farmSize}</Text>
+      <Text style={styles.description}>Description : {farmDetails.description}</Text>
     </View>
-    )
-   
-    
+    ) 
   }
 
   function AddFarm(){
 
-    const handleSubmit = ()=>{
-      const userRef = firestore().collection('users').doc(userId);
+    const [farmName, setFarmName] = useState('');
+    const [cropName, setCropName] = useState('');
+    const [location, setLocation] = useState('');
+    const [description, setDescription] = useState('');  
+    const [farmSize, setFarmSize] = useState('');  
+    const [errorMessage, setErrorMessage] = useState('');
+    const dispatch = useDispatch()
 
-      // Reference to the "orders" subcollection
-      const ordersCollectionRef = userRef.collection('orders');
+
+    const handleSubmit = async()=>{
+
+      try{
+      const userDocRef = doc(collection(db, 'Users'), user.id);
       
-      // Add the order document with auto-generated document ID
-      ordersCollectionRef.add(orderData)
-        .then((docRef) => {
-          console.log('Order document added with ID: ', docRef.id);
-        })
-        .catch((error) => {
-          console.error('Error adding order document: ', error);
-        });
+      const data = {
+        farmName , cropName  , location , description , farmSize
+      }
+      const orderRef = await addDoc(collection(userDocRef , 'Farm')  , data);
+        // console.log('Order added with ID: ', orderRef.id)
+        setFarmDetails(data)
+        dispatch(addFarm(data))
+      }
+      catch (error) {
+        console.error('Error adding order document: ', error);
+        setErrorMessage('Network connection is weak. ')
     }
-
+  }
+    
     return(
-
-      <ScrollView contentContainerStyle={styles.container}>
+      
+      <ScrollView contentContainerStyle={styles.addFarmContainer}>
       <Text style={styles.title}>Upload Farm and Crop Details</Text>
       <TextInput
         label="Farm Name"
@@ -89,6 +88,12 @@ const MyFarm = () => {
         style={styles.input}
       />
       <TextInput
+        label="Farm Size"
+        value={farmSize}
+        onChangeText={(text) => setFarmSize(text)}
+        style={styles.input}
+      />
+      <TextInput
         label="Description"
         value={description}
         onChangeText={(text) => setDescription(text)}
@@ -99,6 +104,10 @@ const MyFarm = () => {
       <Button mode="contained" onPress={handleSubmit} style={styles.button}>
         Upload
       </Button>
+
+      {errorMessage &&
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+       }
     </ScrollView>
     )
 
@@ -124,7 +133,7 @@ const MyFarm = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  addFarmContainer: {
     flex: 1,
     padding: 16,
     backgroundColor : COLORS.background
@@ -140,11 +149,13 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 16,
   },
+
+
   
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  farmDetailsContainer: {
+    // flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
     padding: 20,
   },
   farmImage: {
@@ -153,21 +164,32 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 10,
   },
-  name: {
+ 
+  farmName: {
     fontSize: 24,
     fontWeight: 'bold',
-  },
-  farmName: {
-    fontSize: 18,
+    marginBottom: 10,
   },
   location: {
-    fontSize: 16,
+    fontSize: 20,
+
   },
   crops: {
-    fontSize: 16,
+    fontSize: 20,
+
   },
   farmSize: {
-    fontSize: 16,
+    fontSize: 20,
+  },
+  description:{
+    fontSize: 18,
+    marginBottom: 5,
+  },
+  errorMessage: {
+    marginTop : 5 ,
+    color: 'red',
+    marginBottom: 7,
+    fontWeight : 'bold'
   },
 });
 

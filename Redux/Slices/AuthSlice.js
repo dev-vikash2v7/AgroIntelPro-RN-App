@@ -24,9 +24,12 @@ const AuthSlice = createSlice({
         AsyncStorage.clear()
           state.user = null
       },
+      addFarm : (state , action) =>{
+        state.user = {...state.user , 'farmDetails' : action.payload}
+      }
     }
   })
 
-export const {setUser , removeUser , updateUser} = AuthSlice.actions;
+export const {setUser , removeUser , updateUser ,addFarm} = AuthSlice.actions;
 
 export default AuthSlice.reducer

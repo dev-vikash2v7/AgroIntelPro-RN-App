@@ -40,7 +40,6 @@ const EditProfileScreen = () => {
     
   const {colors} = useTheme();
 
-  const navigation = useNavigation()
   const dispatch = useDispatch();
 
 
@@ -49,7 +48,6 @@ const EditProfileScreen = () => {
     setIsSubmit(true)
     const userDocRef = doc(db, 'Users', user.id);
 
-    console.log(userDocRef)
 
   await  updateDoc(userDocRef, {name,email,address})
   .then(() => {
@@ -58,6 +56,8 @@ const EditProfileScreen = () => {
   })
   .catch((error) => {
     console.error('Error updating document: ', error);
+    setErrorMessage('Network connection is weak. ');
+    
     setIsSubmit(false)
   });
 
@@ -275,6 +275,10 @@ const EditProfileScreen = () => {
         </TouchableOpacity>
         }
 
+{errorMessage &&
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+       }
+
         {isModalVisible &&
           renderInner()
         }
@@ -380,5 +384,11 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 0},
     shadowRadius: 5,
     shadowOpacity: 0.4,
+  },
+  errorMessage: {
+    marginTop : 5 ,
+    color: 'red',
+    marginBottom: 7,
+    fontWeight : 'bold'
   },
 });

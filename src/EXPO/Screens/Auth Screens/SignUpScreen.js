@@ -8,7 +8,7 @@ import Button from '../../Components/Button';
 
 import { StackActions, useNavigation } from '@react-navigation/native';
 import {useDispatch }  from 'react-redux'
-import { collection,addDoc} from "firebase/firestore";
+import { collection,addDoc , query , getDocs , where} from "firebase/firestore";
 
 import { db } from '../../../../firebase_config'; 
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
@@ -32,12 +32,11 @@ const Signup = () => {
     const dispatch = useDispatch();
 
     const  registerUser = async ( data  )=>{
-        setIsSubmit(true)
       
            try{
            const docRef =  await addDoc(collection(db, "Users"), data);
 
-           console.log({...data , id : docRef.id})
+        //    console.log({...data , id : docRef.id})
 
             dispatch(setUser({...data , id : docRef.id}))
             navigation.dispatch(StackActions.replace(('MainTabs')))
@@ -46,11 +45,11 @@ const Signup = () => {
             console.log('erere ' , e)
               Toast.show({ type : 'error' , text1 : 'Signup Failed' ,text2 :  'Please Check Your Internet Connect and Try Again.' })
             }
-          setIsSubmit(false)
       }
       
       
-        const handleSignup = () => {
+        const handleSignup = async() => {
+
           if (!name || !email || !password || !confirmPassword || !password || !isChecked || !address) {
             setErrorMessage('Please fill in all fields');
             return;
@@ -60,10 +59,25 @@ const Signup = () => {
             setErrorMessage('Passwords do not match');
             return;
           }
-          registerUser({name,address ,  email, password})
+        setIsSubmit(true)
+
+          try {
+            const emailQuery = query(collection(db, "Users"), where("email", "==", email));
+            const querySnapshot = await getDocs(emailQuery);
+            
+            if (querySnapshot.empty) {
+                registerUser({name,address ,  email, password})
+
+            } else {
+            setErrorMessage('Email is Already Exists With Another Account')
+            }
+          } catch (error) {
+            console.log(error)
+            setErrorMessage('Error checking email existence: ', error);
+          }
+          setIsSubmit(false)
+
         };
-      
-        
       
   
     return (
@@ -380,7 +394,6 @@ label_text:{
     input: {
         width : '100%',
         marginLeft : 5,
-        fontWeight : '500',
       },
 
 
