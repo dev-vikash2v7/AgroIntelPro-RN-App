@@ -22,6 +22,7 @@ import { COLORS } from '../../../../constants/theme';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import Button from '../../Components/Button';
+import icons from '../../../../constants/icons';
 
 
 export default LogInScreen = () => {
@@ -248,7 +249,7 @@ catch(e){
                         }}
                     >
                         <Image
-                            source={require("../assets/facebook.png")}
+                            source={icons.facebook}
                             style={{
                                 height: 36,
                                 width: 36,
@@ -275,7 +276,7 @@ catch(e){
                         }}
                     >
                         <Image
-                            source={require("../assets/google.png")}
+                            source={icons.google}
                             style={{
                                 height: 36,
                                 width: 36,

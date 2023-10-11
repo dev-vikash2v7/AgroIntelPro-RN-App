@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '../../../../constants/theme';
 import Button from '../../Components/Button';
+import icons from '../../../../constants/icons';
 
 const Welcome = () => {
 
@@ -44,7 +45,7 @@ const Welcome = () => {
                 <View style = {{ position: "absolute",
                             top: 60}}>
                     <Image
-                        source={require("../assets/hero1.jpg")}
+                        source={icons.farmer}
                         style={{
                             height: 100,
                             width: 100,
@@ -60,7 +61,7 @@ const Welcome = () => {
                     />
 
                     <Image
-                        source={require("../assets/hero3.jpg")}
+                        source={icons.farmer}
                         style={{
                             height: 100,
                             width: 100,
@@ -77,7 +78,7 @@ const Welcome = () => {
                     />
 
                     <Image
-                        source={require("../assets/hero3.jpg")}
+                        source={icons.farmer}
                         style={{
                             width: 100,
                             height: 100,
@@ -94,7 +95,7 @@ const Welcome = () => {
                     />
 
                     <Image
-                        source={require("../assets/hero2.jpg")}
+                        source={icons.farmer}
                         style={{
                             height: 120,
                             width: 120,

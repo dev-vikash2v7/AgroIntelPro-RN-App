@@ -14,6 +14,7 @@ import { db } from '../../../../firebase_config';
 import { setUser } from '../../../../Redux/Slices/AuthSlice';
 import Toast from 'react-native-toast-message';
 import { ActivityIndicator } from 'react-native-paper';
+import icons from '../../../../constants/icons';
 
 
 const Signup = () => {
@@ -299,7 +300,7 @@ const Signup = () => {
                         }}
                     >
                         <Image
-                            source={require("../assets/facebook.png")}
+                            source={icons.facebook}
                             style={{
                                 height: 36,
                                 width: 36,
@@ -326,7 +327,7 @@ const Signup = () => {
                         }}
                     >
                         <Image
-                            source={require("../assets/google.png")}
+                            source={icons.google}
                             style={{
                                 height: 36,
                                 width: 36,

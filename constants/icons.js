@@ -13,4 +13,9 @@ export default icons  = {
     camera1 : require('../assets/disease_prediction/camera.png'),
     gallery : require('../assets/disease_prediction/gallery.png'),
     farmer : require('../assets/app_icons/farmer.png'),
+
+    facebook : require('../assets/app_icons/facebook.png'),
+    google : require('../assets/app_icons/google.png'),
+
+
 }
