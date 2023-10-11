@@ -9,9 +9,7 @@ import WelcomeScreen from '../Auth Screens/AuthView';
 
 const FarmersCommunity = () => {
 
-  const user = useSelector(state => state.auth.user)
-
-
+  const user = useSelector(state => state.auth?.user)
 
   const communityPosts = [
     {
@@ -54,8 +52,19 @@ const FarmersCommunity = () => {
   
     function addPost(){
 
+      try{
+
+      const now = new Date();
+
+      const timeFormatter = new Intl.DateTimeFormat('en', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      });
+
       const formattedTime = timeFormatter.format(now);
 
+      
       // Create a formatter for the date (DD/MM/YY)
       const dateFormatter = new Intl.DateTimeFormat('en', {
         day: '2-digit',
@@ -69,12 +78,18 @@ const FarmersCommunity = () => {
       // Combine the time and date in the desired format
       const formattedDateTime = `${formattedTime} - ${formattedDate}`;
             
-      setPosts([  , { 
-          id : posts.length  + 1,
-          user : user.name , 
-          postText : postText ,
-          date : formattedDateTime
+      setPosts([ { 
+          'id' : posts.length  + 1,
+          'user' : user.name , 
+          'postText' : postText ,
+          'date' : formattedDateTime
        } , ...posts] )
+
+       setPostText('')
+      }
+      catch(e){
+        console.log('error in adding : ' , e)
+      }
     }
   
   
