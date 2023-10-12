@@ -26,7 +26,7 @@ const MyFarm = () => {
 
     return(
       <View style={styles.farmDetailsContainer}>
-      <Text style={styles.farmName}>Farm Name : {farmDetails.farmName}</Text>
+      <Text style={styles.farmName}>{farmDetails.farmName}</Text>
       <Text style={styles.location}>Location : {farmDetails.location}</Text>
       <Text style={styles.crops}>Crop : {farmDetails.cropName}</Text>
       <Text style={styles.farmSize}>Size : {farmDetails.farmSize}</Text>
@@ -168,22 +168,36 @@ const styles = StyleSheet.create({
   farmName: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 12,
+    textAlign:'center',
   },
   location: {
     fontSize: 20,
+    fontWeight: '500',
+    marginVertical : 5
 
   },
   crops: {
     fontSize: 20,
+    fontWeight: '500',
+    marginVertical : 5
+
 
   },
   farmSize: {
     fontSize: 20,
+    fontWeight: '500',
+    marginVertical : 5
+
+
   },
   description:{
     fontSize: 18,
     marginBottom: 5,
+    fontWeight: '500',
+    marginVertical : 5
+
+
   },
   errorMessage: {
     marginTop : 5 ,

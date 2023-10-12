@@ -19,8 +19,8 @@ elevation: 4,
         source={iconName  }
         
         style={{
-          width: 40, // Set the width as per your design
-          height: 40, // Set the height as per your design
+          width:  40, // Set the width as per your design
+          height:  40, // Set the height as per your design
         }}
       />
       </View>

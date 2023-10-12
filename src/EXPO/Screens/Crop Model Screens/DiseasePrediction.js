@@ -28,7 +28,6 @@ const CropDiseasePredictionScreen = () => {
 
   const navigation = useNavigation()
 
-
   // Function to handle image selection from the gallery
   const handleGalleryPress = async () => {
     
@@ -39,7 +38,7 @@ const CropDiseasePredictionScreen = () => {
       if (status !== 'granted') {
         setErrorMessage('Permission to access media library is required!');
         return;
-      } 
+      }  
   }
   const result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.Images,

@@ -1,0 +1,25 @@
+yarn add v1.22.10
+[1/5] Validating package.json...
+[2/5] Resolving packages...
+[3/5] Fetching packages...
+info lightningcss-darwin-arm64@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-darwin-arm64@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info lightningcss-darwin-arm64@1.19.0: The CPU architecture "x64" is incompatible with this module.
+info lightningcss-darwin-x64@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-darwin-x64@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info lightningcss-linux-arm-gnueabihf@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-linux-arm-gnueabihf@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info lightningcss-linux-arm-gnueabihf@1.19.0: The CPU architecture "x64" is incompatible with this module.
+info lightningcss-linux-arm64-gnu@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-linux-arm64-gnu@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info lightningcss-linux-arm64-gnu@1.19.0: The CPU architecture "x64" is incompatible with this module.
+info lightningcss-linux-arm64-musl@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-linux-arm64-musl@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info lightningcss-linux-arm64-musl@1.19.0: The CPU architecture "x64" is incompatible with this module.
+info lightningcss-linux-x64-gnu@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-linux-x64-gnu@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info lightningcss-linux-x64-musl@1.19.0: The platform "win32" is incompatible with this module.
+info "lightningcss-linux-x64-musl@1.19.0" is an optional dependency and failed compatibility check. Excluding it from installation.
+info fsevents@2.3.3: The platform "win32" is incompatible with this module.
+info "fsevents@2.3.3" is an optional dependency and failed compatibility check. Excluding it from installation.
+[4/5] Linking dependencies...
