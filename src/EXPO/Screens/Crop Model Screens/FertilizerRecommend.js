@@ -6,7 +6,6 @@ import {COLORS} from '../../../../constants/theme';
 import fertilizers_data from '../../../../constants/fertilizers_data';
 import SelectionDropdown from '../../Components/SelectionDropdown';
 import { useNavigation } from '@react-navigation/native';
-import ErrorPopup from '../../Components/ErrorPopup'
 
  export default FertilizerRecommendScreen = () => {
 
@@ -239,8 +238,8 @@ Soil moisture is a measure of soil health, the water content present in a certai
             }
           
             {errorMessage &&
-              <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
-            }
+                        <Text style={styles.errorMessage}>{errorMessage}</Text>
+                }
       </View>
         
 
@@ -301,6 +300,11 @@ paddingBottom : 20
     marginBottom:10,
     width :'100%'
   },
- 
+  errorMessage: {
+    marginTop : 5 ,
+    color: 'red',
+    marginBottom: 7,
+    fontWeight : 'bold'
+  },
   
 })

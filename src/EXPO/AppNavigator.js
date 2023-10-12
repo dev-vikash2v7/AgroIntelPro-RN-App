@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import Header from './Components/Header';
-import DiseasePredScreen from './Screens/Crop Model Screens/DiseasePrediction';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 import {COLORS} from '../../constants/theme';
@@ -18,6 +17,9 @@ import { useDispatch } from 'react-redux';
 
 
 import ProfileScreen from './Tabs/ProfileTab';
+
+import DiseasePredictionOnline from './Screens/Crop Model Screens/DiseasePredictionOnline';
+import DiseasePredictionOffline from './Screens/Crop Model Screens/DiseasePredictionOffline';
 
 import FertilizerRecommendation from './Screens/Crop Model Screens/FertilizerRecommend';
 import LogInScreen from './Screens/Auth Screens/LogInScreen';
@@ -87,8 +89,16 @@ export default function AppNavigator() {
          />
  
        <Stack.Screen 
-       name='DiseasePredScreen' 
-       component={DiseasePredScreen} 
+       name='DiseasePredOnline' 
+       component={DiseasePredictionOnline} 
+       options={{
+        title : 'Crop Disease Prediction'
+       }}
+        />
+
+       <Stack.Screen 
+       name='DiseasePredOffline' 
+       component={DiseasePredictionOffline} 
        options={{
         title : 'Crop Disease Prediction'
        }}

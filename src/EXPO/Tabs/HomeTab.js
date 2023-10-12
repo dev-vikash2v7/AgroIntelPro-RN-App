@@ -13,7 +13,7 @@ const Home = () => {
       id : 1 ,
       name : 'Disease Predicator',
       loc : icons.camera,
-      link : 'DiseasePredScreen'
+      link : 'DiseasePredOffline'
     },
     {
 

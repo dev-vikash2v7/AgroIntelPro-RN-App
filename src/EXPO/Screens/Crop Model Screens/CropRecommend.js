@@ -3,7 +3,6 @@ import { View, Text, Button, StyleSheet, Alert, ScrollView ,Image, ActivityIndic
 import AxiosInstance from '../../../../AxiosInstance';
 import FloatInputWithRange from '../../Components/FloatInputWithRange';
 import {COLORS} from '../../../../constants/theme';
-import ErrorPopup from '../../Components/ErrorPopup'
 import { useNavigation } from '@react-navigation/native';
 
 import CropDataArr from '../../../../constants/crop_data';
@@ -204,8 +203,8 @@ style = {{marginTop : 10}}
       }
 
       {errorMessage &&
-              <ErrorPopup message={errorMessage} onClose={()=>setErrorMessage('')} />
-            }
+                        <Text style={styles.errorMessage}>{errorMessage}</Text>
+                }
       </View>
 
       
@@ -252,6 +251,12 @@ paddingBottom : 20
     marginBottom: 5,
     textDecorationLine : 'underline',
     fontFamily : 'lora_bold'
+  },
+  errorMessage: {
+    marginTop : 5 ,
+    color: 'red',
+    marginBottom: 7,
+    fontWeight : 'bold'
   },
 
 })
