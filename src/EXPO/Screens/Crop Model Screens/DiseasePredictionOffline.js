@@ -10,7 +10,8 @@ import CropDiseaseData from '../../../../constants/crop_disease_data';
 import * as FileSystem from 'expo-file-system';
 import * as tf from '@tensorflow/tfjs';
 import { bundleResourceIO , decodeJpeg } from "@tensorflow/tfjs-react-native";
-import modelPath from './modelPath';
+import modelPath, { diseaseMapping } from './modelPath';
+import * as jpeg from 'jpeg-js'
 
 const CropDiseasePredictionOffline = () => {
 
@@ -18,7 +19,9 @@ const CropDiseasePredictionOffline = () => {
   const [selectedCrop, setSelectedCrop] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [ isTfReady, setIsTfReady ] = useState(false)
+  const [ isTfReady, setIsTfReady ] = useState(false);
+  const [ model, setModal ] = useState(null);
+
   
   const cropsData =  [
     {label : 'Rice' ,value: 'rice',},
@@ -27,15 +30,13 @@ const CropDiseasePredictionOffline = () => {
     { label : 'Corn' , value: 'corn' },
   ]
 
-  const diseaseMapping = require('./assets/disease_model/crop_disease_mapping.json');
-
-
   const navigation = useNavigation();
 
 
   // Ready tf setup and load custom tf models
   useEffect(() => {
     const load = async () => {
+      if(isTfReady) return
       try{
         await tf.ready();
         console.log('successfully loaded tensroflow')
@@ -49,19 +50,24 @@ const CropDiseasePredictionOffline = () => {
   }, []);
 
 
+
+
+
   const loadModel =async (crop) =>{
     try{
+      if(model) return model ;
    
        let modelJson = await modelPath[crop]['jsonPath'];
        let modelWeights = await modelPath[crop]['binPath'];
-       const model = await tf.loadGraphModel(bundleResourceIO(modelJson , modelWeights));
+       const my_model = await tf.loadGraphModel(bundleResourceIO(modelJson , modelWeights));
    
        console.log('=================loaded custom model=============')
-       return model
+       setModal(my_model)
+       return my_model
     }
    
     catch(e){
-     console.log(e)
+     console.log('error in loading model ' , e)
     }
     
      }
@@ -84,13 +90,13 @@ const CropDiseasePredictionOffline = () => {
   const result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
     allowsEditing: true,
-    aspect: [5, 5],
+    aspect: [3, 3],
     quality: 1,
   });
 
 
   if (!result.canceled) {
-    setSelectedImage(result.assets[0]);
+    setSelectedImage(result.assets[0].uri);
   }
 };
 
@@ -108,7 +114,7 @@ const CropDiseasePredictionOffline = () => {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [3, 3],
       quality: 1,
     });
   
@@ -149,8 +155,10 @@ catch(e){
 
    /////////////////////////////////////////////
    const  predict_disease = async(crop , pickedImage)=> {
+
    
-   
+   setErrorMessage('')
+
     await loadModel(crop)
       .then(async (model)=>{
     
@@ -158,36 +166,52 @@ catch(e){
             setErrorMessage('error in getting model')
             return
           }
+
+          // transform local image to base64
+            const imgB64 = await FileSystem.readAsStringAsync(pickedImage, {
+                encoding: FileSystem.EncodingType.Base64,
+              });
+      
+            const imgBuffer = tf.util.encodeString(imgB64, 'base64').buffer;
+      
+          const TO_UINT8ARRAY = true
+          const { width, height, data } = jpeg.decode(imgBuffer, TO_UINT8ARRAY)
+
+          console.log(width , height , data.length);
+          // Drop the alpha channel info for mobilenet
+
+          const buffer = new Uint8Array(width * height * 3)
+          let offset = 0 // offset into original data
+
+          for (let i = 0; i < buffer.length; i += 3) {
+            buffer[i] = data[offset]
+            buffer[i + 1] = data[offset + 1]
+            buffer[i + 2] = data[offset + 2]
+            offset += 4
+           }
+
+          const tensor =  tf.tensor3d(buffer, [height, width, 3])
     
-        // transform local image to base64
-          const imgB64 = await FileSystem.readAsStringAsync(pickedImage, {
-              encoding: FileSystem.EncodingType.Base64,
-            });
-    
-          const imgBuffer = tf.util.encodeString(imgB64, 'base64').buffer;
-    
-          const raw = new Uint8Array(imgBuffer);
-          const imageTensor = decodeJpeg(raw);
-    
-    
-          const resized = tf.image.resizeBilinear(imageTensor, [224, 224 ]).toFloat();
+          const resized = tf.image.resizeBilinear(tensor, [224, 224 ]).toFloat();
           
           const scalar = tf.scalar(255)
           const tensorScaled = resized.div(scalar)
-    
           const img = tf.expandDims(tensorScaled , 0)
-    
-        
+
           const predictions =  model.predict(img);
+
+          const predictionArray = await predictions.data();
+          console.log('predictionArray : ' ,  Array.from(predictionArray)) 
+
           const disease_index = predictions.argMax(1).dataSync()[0];
     
-          // console.log(predictions  )
     
           const diseaseName = diseaseMapping[crop][disease_index]
     
           img.dispose();
           predictions.dispose();
 
+          console.log(diseaseName)
 
           if(!diseaseName) {
             setErrorMessage('Crop is not visible')
@@ -215,6 +239,8 @@ catch(e){
   return (
 
     <View style={styles.container}>
+
+      { isTfReady ? 
 
   <ScrollView>
 
@@ -310,7 +336,7 @@ catch(e){
         <View>
        <Text style={styles.selectedValue}>Selected Crop: {selectedCrop}</Text>
 
-        <Image source={{ uri: selectedImage.uri }} style={styles.selectedImage} />
+        <Image source={{ uri: selectedImage }} style={styles.selectedImage} />
         </View>
       )}
 
@@ -329,7 +355,12 @@ catch(e){
                 }
 </ScrollView>
 
-
+: 
+<View>
+<ActivityIndicator size="large" color="blue" />
+<Text style = {{fontWeight : 'bold' , fontSize : 24}}> Model Configuration </Text>
+</View>
+}
     </View>
   );
 };

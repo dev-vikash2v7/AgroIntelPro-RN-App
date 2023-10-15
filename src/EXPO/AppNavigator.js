@@ -48,7 +48,7 @@ const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
   
-  const [isUser , setIsUser] = useState(false)
+  const [isUser , setIsUser] = useState(true)
   const dispatch = useDispatch()  
   
 
@@ -68,6 +68,7 @@ export default function AppNavigator() {
   function HomeStackNavigator() {
     return (
       <Stack.Navigator     
+      initialRouteName='DiseasePredOffline'
         screenOptions={ {
             headerStyle: {
               backgroundColor: '#307ecc', //Set Header color
