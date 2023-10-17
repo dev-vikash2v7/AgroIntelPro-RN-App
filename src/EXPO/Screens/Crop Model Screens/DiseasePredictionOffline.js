@@ -12,6 +12,8 @@ import * as tf from '@tensorflow/tfjs';
 import { bundleResourceIO , decodeJpeg } from "@tensorflow/tfjs-react-native";
 import modelPath, { diseaseMapping } from './modelPath';
 import * as jpeg from 'jpeg-js'
+import handleLeafRecognition from './handleLeafRecognition';
+
 
 const CropDiseasePredictionOffline = () => {
 
@@ -136,28 +138,11 @@ const CropDiseasePredictionOffline = () => {
 
 
 
-// send request to server
-const handleSubmit = async () =>{
-
-  setIsLoading(true);
-
- try{
-  await predict_disease(selectedCrop , selectedImage);
-}
-catch(e){
-  console.log('142 : ', e);
-  setErrorMessage('Image is not clear');
-}
-  setIsLoading(false)
-}
 
 
 
    /////////////////////////////////////////////
    const  predict_disease = async(crop , pickedImage)=> {
-
-   
-   setErrorMessage('')
 
     await loadModel(crop)
       .then(async (model)=>{
@@ -166,7 +151,7 @@ catch(e){
             setErrorMessage('error in getting model')
             return
           }
-
+console.log('predict_disease()')
           // transform local image to base64
             const imgB64 = await FileSystem.readAsStringAsync(pickedImage, {
                 encoding: FileSystem.EncodingType.Base64,
@@ -225,16 +210,44 @@ catch(e){
 
       
           navigation.navigate('DiseasePredResult' , {diseaseData : CropDiseaseData[selectedCrop][diseaseName] }  )
-
-    
-          })
+          
+          
+        })
           .catch(err=>{
                 console.log('error 201 : ' , err);
           })
       }
 
 
+      //////// send request to server  ////////
+      const handleSubmit = async () =>{
+      
+        setIsLoading(true);
+        setErrorMessage('')
+      
+       try{
+        await handleLeafRecognition(  selectedImage)
 
+         .then(async (result) => {
+
+         if(!result)  {
+           setIsLoading(false)
+          setErrorMessage(`Not A ${selectedCrop} Leaf Image or the Image is Not Clear !`);
+          return;
+         }
+         else{
+           await predict_disease(selectedCrop , selectedImage);
+         }
+        })
+
+      }
+      catch(e){
+        console.log('142 : ', e);
+        setErrorMessage('Image is not clear');
+      }
+        setIsLoading(false)
+      }
+      
 
   return (
 
@@ -340,7 +353,6 @@ catch(e){
         </View>
       )}
 
-{/* Button to predict */}
 {isLoading ? (
         <ActivityIndicator size="large" color="blue" />
       ) : 
@@ -350,6 +362,8 @@ catch(e){
         onPress={ handleSubmit}
          disabled={!selectedImage || !selectedCrop} />
 }
+
+
 {errorMessage &&
                         <Text style={styles.errorMessage}>{errorMessage}</Text>
                 }

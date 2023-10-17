@@ -13,11 +13,9 @@ const Home = () => {
       id : 1 ,
       name : 'Disease Predicator',
       loc : icons.camera,
-      link : 'DiseasePredOffline'
+      link : 'DiseasePredOnline'
     },
     {
-
-
       id : 2 ,
       name : 'Crop Recommend',
       loc : icons.plant,
