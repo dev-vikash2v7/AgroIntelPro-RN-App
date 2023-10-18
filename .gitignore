@@ -64,3 +64,7 @@ yarn-error.log
 
 # testing
 /coverage
+
+
+gitfetch.bat
+gitpush.bat

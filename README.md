@@ -1,6 +1,133 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
-# Getting Started
+<p align="center">
+<a href="https://github.com/FASAL-MITRA-SIH-22/Fasal-mitra-frontend"><img width=200px src="./demo//logo.png"  alt="Project logo"/></a>
+</p>
+
+<!-- ![Watch the video] -->
+
+<div >
+Watch on Youtube
+<a href="https://youtu.be/og0QWx-D6X4"><img width=40px src="./demo//Youtube_logo.png"  alt="youtube"/> </a>
+</div>
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Features](#features)
+- [Technologies Used](#technolgies)
+- [System Architecrue](#architecture)
+- [Activity Diagram](#activity)
+- [Getting Started ](#getting_started)
+- [Authors](#authors)
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-about-a-name--abouta)
+
+## 1.1 🧐 About The Project <a name = "about"></a>
+<b>AgroIntel Pro</b> is a <b>Smart Farming Mobile Application</b> is a cutting-edge approach to farming that leverages technology to optimize crop production while conserving resources. This project report discusses the development and implementation of a Smart Crop, Fertilizer, and Disease Predictor System. The system employs data analytics and machine learning algorithms to predict crop yields, recommend appropriate fertilizers, and detect and predict diseases in crops. The objective of this project is to enhance agricultural productivity, reduce resource wastage, and provide timely solutions to common farming challenges
+
+Here is the app in action.
+
+![In Action](demo/app_in_action.gif)
+
+
+## 1.2 🧐 Features <a name = "features"></a>
+
+### 1. Disease Prediction
+
+- **Description**: This feature allows users to predict diseases in crops by analyzing images of affected leaves.
+- **How It Works**: Users can take a photo of a diseased leaf and submit it for analysis. The application will use machine learning to identify the disease and offer recommendations for treatment.
+- **Benefits**: Early disease detection can help prevent the spread and minimize crop damage.
+
+### 2. Best Crop Recommendation
+
+- **Description**: Users can get recommendations for the best crops to plant based on their location, soil type, and other factors.
+- **How It Works**: The app takes user inputs and uses algorithms to suggest suitable crop options. It considers factors like climate, soil quality, and the farmer's preferences.
+- **Benefits**: Helps users maximize crop yield and income.
+
+### 3. Fertilizer Recommendation
+
+- **Description**: The application provides personalized fertilizer recommendations to improve soil health.
+- **How It Works**: Users input soil test results, and the app suggests the right type and quantity of fertilizer.
+- **Benefits**: Efficient fertilizer use leads to healthier crops and reduced environmental impact.
+
+### 4. Farm Community
+
+- **Description**: Connect with other farmers, share experiences, and seek advice.
+- **Features**: Discussion forums, chat, and sharing of farming tips.
+- **Benefits**: Collaboration and knowledge sharing among farmers.
+
+### 5. Farm Store
+
+- **Description**: Users can browse and purchase farming equipment, seeds, and other agricultural products.
+- **Features**: Product listings, reviews, and secure payment.
+- **Benefits**: Convenient access to farming supplies.
+
+### 6. Authentication System
+
+- **Description**: Secure user authentication and account management.
+- **Features**: Registration, login, and profile management.
+- **Benefits**: Protects user data and provides a personalized experience.
+
+
+
+## 1.3 Technologies Used <a name = "technolgies"></a>
+
+![Technolgies Used](demo/technogies.png)
+
+
+
+
+
+
+<!-- ///////////////////////////////////// -->
+
+## 1.4 System Architecture <a name = "architecture"></a>
+
+The system architecture for the application is as followed:
+
+<img width="500" height='500' src="./demo/data-flow.png"  alt="System Architecture"/>
+
+
+
+<!-- ///////////////////////////////////// -->
+
+
+## 1.5 Activity Diagram <a name = "activity"></a>
+
+The activity diagram for the application is as followed:
+
+<img width="auto" src="./demo/chart.jpg"  alt="System Architecture"/>
+
+
+
+
+<!-- ////////////////////////////////////////////////// -->
+
+
+
+
+
+
+## 🧐 Getting Started <a name = "getting_started"></a>
+
+## Installation
+
+Note : To get started with the AgroIntel Pro app development, you'll need to install Expo, which is a powerful toolchain for building and developing React Native applications.
+
+
+To run this application on your local development environment, follow these steps:
+
+### Prerequisites
+
+Before you begin, ensure that you have Node.js and npm (Node Package Manager) installed. You can download them from [https://nodejs.org/](https://nodejs.org/).
+
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/dev-vikash2v7/AgroIntelPro-RN-App.git
+
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
@@ -19,8 +146,6 @@ yarn start
 ```
 
 ## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
 ### For Android
 
@@ -42,31 +167,12 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
 ## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
+You've successfully run  your React Native App. :partying_face:
 
-### Now what?
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
 # Learn More
 
