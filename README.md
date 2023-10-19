@@ -6,10 +6,8 @@
 <!-- <img width=200px src="/demo/logo.png"  alt="Project logo"> -->
 ![logo](/demo/logo.png)
 
-<div>
-Watch on Youtube
-<a href="https://youtu.be/og0QWx-D6X4"><img  alt="youtube" src = '/demo/Youtube_logo.png'> </a>
-</div>
+
+<a href="https://youtu.be/og0QWx-D6X4"><img  alt="youtube" src = '/demo/Youtube_logo.png'> Watch on Youtube</a>
 
 ## 📝 Table of Contents
 
