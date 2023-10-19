@@ -1,7 +1,8 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
-<a href="https://github.com/FASAL-MITRA-SIH-22/Fasal-mitra-frontend"><img width=200px src=require("./demo/logo.png")  alt="Project logo"/></a>
+<img width=200px src=require("demo/logo.png")  alt="Project logo"/>
+![Project logo](demo/logo.png)
 </p>
 
 <!-- ![Watch the video] -->
