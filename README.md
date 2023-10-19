@@ -36,6 +36,7 @@ Here is the app in action.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/demo/logo.png">
+  <source media="(prefers-color-scheme: light)" srcset="/demo/logo.png">
 </picture>
 
 
@@ -84,7 +85,7 @@ Here is the app in action.
 
 ## 1.3 Technologies Used <a name = "technolgies"></a>
 
-![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies.png)
+![Technolgies Used](/demo/technogies.png)
 
 <!-- <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies/png' />-->
 
@@ -95,9 +96,8 @@ Here is the app in action.
 
 The system architecture for the application is as followed:
 
-<img width="500" height='500' src="./demo/data-flow.png"  alt="System Architecture"/>
 
-![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/data-flow.png)
+![System Architecture](/demo/data-flow.png)
 
 <!-- ///////////////////////////////////// -->
 
