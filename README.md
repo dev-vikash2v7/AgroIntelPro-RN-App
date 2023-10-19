@@ -76,8 +76,9 @@ Here is the app in action.
 ## 1.3 Technologies Used <a name = "technolgies"></a>
 
 
-[![Technolgies Used](demo/technogies.png)]
+[![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies.png)]
 
+<img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies/png' />
 
 
 
@@ -91,6 +92,7 @@ The system architecture for the application is as followed:
 
 <img width="500" height='500' src="./demo/data-flow.png"  alt="System Architecture"/>
 
+[![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/data-flow.png)]
 
 
 <!-- ///////////////////////////////////// -->
