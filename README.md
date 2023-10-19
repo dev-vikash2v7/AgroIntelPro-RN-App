@@ -3,7 +3,8 @@
 <p align="center">
 </p>
 
-<!-- <img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/> -->
+<!-- <img width=200px src="/demo/logo.png"  alt="Project logo"> -->
+![logo](/demo/logo.png)
 
 <div>
 Watch on Youtube
@@ -30,12 +31,6 @@ Here is the app in action.
 <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif' />
 </div>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/demo/logo.png">
-  <source media="(prefers-color-scheme: light)" srcset="/demo/logo.png">
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png">
-</picture>
 
 ![App in Action](/demo/app_in_action.gif)
 
@@ -96,16 +91,13 @@ The system architecture for the application is as followed:
 
 ![System Architecture](/demo/data-flow.png)
 
-<!-- ///////////////////////////////////// -->
-
 
 ## 1.5 Activity Diagram <a name = "activity"></a>
 
 The activity diagram for the application is as followed:
 
-<img width="auto" src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg"  alt="System Architecture"/>
 
-![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg)
+![System Architecture](/demo/chart.jpg)
 
 
 
