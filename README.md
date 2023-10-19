@@ -4,14 +4,10 @@
 </p>
 
 <!-- <img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/> -->
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
 
-
-<!-- ![Watch the video] -->
-
-<div >
+<div>
 Watch on Youtube
-<a href="https://youtu.be/og0QWx-D6X4"><img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode."  width=40px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/Youtube_logo.png"  alt="youtube"> </a>
+<a href="https://youtu.be/og0QWx-D6X4"><img  alt="youtube" src = '/demo/Youtube_logo.png'> </a>
 </div>
 
 ## 📝 Table of Contents
@@ -37,8 +33,9 @@ Here is the app in action.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/demo/logo.png">
   <source media="(prefers-color-scheme: light)" srcset="/demo/logo.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png">
 </picture>
-
 
 ![App in Action](/demo/app_in_action.gif)
 
