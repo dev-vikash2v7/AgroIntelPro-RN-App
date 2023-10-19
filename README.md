@@ -1,7 +1,8 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
-<img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/>
+<!-- <img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/> -->
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
 </p>
 
 
@@ -22,7 +23,6 @@ Watch on Youtube
 - [Getting Started ](#getting_started)
 - [Authors](#authors)
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#-about-a-name--abouta)]
 
 ## 1.1 🧐 About The Project <a name = "about"></a>
 <b>AgroIntel Pro</b> is a <b>Smart Farming Mobile Application</b> is a cutting-edge approach to farming that leverages technology to optimize crop production while conserving resources. This project report discusses the development and implementation of a Smart Crop, Fertilizer, and Disease Predictor System. The system employs data analytics and machine learning algorithms to predict crop yields, recommend appropriate fertilizers, and detect and predict diseases in crops. The objective of this project is to enhance agricultural productivity, reduce resource wastage, and provide timely solutions to common farming challenges
@@ -34,7 +34,7 @@ Here is the app in action.
 </div>
 
 
-[![](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif)](#-table-of-contents)
+![App in Action](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif)
 
 
 ## 1.2 🧐 Features <a name = "features"></a>
@@ -79,9 +79,9 @@ Here is the app in action.
 
 ## 1.3 Technologies Used <a name = "technolgies"></a>
 
-[![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies.png)]()
+![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies.png)
 
-<img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies/png' />
+<!-- <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies/png' />-->
 
 
 <!-- ///////////////////////////////////// -->
@@ -92,7 +92,7 @@ The system architecture for the application is as followed:
 
 <img width="500" height='500' src="./demo/data-flow.png"  alt="System Architecture"/>
 
-[![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/data-flow.png)]
+![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/data-flow.png)
 
 <!-- ///////////////////////////////////// -->
 
@@ -103,7 +103,7 @@ The activity diagram for the application is as followed:
 
 <img width="auto" src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg"  alt="System Architecture"/>
 
-[![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg)]
+![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg)
 
 
 
