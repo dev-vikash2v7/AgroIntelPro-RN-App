@@ -1,7 +1,7 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
-<img width=200px src=require("demo/logo.png")  alt="Project logo"/>
+<img width=200px src="demo/logo.png"  alt="Project logo"/>
 
 </p>
 
