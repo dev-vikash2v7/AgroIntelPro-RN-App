@@ -2,8 +2,10 @@
 
 <p align="center">
 <img width=200px src=require("demo/logo.png")  alt="Project logo"/>
-![Project logo](demo/logo.png)
+
 </p>
+
+![Project logo](demo/logo.png)
 
 <!-- ![Watch the video] -->
 
