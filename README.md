@@ -33,6 +33,10 @@ Here is the app in action.
 <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif' />
 </div>
 
+
+[![](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif)](#-table-of-contents)
+
+
 ## 1.2 🧐 Features <a name = "features"></a>
 
 ### 1. Disease Prediction
@@ -75,13 +79,9 @@ Here is the app in action.
 
 ## 1.3 Technologies Used <a name = "technolgies"></a>
 
-
-[![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies.png)]
+[![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies.png)]()
 
 <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies/png' />
-
-
-
 
 
 <!-- ///////////////////////////////////// -->
@@ -92,8 +92,7 @@ The system architecture for the application is as followed:
 
 <img width="500" height='500' src="./demo/data-flow.png"  alt="System Architecture"/>
 
-[![Technolgies Used](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/data-flow.png)]
-
+[![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/data-flow.png)]
 
 <!-- ///////////////////////////////////// -->
 
@@ -104,6 +103,7 @@ The activity diagram for the application is as followed:
 
 <img width="auto" src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg"  alt="System Architecture"/>
 
+[![System Architecture](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg)]
 
 
 
