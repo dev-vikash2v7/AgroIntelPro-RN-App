@@ -1,14 +1,14 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
-<a href="https://github.com/FASAL-MITRA-SIH-22/Fasal-mitra-frontend"><img width=200px src="./demo//logo.png"  alt="Project logo"/></a>
+<img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/>
 </p>
 
 <!-- ![Watch the video] -->
 
 <div >
 Watch on Youtube
-<a href="https://youtu.be/og0QWx-D6X4"><img width=40px src="./demo//Youtube_logo.png"  alt="youtube"/> </a>
+<a href="https://youtu.be/og0QWx-D6X4"><img width=40px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/Youtube_logo.png"  alt="youtube"/> </a>
 </div>
 
 ## 📝 Table of Contents
@@ -28,8 +28,9 @@ Watch on Youtube
 
 Here is the app in action.
 
-![In Action](demo/app_in_action.gif)
-
+<div align="center">
+<img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif' />
+</div>
 
 ## 1.2 🧐 Features <a name = "features"></a>
 
@@ -73,6 +74,7 @@ Here is the app in action.
 
 ## 1.3 Technologies Used <a name = "technolgies"></a>
 
+
 ![Technolgies Used](demo/technogies.png)
 
 
@@ -97,7 +99,7 @@ The system architecture for the application is as followed:
 
 The activity diagram for the application is as followed:
 
-<img width="auto" src="./demo/chart.jpg"  alt="System Architecture"/>
+<img width="auto" src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/chart.jpg"  alt="System Architecture"/>
 
 
 
