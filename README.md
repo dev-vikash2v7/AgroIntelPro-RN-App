@@ -1,16 +1,18 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
+</p>
+
 <!-- <img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/> -->
 ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
-</p>
+
 
 
 <!-- ![Watch the video] -->
 
 <div >
 Watch on Youtube
-<a href="https://youtu.be/og0QWx-D6X4"><img width=40px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/Youtube_logo.png"  alt="youtube"/> </a>
+<a href="https://youtu.be/og0QWx-D6X4"><img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode."  width=40px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/Youtube_logo.png"  alt="youtube"> </a>
 </div>
 
 ## 📝 Table of Contents
@@ -33,8 +35,14 @@ Here is the app in action.
 <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif' />
 </div>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/25423296/163456779-a8556205-d0a5-45e2-ac17-42d089e3c3f8.png">
+  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://user-images.githubusercontent.com/25423296/163456779-a8556205-d0a5-45e2-ac17-42d089e3c3f8.png">
+</picture>
 
-![App in Action](https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif)
+
+![App in Action](/demo/app_in_action.gif)
 
 
 ## 1.2 🧐 Features <a name = "features"></a>
