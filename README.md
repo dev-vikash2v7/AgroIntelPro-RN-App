@@ -1,15 +1,9 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
-<<<<<<< HEAD
 <img width=200px src="https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/logo.png"  alt="Project logo"/>
-=======
-<img width=200px src="demo/logo.png"  alt="Project logo"/>
-
->>>>>>> 6c29e81b20b747239319f6f836fa8c0455ddd260
 </p>
 
-![Project logo](demo/logo.png)
 
 <!-- ![Watch the video] -->
 
