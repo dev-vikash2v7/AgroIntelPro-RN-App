@@ -1,13 +1,12 @@
 <h1 align="center"> AgroIntel Pro - Grow More, Worry Less</h1>
 
 <p align="center">
+<img width=200px src="https://i.ibb.co/f9DTdLb/logo.png"  alt="Project logo">
 </p>
 
-<!-- <img width=200px src="/demo/logo.png"  alt="Project logo"> -->
-![logo](/demo/logo.png)
 
 
-<a href="https://youtu.be/og0QWx-D6X4"><img  alt="youtube" src = '/demo/Youtube_logo.png'> Watch on Youtube</a>
+<a href="https://youtu.be/og0QWx-D6X4"><img  alt="youtube" src = 'https://i.ibb.co/t8LHQTW/Youtube-logo.png' width = 30px height = 20px> Watch on Youtube</a>
 
 ## 📝 Table of Contents
 
@@ -26,11 +25,10 @@
 Here is the app in action.
 
 <div align="center">
-<img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/app_in_action.gif' />
+<img src ='https://i.ibb.co/j6mT4ZR/app-in-action.gif' />
 </div>
 
 
-![App in Action](/demo/app_in_action.gif)
 
 
 ## 1.2 🧐 Features <a name = "features"></a>
@@ -75,7 +73,7 @@ Here is the app in action.
 
 ## 1.3 Technologies Used <a name = "technolgies"></a>
 
-![Technolgies Used](/demo/technogies.png)
+![Technolgies Used](https://i.ibb.co/D17JGV8/technogies.png)
 
 <!-- <img src ='https://github.com/dev-vikash2v7/AgroIntelPro-RN-App/blob/main/demo/technogies/png' />-->
 
@@ -87,7 +85,7 @@ Here is the app in action.
 The system architecture for the application is as followed:
 
 
-![System Architecture](/demo/data-flow.png)
+![System Architecture](https://i.ibb.co/vdMC30Y/data-flow.png)
 
 
 ## 1.5 Activity Diagram <a name = "activity"></a>
@@ -95,7 +93,7 @@ The system architecture for the application is as followed:
 The activity diagram for the application is as followed:
 
 
-![System Architecture](/demo/chart.jpg)
+![System Architecture](https://i.ibb.co/tJK8MC0/chart.jpgg)
 
 
 
