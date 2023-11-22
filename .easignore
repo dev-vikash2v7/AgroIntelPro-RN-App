@@ -1,4 +1,6 @@
 gitfetch.bat
 gitpush.bat
-/demo
-
+demo/
+node_modules/
+/vscode/
+.expo/

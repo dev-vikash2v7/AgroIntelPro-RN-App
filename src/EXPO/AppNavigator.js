@@ -68,7 +68,7 @@ export default function AppNavigator() {
   function HomeStackNavigator() {
     return (
       <Stack.Navigator     
-      initialRouteName='DiseasePredOffline'
+      initialRouteName='HomeScreen'
         screenOptions={ {
             headerStyle: {
               backgroundColor: '#307ecc', //Set Header color
