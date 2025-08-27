@@ -1,0 +1,40 @@
+
+{
+  "expo": {
+    "name": "AgroIntel Pro",
+    "slug": "AgroIntelPro-Hackaton-Project",
+    "version": "1.0.8",
+    "orientation": "portrait",
+    "icon": "./assets/android_icons/icon.png",
+    "userInterfaceStyle": "dark",
+    "jsEngine": "jsc",
+    "splash": {
+      "image": "./assets/android_icons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android_icons/adaptive-icon.png",
+        "backgroundColor": "#fefffe"
+      },
+      "package": "com.vikash129.AgroIntelProHackatonProject"
+    },
+    "web": {
+      "favicon": "./assets/android_icons/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7e3b055f-c80c-40ac-8470-e0db0925f993"
+      }
+    },
+    "owner": "vikash129",
+    "scheme": ["http", "https"]
+  }
+}
